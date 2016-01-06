@@ -2,6 +2,8 @@ public class Test {
 
     public static void main(String[] args) {
 
-        System.out.println(1 / 2.0);
+        char x = 66;
+
+        System.out.println(x);
     }
 }
