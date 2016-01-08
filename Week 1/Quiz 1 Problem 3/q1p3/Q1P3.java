@@ -2,23 +2,29 @@ package q1p3;
 
 public class Q1P3 {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		checkNumsPretty(3583);
-		checkNumsPretty(2024);
-		checkNumsPretty(323);
-		checkNumsPretty(221);
-	}
+        System.out.println("First iteration:");
+        checkNumsPretty(101);
+        System.out.println("Second iteration:");
+		checkNumsPretty(102);
+        System.out.println("Third iteration:");
+		checkNumsPretty(201);
+        System.out.println("Fourth iteration:");
+		checkNumsPretty(202);
+    }
 
-	public static void checkNumsPretty(int max) {
+    public static void checkNumsPretty(int max) {
 
-		int firstNum = Integer.parseInt(Integer.toString(max).substring(0, 1));
-		int lastNum = max % 10;
+        for (int i = 1; i <= max; i++) {
+            int firstNum = Integer.parseInt(Integer.toString(i).substring(0, 1));
+            int lastNum = i % 10;
 
-		if (firstNum == lastNum) {
-			System.out.println("pretty");
-		} else {
-			System.out.println(max);
-		}
-	}
+            if (firstNum == lastNum) {
+                System.out.println("\tpretty");
+            } else {
+                System.out.println("\t" + i);
+            }
+        }
+    }
 }
