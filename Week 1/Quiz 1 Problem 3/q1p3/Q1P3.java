@@ -20,6 +20,7 @@ public class Q1P3 {
             int firstNum = Integer.parseInt(Integer.toString(i).substring(0, 1));
             int lastNum = i % 10;
 
+            // If the first n
             if (firstNum == lastNum) {
                 System.out.println("\tpretty");
             } else {
