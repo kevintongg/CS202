@@ -7,11 +7,11 @@ public class Q1P3 {
         System.out.println("First iteration:");
         checkNumsPretty(101);
         System.out.println("Second iteration:");
-		checkNumsPretty(102);
+        checkNumsPretty(102);
         System.out.println("Third iteration:");
-		checkNumsPretty(201);
+        checkNumsPretty(201);
         System.out.println("Fourth iteration:");
-		checkNumsPretty(202);
+        checkNumsPretty(202);
     }
 
     public static void checkNumsPretty(int max) {
@@ -20,7 +20,6 @@ public class Q1P3 {
             int firstNum = Integer.parseInt(Integer.toString(i).substring(0, 1));
             int lastNum = i % 10;
 
-            // If the first n
             if (firstNum == lastNum) {
                 System.out.println("\tpretty");
             } else {
