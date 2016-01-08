@@ -12,10 +12,10 @@ public class Q1P3 {
 
 	public static void checkNumsPretty(int max) {
 
-		int firstMax = Integer.parseInt(Integer.toString(max).substring(0, 1));
-		int lastMax = max % 10;
+		int firstNum = Integer.parseInt(Integer.toString(max).substring(0, 1));
+		int lastNum = max % 10;
 
-		if (firstMax == lastMax) {
+		if (firstNum == lastNum) {
 			System.out.println("pretty");
 		} else {
 			System.out.println(max);
