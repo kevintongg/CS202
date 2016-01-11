@@ -30,11 +30,10 @@ public class Lab1 {
 
 	public static void printTable(char[][] table) {
 
-		for (int i = 0; i < table.length; i++) {
+		for (char[] i : table) {
 			System.out.println("\t=================================");
-			for (int j = 0; j < table[i].length; j++) {
-				System.out.print("\t|" + table[i][j]);
-
+			for (char j : i) {
+				System.out.print("\t|" + j);
 			}
 			System.out.println();
 		}
@@ -47,7 +46,7 @@ public class Lab1 {
 
 	public static void pickOption() {
 
-		int choice = 0;
+		int choice;
 
 		do {
 			System.out.println(
