@@ -2,10 +2,13 @@ public class Test2 {
 
 	public static void main(String[] args) {
 
-		int number = 534;
-		int firstDigit = Integer.parseInt(Integer.toString(number).substring(0, 1));
+		int[] array = {3, 4, 5, 6, 7};
+		int total = 0;
 
-		System.out.println(firstDigit);
+		for (int i : array) {
+			total += i;
+		}
 
+		System.out.println(total);
 	}
 }
