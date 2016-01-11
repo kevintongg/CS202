@@ -44,15 +44,15 @@ public class Lab1 {
 		System.out.println("\nWelcome to Gym Class Scheduling!\n");
 	}
 
-	public static void pickOption() {
+	public static void pickMenuOption() {
 
-		int choice;
+		int pick;
 
 		do {
 			System.out.println(
 					"Enter '0' to quit, '1' to show the current schedule, '2' to schedule a class, and '3' to add students.");
-			choice = sc.nextInt();
-			switch (choice) {
+			pick = sc.nextInt();
+			switch (pick) {
 				case 1:
 					System.out.println("The current schedule is:");
 					printTable(table);
@@ -64,11 +64,11 @@ public class Lab1 {
 					System.out.println("We will add a student to a specified class.");
 					break;
 			}
-			if (choice < 0 || choice > 3) {
+			if (pick < 0 || pick > 3) {
 				System.out.println(
 						"Invalid input. Please enter '0' to quit, '1' to show the current schedule, '2' to schedule a class, and '3' to add students.");
 			}
-		} while (choice != 0);
+		} while (pick != 0);
 	}
 
 	public static void rowInput() {
@@ -108,7 +108,7 @@ public class Lab1 {
 	public static void schedule() {
 
 
-		pickOption();
+		pickMenuOption();
 		System.out.println("The first column is Monday, second Thursday, third Friday, and fourth Saturday.\n");
 		printTable(table);
 		rowInput();
