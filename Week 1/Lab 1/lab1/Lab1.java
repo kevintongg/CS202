@@ -34,11 +34,9 @@ public class Lab1 {
 
 	public static void printTable(String[][] table) {
 
-		System.out.println("The first column is Monday, second Thursday, third Friday, and fourth Saturday.\n");
-		System.out.println("The first row is 9 to 10 AM, second 1 to 2 PM, third 3 to 4 PM, and fourth 4 to 5 PM");
-
 		for (String[] i : table) {
-			System.out.println("\t=======================================================================================================");
+			System.out.println(
+					"\t=======================================================================================================");
 			for (String j : i) {
 				System.out.print("\t|" + "\t" + j);
 			}
@@ -60,44 +58,9 @@ public class Lab1 {
 
 	}
 
-	public static void rowInput() {
-		// Getting input for which row to be used
-		do {
-			System.out.print(
-					"\nPlease pick the row of the day you would like to schedule. \n('1' for the first row, '2' for the second row, '3' for the third row, or '4' for the fourth row.): \n");
-			while (!sc.hasNextInt()) {
-				sc.nextLine();
-				System.out.println("Invalid input! Please enter either 1, 2, 3, or 4!");
-			}
-			rows = sc.nextInt() - 1;
-			if (rows < 0 || rows > 3) {
-				System.out.println("A row number between 1 and 4, please!");
-			}
-
-		} while (rows < 0 || rows > 3);
-	}
-
-	public static void columnInput() {
-
-		// Getting input for which column to be used
-		do {
-			System.out.print(
-					"\nPlease pick the column of the day you would like to schedule. \n('1' for the first column, '2' for the second column, '3' for the third column, or '4' for the fourth column.): \n");
-			while (!sc.hasNextInt()) {
-				sc.nextLine();
-				System.out.println("Invalid input! Please enter either 1, 2, 3, or 4!");
-			}
-			columns = sc.nextInt() - 1;
-			if (columns < 0 || columns > 3) {
-				System.out.println("A column number between 1 and 4, please!");
-			}
-
-		} while (rows < 0 || rows > 3);
-	}
-
 	public static void pickOption() {
 
-		int choice = 0;
+		int choice;
 
 		do {
 			System.out.println(
@@ -110,7 +73,7 @@ public class Lab1 {
 			choice = sc.nextInt();
 			switch (choice) {
 				case 1:
-					System.out.println("The current schedule is:");
+					System.out.println("\nThe current schedule is:");
 					printTable(table);
 					break;
 				case 2:
@@ -131,8 +94,7 @@ public class Lab1 {
 
 	public static void addStudent() {
 
-		int choice = 0;
-
+		int choice;
 
 		do {
 			System.out.println(
@@ -196,50 +158,56 @@ public class Lab1 {
 			}
 		} while (choice != 0);
 
-		if (choice == 0) {
-			System.out.println("\nWe will now go back to the main menu.");
-			pickOption();
-		}
+		System.out.println("\nWe will now go back to the main menu.");
+		pickOption();
 	}
 
 	public static void scheduling() {
 
-		String[] classesShow = {"Basketball Class, Thursdays only, 1:00 to 2:00 PM, Maximum Students: 20",
-				"Swim Class, Fridays and Saturdays, 1:00 to 2:00 PM, Students: 10",
-				"Ping Pong Class, Mondays only, 9:00 to 10:00AM, Maximum Students: 10",
-				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12",
-				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15"};
-		String[] classesDisplay = {"Basketball\n" + basketballStudents + " out of 20 students", "Swim\n" + swimStudents + " out of 10 students", "Ping Pong\n" + pingPongStudents + " out of 10 students", "Badminton\n" + badmintonStudents + " out of 12 students", "Yoga\n" + yogaStudents + " out of 15 students"};
+		String[] classesShow = {
+				"Basketball Class, Thursdays only, 1:00 to 2:00 PM, Maximum Students: 20, Current: "
+						+ basketballStudents,
+				"Swim Class, Fridays and Saturdays, 1:00 to 2:00 PM, Students: 10, Current: " + swimStudents,
+				"Ping Pong Class, Mondays only, 9:00 to 10:00AM, Maximum Students: 10, Current: " + pingPongStudents,
+				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
+				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents};
+		String[] classesDisplay = {"Basketball: " + basketballStudents + " out of 20 students",
+				"Swim: " + swimStudents + " out of 10 students",
+				"Ping Pong: " + pingPongStudents + " out of 10 students",
+				"Badminton: " + badmintonStudents + " out of 12 students",
+				"Yoga: " + yogaStudents + " out of 15 students"};
 
-		for (String i : classesDisplay) {
-			System.out.println(i);
-		}
-
-		int choice = 0;
+		int choice;
 
 		System.out.println("The classes available to choose from are as follows:\n");
 		for (String i : classesShow) {
 			System.out.println("\t" + i);
 		}
 		System.out.println();
-		do {
-			System.out.println(
-					"Enter one of the following options:\n'0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
-			while (!sc.hasNextInt()) {
-				sc.nextLine();
-				System.out.println(
-						"Invalid input! Please enter '0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
-			}
-			switch (choice) {
-				case 1:
-					table[1][1] = classesDisplay[0];
 
-			}
-		} while (choice != 0);
-		if (choice == 0) {
-			System.out.println("\nWe will now go back to the main menu.");
-			pickOption();
+		System.out.println(
+				"Enter one of the following options:\n'0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
+		while (!sc.hasNextInt()) {
+			sc.nextLine();
+			System.out.println(
+					"Invalid input! Please enter '0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
+		}
+		choice = sc.nextInt();
+
+		if (choice == 1) {
+			table[2][2] = classesDisplay[0];
+		} else if (choice == 2) {
+			table[2][3] = classesDisplay[1];
+			table[2][4] = classesDisplay[1];
+		} else if (choice == 3) {
+			table[1][1] = classesDisplay[2];
+		} else if (choice == 4) {
+			table[2][1] = classesDisplay[3];
+		} else if (choice == 5) {
+			table[4][1] = classesDisplay[4];
+			table[4][2] = classesDisplay[4];
+			table[4][3] = classesDisplay[4];
+			table[4][4] = classesDisplay[4];
 		}
 	}
-
 }
