@@ -5,35 +5,38 @@ import java.util.Scanner;
 public class Lab1 {
 
 	static Scanner sc = new Scanner(System.in);
-	static int rows = 5;
-	static int columns = 5;
-	static String[][] table = new String[rows][columns];
 	static int basketballStudents = 0;
 	static int swimStudents = 0;
 	static int pingPongStudents = 0;
 	static int badmintonStudents = 0;
 	static int yogaStudents = 0;
+	static int rows = 5;
+	static int columns = 5;
+	static String[][] table = new String[rows][columns];
 
 	public static void main(String[] args) {
 
 		System.out.println("\nWelcome to Gym Class Scheduling!");
 		makeTable();
-		tableHeaders();
 		pickOption();
 
 	}
 
 	public static void makeTable() {
 
+		// Creating the table
 		for (int i = 0; i < table.length; i++) {
 			for (int j = 0; j < table[i].length; j++) {
 				table[i][j] = "";
 			}
 		}
+		// Assign the table titles after table is made
+		tableTitles();
 	}
 
 	public static void printTable(String[][] table) {
 
+		// Printing the table
 		for (String[] i : table) {
 			System.out.println(
 					"\t=======================================================================================================");
@@ -44,7 +47,9 @@ public class Lab1 {
 		}
 	}
 
-	public static void tableHeaders() {
+	public static void tableTitles() {
+
+		// Assigning the times and days onto the table
 
 		table[0][0] = "Gym Schedule";
 		table[0][1] = "M";
@@ -59,6 +64,8 @@ public class Lab1 {
 	}
 
 	public static void pickOption() {
+
+		// Basically the main menu
 
 		int choice;
 
@@ -93,6 +100,8 @@ public class Lab1 {
 	}
 
 	public static void addStudent() {
+
+		// Here we add students to the class if class is not full
 
 		int choice;
 
@@ -164,20 +173,37 @@ public class Lab1 {
 
 	public static void scheduling() {
 
+		// Here we assign classes to the schedule/table
+
+		// Stores all the classes in an array of Strings
 		String[] classesShow = {
 				"Basketball Class, Thursdays only, 1:00 to 2:00 PM, Maximum Students: 20, Current: "
 						+ basketballStudents,
 				"Swim Class, Fridays and Saturdays, 1:00 to 2:00 PM, Students: 10, Current: " + swimStudents,
 				"Ping Pong Class, Mondays only, 9:00 to 10:00AM, Maximum Students: 10, Current: " + pingPongStudents,
 				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
-				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents};
-		String[] classesDisplay = {"Basketball: " + basketballStudents + " out of 20 students",
+				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents };
+		// Stores the class names and student count in an array of Strings
+		String[] classesDisplay = { "Basketball: " + basketballStudents + " out of 20 students",
 				"Swim: " + swimStudents + " out of 10 students",
 				"Ping Pong: " + pingPongStudents + " out of 10 students",
 				"Badminton: " + badmintonStudents + " out of 12 students",
-				"Yoga: " + yogaStudents + " out of 15 students"};
-
+				"Yoga: " + yogaStudents + " out of 15 students" };
 		int choice;
+		/*
+		 * Ideally, these variables below should say if the class can be added
+		 * or not depending if the class has already been added or not
+		 */
+		int yesNo1;
+		int yesNo2;
+		int yesNo3;
+		int yesNo4;
+		int yesNo5;
+		boolean pick1 = false;
+		boolean pick2 = false;
+		boolean pick3 = false;
+		boolean pick4 = false;
+		boolean pick5 = false;
 
 		System.out.println("The classes available to choose from are as follows:\n");
 		for (String i : classesShow) {
@@ -194,20 +220,60 @@ public class Lab1 {
 		}
 		choice = sc.nextInt();
 
-		if (choice == 1) {
-			table[2][2] = classesDisplay[0];
-		} else if (choice == 2) {
-			table[2][3] = classesDisplay[1];
-			table[2][4] = classesDisplay[1];
-		} else if (choice == 3) {
-			table[1][1] = classesDisplay[2];
-		} else if (choice == 4) {
-			table[2][1] = classesDisplay[3];
-		} else if (choice == 5) {
-			table[4][1] = classesDisplay[4];
-			table[4][2] = classesDisplay[4];
-			table[4][3] = classesDisplay[4];
-			table[4][4] = classesDisplay[4];
+		if (choice == 1 && pick1 == false) {
+			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+			yesNo1 = sc.nextInt();
+			if (yesNo1 == 1) {
+				pick1 = true;
+				table[2][2] = classesDisplay[0];
+			} else if (pick1 == true) {
+				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+			}
+		}
+		if (choice == 2 && pick2 == false) {
+			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+			yesNo2 = sc.nextInt();
+			if (yesNo2 == 1) {
+				pick2 = true;
+				table[2][3] = classesDisplay[1];
+				table[2][4] = classesDisplay[1];
+			} else if (pick2 == true) {
+				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+			}
+		}
+		if (choice == 3 && pick3 == false) {
+			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+			yesNo3 = sc.nextInt();
+			if (yesNo3 == 1) {
+				pick3 = true;
+				table[1][1] = classesDisplay[2];
+			} else if (pick3 == true) {
+				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+			}
+		}
+		if (choice == 4 && pick4 == false) {
+			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+			yesNo4 = sc.nextInt();
+			if (yesNo4 == 1) {
+				pick4 = true;
+				table[2][1] = classesDisplay[3];
+			} else if (pick4 == true) {
+				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+			}
+		}
+		if (choice == 5 && pick5 == false) {
+			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+			yesNo5 = sc.nextInt();
+			if (yesNo5 == 1) {
+				pick5 = true;
+				table[4][1] = classesDisplay[4];
+				table[4][2] = classesDisplay[4];
+				table[4][3] = classesDisplay[4];
+				table[4][4] = classesDisplay[4];
+			} else if (pick5 == true) {
+				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+
+			}
 		}
 	}
 }
