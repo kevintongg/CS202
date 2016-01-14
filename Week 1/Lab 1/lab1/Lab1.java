@@ -27,7 +27,7 @@ public class Lab1 {
 		// Creating the table
 		for (int i = 0; i < table.length; i++) {
 			for (int j = 0; j < table[i].length; j++) {
-				table[i][j] = "";
+				table[i][j] = "  ";
 			}
 		}
 		// Assign the table titles after table is made
@@ -39,9 +39,9 @@ public class Lab1 {
 		// Printing the table
 		for (String[] i : table) {
 			System.out.println(
-					"\t=======================================================================================================");
+					"\t===============================================================================================================================================");
 			for (String j : i) {
-				System.out.print("\t|" + "\t" + j);
+				System.out.print("\t|" + "\t     " + j + "       ");
 			}
 			System.out.println();
 		}
@@ -79,18 +79,19 @@ public class Lab1 {
 			}
 			choice = sc.nextInt();
 			switch (choice) {
-				case 1:
-					System.out.println("\nThe current schedule is:");
-					printTable(table);
-					break;
-				case 2:
-					System.out.println("We will now schedule a class.");
-					scheduling();
-					break;
-				case 3:
-					System.out.println("We will add a student to a specified class.");
-					addStudent();
-					break;
+			case 1:
+				System.out.println("\nThe current schedule is:");
+				printTable(table);
+				currentStudents();
+				break;
+			case 2:
+				System.out.println("We will now schedule a class.");
+				scheduling();
+				break;
+			case 3:
+				System.out.println("We will add a student to a specified class.");
+				addStudent();
+				break;
 			}
 			if (choice < 0 || choice > 3) {
 				System.out.println(
@@ -115,51 +116,51 @@ public class Lab1 {
 			}
 			choice = sc.nextInt();
 			switch (choice) {
-				case 1:
-					if (basketballStudents < 20) {
-						basketballStudents++;
-						System.out.println("Current students in the basketball class: " + basketballStudents);
-					} else {
-						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-						addStudent();
-					}
-					break;
-				case 2:
-					if (swimStudents < 10) {
-						swimStudents++;
-						System.out.println("Current students in the swim class: " + swimStudents);
-					} else {
-						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-						addStudent();
-					}
-					break;
-				case 3:
-					if (pingPongStudents < 10) {
-						pingPongStudents++;
-						System.out.println("Current students in the ping pong class: " + pingPongStudents);
-					} else {
-						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-						addStudent();
-					}
-					break;
-				case 4:
-					if (badmintonStudents < 12) {
-						badmintonStudents++;
-						System.out.println("Current students in the badminton class: " + badmintonStudents);
-					} else {
-						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-						addStudent();
-					}
-					break;
-				case 5:
-					if (yogaStudents < 15) {
-						yogaStudents++;
-						System.out.println("Current students in the yoga class: " + yogaStudents);
-					} else {
-						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-						addStudent();
-					}
-					break;
+			case 1:
+				if (basketballStudents < 20) {
+					basketballStudents++;
+					System.out.println("Current students in the basketball class: " + basketballStudents);
+				} else {
+					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+					addStudent();
+				}
+				break;
+			case 2:
+				if (swimStudents < 10) {
+					swimStudents++;
+					System.out.println("Current students in the swim class: " + swimStudents);
+				} else {
+					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+					addStudent();
+				}
+				break;
+			case 3:
+				if (pingPongStudents < 10) {
+					pingPongStudents++;
+					System.out.println("Current students in the ping pong class: " + pingPongStudents);
+				} else {
+					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+					addStudent();
+				}
+				break;
+			case 4:
+				if (badmintonStudents < 12) {
+					badmintonStudents++;
+					System.out.println("Current students in the badminton class: " + badmintonStudents);
+				} else {
+					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+					addStudent();
+				}
+				break;
+			case 5:
+				if (yogaStudents < 15) {
+					yogaStudents++;
+					System.out.println("Current students in the yoga class: " + yogaStudents);
+				} else {
+					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+					addStudent();
+				}
+				break;
 			}
 			if (choice < 0 || choice > 5) {
 				System.out.println(
@@ -169,6 +170,15 @@ public class Lab1 {
 
 		System.out.println("\nWe will now go back to the main menu.");
 		pickOption();
+	}
+
+	public static void currentStudents() {
+
+		System.out.println("\nBasketball Class: " + basketballStudents + "/" + "20 students");
+		System.out.println("Swim Class: " + swimStudents + "/" + "10 students");
+		System.out.println("Ping Pong Class: " + pingPongStudents + "/" + "10 students");
+		System.out.println("Badminton Class: " + badmintonStudents + "/" + "12 students");
+		System.out.println("Yoga Class: " + yogaStudents + "/" + "15 students");
 	}
 
 	public static void scheduling() {
@@ -184,11 +194,7 @@ public class Lab1 {
 				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
 				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents };
 		// Stores the class names and student count in an array of Strings
-		String[] classesDisplay = { "Basketball: " + basketballStudents + " out of 20 students",
-				"Swim: " + swimStudents + " out of 10 students",
-				"Ping Pong: " + pingPongStudents + " out of 10 students",
-				"Badminton: " + badmintonStudents + " out of 12 students",
-				"Yoga: " + yogaStudents + " out of 15 students" };
+		String[] classesDisplay = { "Basketball", "Swim", "Ping Pong", "Badminton", "Yoga" };
 		int choice;
 		/*
 		 * Ideally, these variables below should say if the class can be added
@@ -199,6 +205,7 @@ public class Lab1 {
 		int yesNo3;
 		int yesNo4;
 		int yesNo5;
+		int scheduleAgain;
 		boolean pick1 = false;
 		boolean pick2 = false;
 		boolean pick3 = false;
@@ -272,8 +279,15 @@ public class Lab1 {
 				table[4][4] = classesDisplay[4];
 			} else if (pick5 == true) {
 				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
-
 			}
+		}
+		System.out.println("Would you like to schedule another class? (1 for Yes, 2 for Noh)");
+		scheduleAgain = sc.nextInt();
+		if (scheduleAgain == 1) {
+			scheduling();
+		} else if (scheduleAgain == 2) {
+			System.out.println("We will now return to the main menu.");
+			pickOption();
 		}
 	}
 }
