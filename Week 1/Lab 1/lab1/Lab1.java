@@ -206,11 +206,11 @@ public class Lab1 {
 		int yesNo4;
 		int yesNo5;
 		int scheduleAgain;
-		boolean pick1 = false;
-		boolean pick2 = false;
-		boolean pick3 = false;
-		boolean pick4 = false;
-		boolean pick5 = false;
+		boolean scheduled1 = false;
+		boolean scheduled2 = false;
+		boolean scheduled3 = false;
+		boolean scheduled4 = false;
+		boolean scheduled5 = false;
 
 		System.out.println("The classes available to choose from are as follows:\n");
 		for (String i : classesShow) {
@@ -227,61 +227,61 @@ public class Lab1 {
 		}
 		choice = sc.nextInt();
 
-		if (choice == 1 && pick1 == false) {
+		if (choice == 1 && scheduled1 == false) {
 			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
 			yesNo1 = sc.nextInt();
-			if (yesNo1 == 1) {
-				pick1 = true;
-				table[2][2] = classesDisplay[0];
-			} else if (pick1 == true) {
+			if (scheduled1 == true) {
 				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+			} else if (yesNo1 == 1) {
+				scheduled1 = true;
+				table[2][2] = classesDisplay[0];
 			}
 		}
-		if (choice == 2 && pick2 == false) {
+		if (choice == 2 && scheduled2 == false) {
 			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
 			yesNo2 = sc.nextInt();
 			if (yesNo2 == 1) {
-				pick2 = true;
+				scheduled2 = true;
 				table[2][3] = classesDisplay[1];
 				table[2][4] = classesDisplay[1];
-			} else if (pick2 == true) {
+			} else if (scheduled2 == true) {
 				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
 			}
 		}
-		if (choice == 3 && pick3 == false) {
+		if (choice == 3 && scheduled3 == false) {
 			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
 			yesNo3 = sc.nextInt();
 			if (yesNo3 == 1) {
-				pick3 = true;
+				scheduled3 = true;
 				table[1][1] = classesDisplay[2];
-			} else if (pick3 == true) {
+			} else if (scheduled3 == true) {
 				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
 			}
 		}
-		if (choice == 4 && pick4 == false) {
+		if (choice == 4 && scheduled4 == false) {
 			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
 			yesNo4 = sc.nextInt();
 			if (yesNo4 == 1) {
-				pick4 = true;
+				scheduled4 = true;
 				table[2][1] = classesDisplay[3];
-			} else if (pick4 == true) {
+			} else if (scheduled4 == true) {
 				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
 			}
 		}
-		if (choice == 5 && pick5 == false) {
+		if (choice == 5 && scheduled5 == false) {
 			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
 			yesNo5 = sc.nextInt();
 			if (yesNo5 == 1) {
-				pick5 = true;
+				scheduled5 = true;
 				table[4][1] = classesDisplay[4];
 				table[4][2] = classesDisplay[4];
 				table[4][3] = classesDisplay[4];
 				table[4][4] = classesDisplay[4];
-			} else if (pick5 == true) {
+			} else if (scheduled5 == true) {
 				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
 			}
 		}
-		System.out.println("Would you like to schedule another class? (1 for Yes, 2 for Noh)");
+		System.out.println("Would you like to schedule another class? (1 for Yes, 2 for No)");
 		scheduleAgain = sc.nextInt();
 		if (scheduleAgain == 1) {
 			scheduling();
