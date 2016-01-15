@@ -12,7 +12,10 @@ public class Lab1 {
 	static int yogaStudents = 0;
 	static int rows = 5;
 	static int columns = 5;
+	static int repeat;
 	static String[][] table = new String[rows][columns];
+	static String[] classesDisplay = { "Basketball", "Swim", "Ping Pong", "Badminton", "Yoga" };
+	static boolean scheduled;
 
 	public static void main(String[] args) {
 
@@ -79,19 +82,19 @@ public class Lab1 {
 			}
 			choice = sc.nextInt();
 			switch (choice) {
-			case 1:
-				System.out.println("\nThe current schedule is:");
-				printTable(table);
-				currentStudents();
-				break;
-			case 2:
-				System.out.println("We will now schedule a class.");
-				scheduling();
-				break;
-			case 3:
-				System.out.println("We will add a student to a specified class.");
-				addStudent();
-				break;
+				case 1:
+					System.out.println("\nThe current schedule is:");
+					printTable(table);
+					currentStudents();
+					break;
+				case 2:
+					System.out.println("We will now schedule a class.");
+					scheduling();
+					break;
+				case 3:
+					System.out.println("We will add a student to a specified class.");
+					addStudent();
+					break;
 			}
 			if (choice < 0 || choice > 3) {
 				System.out.println(
@@ -116,51 +119,51 @@ public class Lab1 {
 			}
 			choice = sc.nextInt();
 			switch (choice) {
-			case 1:
-				if (basketballStudents < 20) {
-					basketballStudents++;
-					System.out.println("Current students in the basketball class: " + basketballStudents);
-				} else {
-					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-					addStudent();
-				}
-				break;
-			case 2:
-				if (swimStudents < 10) {
-					swimStudents++;
-					System.out.println("Current students in the swim class: " + swimStudents);
-				} else {
-					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-					addStudent();
-				}
-				break;
-			case 3:
-				if (pingPongStudents < 10) {
-					pingPongStudents++;
-					System.out.println("Current students in the ping pong class: " + pingPongStudents);
-				} else {
-					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-					addStudent();
-				}
-				break;
-			case 4:
-				if (badmintonStudents < 12) {
-					badmintonStudents++;
-					System.out.println("Current students in the badminton class: " + badmintonStudents);
-				} else {
-					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-					addStudent();
-				}
-				break;
-			case 5:
-				if (yogaStudents < 15) {
-					yogaStudents++;
-					System.out.println("Current students in the yoga class: " + yogaStudents);
-				} else {
-					System.out.println("Sorry, this class has reached the maximum number of students allowed.");
-					addStudent();
-				}
-				break;
+				case 1:
+					if (basketballStudents < 20) {
+						basketballStudents++;
+						System.out.println("Current students in the basketball class: " + basketballStudents);
+					} else {
+						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+						addStudent();
+					}
+					break;
+				case 2:
+					if (swimStudents < 10) {
+						swimStudents++;
+						System.out.println("Current students in the swim class: " + swimStudents);
+					} else {
+						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+						addStudent();
+					}
+					break;
+				case 3:
+					if (pingPongStudents < 10) {
+						pingPongStudents++;
+						System.out.println("Current students in the ping pong class: " + pingPongStudents);
+					} else {
+						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+						addStudent();
+					}
+					break;
+				case 4:
+					if (badmintonStudents < 12) {
+						badmintonStudents++;
+						System.out.println("Current students in the badminton class: " + badmintonStudents);
+					} else {
+						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+						addStudent();
+					}
+					break;
+				case 5:
+					if (yogaStudents < 15) {
+						yogaStudents++;
+						System.out.println("Current students in the yoga class: " + yogaStudents);
+					} else {
+						System.out.println("Sorry, this class has reached the maximum number of students allowed.");
+						addStudent();
+					}
+					break;
 			}
 			if (choice < 0 || choice > 5) {
 				System.out.println(
@@ -181,6 +184,23 @@ public class Lab1 {
 		System.out.println("Yoga Class: " + yogaStudents + "/" + "15 students");
 	}
 
+	public static void scheduleAgain(int scheduleAgain) {
+
+		/*
+		 * This method will ask the user if they would like to schedule another
+		 * class
+		 */
+
+		System.out.println("Would you like to schedule another class? (1 for Yes, 2 for No)");
+		scheduleAgain = sc.nextInt();
+		if (scheduleAgain == 1) {
+			scheduling();
+		} else if (scheduleAgain == 2) {
+			System.out.println("We will now return to the main menu.");
+			pickOption();
+		}
+	}
+
 	public static void scheduling() {
 
 		// Here we assign classes to the schedule/table
@@ -193,24 +213,9 @@ public class Lab1 {
 				"Ping Pong Class, Mondays only, 9:00 to 10:00AM, Maximum Students: 10, Current: " + pingPongStudents,
 				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
 				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents };
-		// Stores the class names and student count in an array of Strings
-		String[] classesDisplay = { "Basketball", "Swim", "Ping Pong", "Badminton", "Yoga" };
+
 		int choice;
-		/*
-		 * Ideally, these variables below should say if the class can be added
-		 * or not depending if the class has already been added or not
-		 */
-		int yesNo1;
-		int yesNo2;
-		int yesNo3;
-		int yesNo4;
-		int yesNo5;
-		int scheduleAgain;
-		boolean scheduled1 = false;
-		boolean scheduled2 = false;
-		boolean scheduled3 = false;
-		boolean scheduled4 = false;
-		boolean scheduled5 = false;
+		int yesNo;
 
 		System.out.println("The classes available to choose from are as follows:\n");
 		for (String i : classesShow) {
@@ -218,76 +223,165 @@ public class Lab1 {
 		}
 		System.out.println();
 
-		System.out.println(
-				"Enter one of the following options:\n'0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
-		while (!sc.hasNextInt()) {
-			sc.nextLine();
-			System.out.println(
-					"Invalid input! Please enter '0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
-		}
-		choice = sc.nextInt();
+		System.out.println("Classes that have not yet been scheduled:\n");
+		displayClassesNotYetScheduled();
+		System.out.println();
 
-		if (choice == 1 && scheduled1 == false) {
-			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
-			yesNo1 = sc.nextInt();
-			if (scheduled1 == true) {
-				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
-			} else if (yesNo1 == 1) {
-				scheduled1 = true;
-				table[2][2] = classesDisplay[0];
+		/*
+		 * The following do... while loop will ask the user if they would like
+		 * to add classes, and if classes are already scheduled, display error
+		 * message and ask if they would like to schedule another. If not, go
+		 * back to main menu
+		 */
+		do {
+			System.out.println(
+					"Enter one of the following options:\n'0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
+			while (!sc.hasNextInt()) {
+				sc.nextLine();
+				System.out.println(
+						"Invalid input! Please enter '0' to return to the main menu\n'1' to schedule the basketball class\n'2' to schedule the swim class\n'3' to schedule the ping pong class\n'4' to schedule the badminton class\n'5' to schedule the yoga class");
 			}
-		}
-		if (choice == 2 && scheduled2 == false) {
-			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
-			yesNo2 = sc.nextInt();
-			if (yesNo2 == 1) {
-				scheduled2 = true;
-				table[2][3] = classesDisplay[1];
-				table[2][4] = classesDisplay[1];
-			} else if (scheduled2 == true) {
-				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+			choice = sc.nextInt();
+			switch (choice) {
+				case 1:
+					System.out.println("Are you sure you want to schedule this basketball class? (1 for Yes, 2 for No)");
+					yesNo = sc.nextInt();
+					if (checkIfBasketballClassIsScheduled(scheduled) == true) {
+						System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+						scheduleAgain(repeat);
+					} else if (yesNo == 1 && checkIfBasketballClassIsScheduled(scheduled) == false) {
+						table[2][2] = classesDisplay[0];
+						scheduleAgain(repeat);
+					}
+					break;
+				case 2:
+					System.out.println("Are you sure you want to schedule this swim class? (1 for Yes, 2 for No)");
+					yesNo = sc.nextInt();
+					if (checkIfSwimClassIsScheduled(scheduled) == true) {
+						System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+						scheduleAgain(repeat);
+					} else if (yesNo == 1 && checkIfSwimClassIsScheduled(scheduled) == false) {
+						table[2][3] = classesDisplay[1];
+						table[2][4] = classesDisplay[1];
+						scheduleAgain(repeat);
+					}
+
+					break;
+				case 3:
+					System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+					yesNo = sc.nextInt();
+					if (checkIfPingPongClassIsScheduled(scheduled)) {
+						System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+						scheduleAgain(repeat);
+					} else if (yesNo == 1) {
+						table[1][1] = classesDisplay[2];
+						scheduleAgain(repeat);
+					}
+					break;
+				case 4:
+					System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+					yesNo = sc.nextInt();
+					if (checkIfBadmintonClassIsScheduled(scheduled)) {
+						System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+						scheduleAgain(repeat);
+					} else if (yesNo == 1) {
+						table[2][1] = classesDisplay[3];
+						scheduleAgain(repeat);
+					}
+					break;
+				case 5:
+					System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
+					yesNo = sc.nextInt();
+					if (checkIfYogaClassIsScheduled(scheduled)) {
+						System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
+						scheduleAgain(repeat);
+					} else if (yesNo == 1) {
+						table[4][1] = classesDisplay[4];
+						table[4][2] = classesDisplay[4];
+						table[4][3] = classesDisplay[4];
+						table[4][4] = classesDisplay[4];
+						scheduleAgain(repeat);
+					}
+					break;
 			}
+			break;
+		} while (choice != 0);
+
+	}
+
+	/*
+	 * The following five methods check if the class is scheduled via checking
+	 * the index of the two-dimensional array
+	 */
+
+	public static boolean checkIfBasketballClassIsScheduled(boolean scheduled) {
+
+		if (table[2][2] == classesDisplay[0]) {
+			return scheduled = true;
+		} else {
+			return scheduled = false;
 		}
-		if (choice == 3 && scheduled3 == false) {
-			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
-			yesNo3 = sc.nextInt();
-			if (yesNo3 == 1) {
-				scheduled3 = true;
-				table[1][1] = classesDisplay[2];
-			} else if (scheduled3 == true) {
-				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
-			}
+	}
+
+	public static boolean checkIfSwimClassIsScheduled(boolean scheduled) {
+
+		if (table[2][3] == classesDisplay[1] && table[2][4] == classesDisplay[1]) {
+			return scheduled = true;
+		} else {
+			return scheduled = false;
 		}
-		if (choice == 4 && scheduled4 == false) {
-			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
-			yesNo4 = sc.nextInt();
-			if (yesNo4 == 1) {
-				scheduled4 = true;
-				table[2][1] = classesDisplay[3];
-			} else if (scheduled4 == true) {
-				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
-			}
+	}
+
+	public static boolean checkIfPingPongClassIsScheduled(boolean scheduled) {
+
+		if (table[1][1] == classesDisplay[2]) {
+			return scheduled = true;
+		} else {
+			return scheduled = false;
 		}
-		if (choice == 5 && scheduled5 == false) {
-			System.out.println("Are you sure you want to schedule this class? (1 for Yes, 2 for No)");
-			yesNo5 = sc.nextInt();
-			if (yesNo5 == 1) {
-				scheduled5 = true;
-				table[4][1] = classesDisplay[4];
-				table[4][2] = classesDisplay[4];
-				table[4][3] = classesDisplay[4];
-				table[4][4] = classesDisplay[4];
-			} else if (scheduled5 == true) {
-				System.out.println("Sorry! You cannot schedule this class as it has already been scheduled!");
-			}
+	}
+
+	public static boolean checkIfBadmintonClassIsScheduled(boolean scheduled) {
+
+		if (table[2][1] == classesDisplay[3]) {
+			return scheduled = true;
+		} else {
+			return scheduled = false;
 		}
-		System.out.println("Would you like to schedule another class? (1 for Yes, 2 for No)");
-		scheduleAgain = sc.nextInt();
-		if (scheduleAgain == 1) {
-			scheduling();
-		} else if (scheduleAgain == 2) {
-			System.out.println("We will now return to the main menu.");
-			pickOption();
+	}
+
+	public static boolean checkIfYogaClassIsScheduled(boolean scheduled) {
+
+		if (table[4][1] == classesDisplay[4] && table[4][2] == classesDisplay[4] && table[4][3] == classesDisplay[4]
+				&& table[4][4] == classesDisplay[4]) {
+			return scheduled = true;
+		} else {
+			return scheduled = false;
+		}
+	}
+
+	public static void displayClassesNotYetScheduled() {
+
+		/*
+		 * This method checks if the class has been scheduled or not. If not,
+		 * display a message saying that the class has not been scheduled
+		 */
+
+		if (table[2][2] != classesDisplay[0]) {
+			System.out.println("\tBasketball class has not yet been scheduled.");
+		}
+		if (table[2][3] != classesDisplay[1] && table[2][4] != classesDisplay[1]) {
+			System.out.println("\tSwim class has not yet been scheduled.");
+		}
+		if (table[1][1] != classesDisplay[2]) {
+			System.out.println("\tPing Pong class has not yet been scheduled.");
+		}
+		if (table[2][1] != classesDisplay[3]) {
+			System.out.println("\tBadminton class has not yet been scheduled.");
+		}
+		if (table[4][1] != classesDisplay[4] && table[4][2] != classesDisplay[4] && table[4][3] != classesDisplay[4]
+				&& table[4][4] != classesDisplay[4]) {
+			System.out.println("\tYoga class has not yet been scheduled.");
 		}
 	}
 }
