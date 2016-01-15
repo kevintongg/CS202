@@ -1,6 +1,5 @@
 package lab1;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Lab1 {
@@ -14,7 +13,7 @@ public class Lab1 {
 	static int rows = 5;
 	static int columns = 5;
 	static String[][] table = new String[rows][columns];
-	static String[] classesDisplay = {"Basketball", "Swim", "Ping Pong", "Badminton", "Yoga"};
+	static String[] classesDisplay = { "Basketball", "Swim", "Ping Pong", "Badminton", "Yoga" };
 
 	public static void main(String[] args) {
 
@@ -43,7 +42,7 @@ public class Lab1 {
 			System.out.println(
 					"\t===============================================================================================================================================");
 			for (String j : i) {
-				System.out.print("\t|" + "\t     " + j + "       ");
+				System.out.print("\t|" + "\t  " + j + "       ");
 			}
 			System.out.println();
 		}
@@ -211,7 +210,7 @@ public class Lab1 {
 				"Swim Class, Fridays and Saturdays, 1:00 to 2:00 PM, Students: 10, Current: " + swimStudents,
 				"Ping Pong Class, Mondays only, 9:00 to 10:00AM, Maximum Students: 10, Current: " + pingPongStudents,
 				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
-				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents};
+				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents };
 
 		int choice;
 		int yesNo;
@@ -316,7 +315,7 @@ public class Lab1 {
 
 	public static boolean checkIfBasketballClassIsScheduled() {
 
-		return Objects.equals(table[2][2], classesDisplay[0]);
+		return table[2][2] == classesDisplay[0];
 	}
 
 	public static boolean checkIfSwimClassIsScheduled() {
