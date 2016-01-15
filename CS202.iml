@@ -4,8 +4,8 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/Week 1/Quiz 1 Problem 3" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Week 1/Lab 1" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Quiz 1 Problem 3" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Lab 1" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
