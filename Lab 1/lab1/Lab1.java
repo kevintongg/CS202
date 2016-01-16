@@ -86,7 +86,7 @@ public class Lab1 {
 					currentStudents();
 					break;
 				case 2:
-					System.out.println("We will now schedule a class.");
+					System.out.println("We will now schedule a class.\n");
 					scheduling();
 					break;
 				case 3:
@@ -205,25 +205,23 @@ public class Lab1 {
 
 		// Stores all the classes in an array of Strings
 		String[] classesShow = {
-				"Basketball Class, Thursdays only, 1:00 to 2:00 PM, Maximum Students: 20, Current: "
+				"Basketball Class: Thursdays only, 1:00 to 2:00 PM, Maximum Students: 20, Current: "
 						+ basketballStudents,
-				"Swim Class, Fridays and Saturdays, 1:00 to 2:00 PM, Students: 10, Current: " + swimStudents,
-				"Ping Pong Class, Mondays only, 9:00 to 10:00AM, Maximum Students: 10, Current: " + pingPongStudents,
-				"Badminton Class, Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
-				"Yoga Class, MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents };
+				"Swim Class: Fridays and Saturdays, 1:00 to 2:00 PM, Students: 10, Current: " + swimStudents,
+				"Ping Pong Class: Mondays only, 9:00 to 10:00AM, Maximum Students: 10, Current: " + pingPongStudents,
+				"Badminton Class: Mondays only, 1:00 to 2:00, Maximum Students: 12, Current: " + badmintonStudents,
+				"Yoga Class: MRFS, 4:00 to 5:00 PM, Maximum Students: 15, Current: " + yogaStudents };
 
 		int choice;
 		int yesNo;
 
-		System.out.println("The classes available to choose from are as follows:\n");
+		System.out.println("The classes that are available to choose from are as follows:\n");
 		for (String i : classesShow) {
 			System.out.println("\t" + i);
 		}
 		System.out.println();
 
-		System.out.println("Classes that have not yet been scheduled:\n");
 		displayClassesNotYetScheduled();
-		System.out.println();
 
 		/*
 		 * The following do... while loop will ask the user if they would like
@@ -346,21 +344,22 @@ public class Lab1 {
 		 * display a message saying that the class has not been scheduled
 		 */
 
+		System.out.println("The following classes have not been scheduled yet:\n");
 		if (table[2][2] != classesDisplay[0]) {
-			System.out.println("\tBasketball class has not yet been scheduled.");
+			System.out.println("\t" + classesDisplay[0]);
 		}
 		if (table[2][3] != classesDisplay[1] && table[2][4] != classesDisplay[1]) {
-			System.out.println("\tSwim class has not yet been scheduled.");
+			System.out.println("\t" + classesDisplay[1]);
 		}
 		if (table[1][1] != classesDisplay[2]) {
-			System.out.println("\tPing Pong class has not yet been scheduled.");
+			System.out.println("\t" + classesDisplay[2]);
 		}
 		if (table[2][1] != classesDisplay[3]) {
-			System.out.println("\tBadminton class has not yet been scheduled.");
+			System.out.println("\t" + classesDisplay[3]);
 		}
 		if (table[4][1] != classesDisplay[4] && table[4][2] != classesDisplay[4] && table[4][3] != classesDisplay[4]
 				&& table[4][4] != classesDisplay[4]) {
-			System.out.println("\tYoga class has not yet been scheduled.");
+			System.out.println("\t" + classesDisplay[4] + "\n");
 		}
 	}
 }
