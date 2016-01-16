@@ -81,7 +81,7 @@ public class Lab1 {
 			choice = sc.nextInt();
 			switch (choice) {
 				case 1:
-					System.out.println("\nThe current schedule is:");
+					System.out.println("\nThe current schedule is:\n");
 					printTable(table);
 					currentStudents();
 					break;
@@ -90,7 +90,7 @@ public class Lab1 {
 					scheduling();
 					break;
 				case 3:
-					System.out.println("We will add a student to a specified class.");
+					System.out.println("We will now add a student to a specific class.\n");
 					addStudent();
 					break;
 			}
