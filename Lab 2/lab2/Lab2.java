@@ -40,8 +40,9 @@ public class Lab2 {
 				false);
 	}
 
-	public static void printClasses() {
+	public static void students(String name, char gender, int SSN, int phoneNumber) {
 
+		Student student = new Student();
 
 	}
 }

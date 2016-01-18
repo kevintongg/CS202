@@ -2,7 +2,7 @@ package lab2;
 
 public class Student {
 
-	public String[] students = new String[67];
+	public String[] name;
 	public char[] gender;
 	public int[] SSN;
 	public int[] phoneNumber;
@@ -14,10 +14,12 @@ public class Student {
 		 */
 	}
 
-	public void addStudent(String[] students) {
+	public void addStudent(String[] name, char[] gender, int[] SSN, int[] phoneNumber) {
 
-		this.students[0] = "test";
+		this.name = name;
+		this.gender = gender;
+		this.SSN = SSN;
+		this.phoneNumber = phoneNumber;
 
 	}
-
 }
