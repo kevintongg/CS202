@@ -36,9 +36,9 @@ public class Course {
         System.out.println(maxStudents);
 
         if (classScheduled == true) {
-            System.out.println("This class has been scheduled.");
+            System.out.println("This class has been scheduled.\n");
         } else {
-            System.out.println("This class has not been scheduled yet.");
+            System.out.println("This class has not been scheduled yet.\n");
         }
     }
 }

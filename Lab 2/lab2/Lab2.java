@@ -38,6 +38,12 @@ public class Lab2 {
 				"Description: Come train your body on how to become more flexible, or just to relieve stress",
 				"Current number of students enrolled: " + yogaStudents, "Maximum number of students allowed: 15",
 				false);
+
+		basketball.print();
+		swimming.print();
+		pingPong.print();
+        badminton.print();
+        yoga.print();
 	}
 
 	public static void students(String name, char gender, int SSN, int phoneNumber) {
