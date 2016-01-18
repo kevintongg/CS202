@@ -39,4 +39,9 @@ public class Lab2 {
 				"Current number of students enrolled: " + yogaStudents, "Maximum number of students allowed: 15",
 				false);
 	}
+
+	public static void printClasses() {
+
+
+	}
 }

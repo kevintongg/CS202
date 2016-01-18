@@ -21,6 +21,7 @@ public class Course {
 
 		this.className = className;
 		this.dayHour = dayHour;
+		this.description = description;
 		this.studentsEnrolled = studentsEnrolled;
 		this.maxStudents = maxStudents;
 		this.classScheduled = classScheduled;
@@ -31,6 +32,7 @@ public class Course {
 
 		System.out.println(className);
 		System.out.println(dayHour);
+		System.out.println(description);
 		System.out.println(studentsEnrolled);
 		System.out.println(maxStudents);
 
