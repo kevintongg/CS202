@@ -51,4 +51,45 @@ public class Lab2 {
 		Student student = new Student();
 
 	}
+
+	public static void makeTable() {
+
+		// Creating the table
+		for (int i = 0; i < table.length; i++) {
+			for (int j = 0; j < table[i].length; j++) {
+				table[i][j] = "  ";
+			}
+		}
+		// Assign the table titles after table is made
+		tableTitles();
+	}
+
+	public static void printTable(String[][] table) {
+
+		// Printing the table
+		for (String[] i : table) {
+			System.out.println(
+					"\t===============================================================================================================================================");
+			for (String j : i) {
+				System.out.print("\t|" + "\t  " + j + "       ");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void tableTitles() {
+
+		/* Assigning the times and days onto the table */
+
+		table[0][0] = "Gym Schedule";
+		table[0][1] = "M";
+		table[0][2] = "R";
+		table[0][3] = "F";
+		table[0][4] = "S";
+		table[1][0] = "9 to 10 AM";
+		table[2][0] = "1 to 2 PM";
+		table[3][0] = "3 to 4 PM";
+		table[4][0] = "4 to 5 PM";
+
+	}
 }
