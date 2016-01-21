@@ -349,30 +349,69 @@ public class Lab2 {
 	public static void studentRegistration() {
 
 		int choice;
+		int repeat;
+		int pickStudent;
+		int pickClass;
 		int socialSecurityNumber;
 		int phoneNumber;
 		String name;
 		String gender;
+		String[] studentsInBasketball = new String[20];
 
 		do {
 			System.out.println(
 					"Enter one of the following options:\n'0' to quit and return to the main menu\n'1' to register a new student");
+			while (!sc.hasNextInt()) {
+				sc.nextLine();
+				System.out.println(
+						"Invalid input! Please enter '0' to quit and return to the main menu or '1' to register a new student.");
+			}
 			choice = sc.nextInt();
-			System.out.println("Please enter the student's name: ");
-			name = sc.next();
-			System.out.println("Please enter the gender of the student: ");
-			gender = sc.next();
-			System.out.println("Please enter the student's social security number: ");
-			socialSecurityNumber = sc.nextInt();
-			System.out.println("Please enter a phone number for the student;");
-			phoneNumber = sc.nextInt();
-			Course.students.add(new Student(name, gender, socialSecurityNumber, phoneNumber));
-			System.out.println("Do you want to register another student?");
-			System.out.println(
-					"Please enter one of the following options:\n'0' to return to the main menu\n'1' to continue");
-			choice = sc.nextInt();
-			while (choice != 0) {
-				studentRegistration();
+			switch (choice) {
+				case 1:
+					System.out.println("\nWe will enter information for the new student.");
+					System.out.println("Please enter the student's name: ");
+					name = sc.next();
+					System.out.println("Please enter the gender of the student: ");
+					gender = sc.next();
+					System.out.println("Please enter the student's social security number: ");
+					socialSecurityNumber = sc.nextInt();
+					System.out.println("Please enter a phone number for the student;");
+					phoneNumber = sc.nextInt();
+					Course.students.add(new Student(name, gender, socialSecurityNumber, phoneNumber));
+					Course.printArray();
+				/*
+				 * When you add a student to a class, you pick from the list of students in the system
+				 * If a student already signed up for this class, do not show the student in the list
+				 *
+				 * Not sure how to implement this
+				 *
+				 */
+					System.out.println("Pick a student to sign up for a class.");
+					pickStudent = sc.nextInt() - 1;
+					System.out.println("Pick a class to sign the student up for:\n'1' for Basketball\n'2' for Swim\n'3' for Ping Pong\n'4' for Badminton\n'5' for Yoga");
+					pickClass = sc.nextInt();
+					switch (pickClass) {
+						case 1:
+							break;
+						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
+							break;
+						case 5:
+							break;
+					}
+					System.out.println("Do you want to register another student in the system?");
+					System.out.println(
+							"Please enter one of the following options:\n'0' to return to the main menu\n'1' to continue");
+					repeat = sc.nextInt();
+					if (repeat == 0) {
+						studentRegistration();
+					} else if (repeat == 1) {
+						pickOption();
+					}
 			}
 		} while (choice != 0);
 	}

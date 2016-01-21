@@ -17,15 +17,17 @@ public class Course {
 		this.students = students;
 	}
 
-	public void printArray() {
+	public static void printArray() {
 
-		for (Student i : students) {
-			System.out.println(i);
+		System.out.println("\nStudent information:\n");
+		for (int i = 0; i < students.size(); i++) {
+			System.out.println("Student #" + (i + 1) + ":\n");
+			System.out.println("\tName: " + students.get(i).getName());
+			System.out.println("\tGender: " + students.get(i).getGender());
+			System.out.println("\tSSN: " + students.get(i).getSocialSecurityNumber());
+			System.out.println("\tPhone Number: " + students.get(i).getPhoneNumber() + "\n");
+			System.out.println("---------------------\n");
 		}
-	}
-
-	public void addStudent(Student studentToAdd) {
-
 	}
 
 	public ArrayList<Student> getStudents() {

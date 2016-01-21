@@ -1,6 +1,6 @@
 package lab2;
 
-public class Student extends Course {
+public class Student {
 
 	private String name;
 	private String gender;
@@ -22,7 +22,6 @@ public class Student extends Course {
 	}
 
 	public void addStudents() {
-
 
 	}
 
