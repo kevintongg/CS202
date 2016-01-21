@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Course {
 
-	public static ArrayList<Student> students = new ArrayList<Student>();
+	public static ArrayList<Student> students = new ArrayList<>();
 
 	public Course() {
 

@@ -21,10 +21,6 @@ public class Student {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void addStudents() {
-
-	}
-
 	public String getName() {
 		return name;
 	}
