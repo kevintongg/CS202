@@ -33,7 +33,7 @@ public class Schedule extends Course {
 	}
 
 	public Schedule(String className, String dayHour, String description, String studentsEnrolled,
-	                int studentsEnrolledNumber, String maxStudents, boolean classScheduled) {
+					int studentsEnrolledNumber, String maxStudents, boolean classScheduled) {
 		this.className = className;
 		this.dayHour = dayHour;
 		this.description = description;

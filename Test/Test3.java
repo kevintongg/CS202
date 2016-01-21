@@ -1,4 +1,7 @@
 public class Test3 {
 
-	double sideA;
+	public static void main(String[] args) {
+
+
+	}
 }

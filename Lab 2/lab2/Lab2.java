@@ -356,15 +356,14 @@ public class Lab2 {
 		int phoneNumber;
 		String name;
 		String gender;
-		String[] studentsInBasketball = new String[20];
 
 		do {
 			System.out.println(
-					"Enter one of the following options:\n'0' to quit and return to the main menu\n'1' to register a new student");
+					"Enter one of the following options:\n'0' to quit and return to the main menu\n'1' to register a new student in the system\n'2' to register a student in a class");
 			while (!sc.hasNextInt()) {
 				sc.nextLine();
 				System.out.println(
-						"Invalid input! Please enter '0' to quit and return to the main menu or '1' to register a new student.");
+						"Invalid input! Please enter '0' to quit and return to the main menu, '1' to register a new student in the system, or '2' to register a student in a class");
 			}
 			choice = sc.nextInt();
 			switch (choice) {
@@ -380,16 +379,30 @@ public class Lab2 {
 					phoneNumber = sc.nextInt();
 					Course.students.add(new Student(name, gender, socialSecurityNumber, phoneNumber));
 					Course.printArray();
+					System.out.println("Do you want to register another student in the system?");
+					System.out.println(
+							"Please enter one of the following options:\n'0' to return to the main menu\n'1' to continue");
+					repeat = sc.nextInt();
+					if (repeat != 0) {
+						studentRegistration();
+					}
+				case 2:
+
 				/*
-				 * When you add a student to a class, you pick from the list of students in the system
-				 * If a student already signed up for this class, do not show the student in the list
+				 * When you add a student to a class, you pick from the list of
+				 * students in the system If a student already signed up for
+				 * this class, do not show the student in the list
 				 *
 				 * Not sure how to implement this
 				 *
 				 */
+					Course.printArray();
 					System.out.println("Pick a student to sign up for a class.");
+					// Makes it user friendly for picking students (Minus 1 in
+					// regards to array indexes)
 					pickStudent = sc.nextInt() - 1;
-					System.out.println("Pick a class to sign the student up for:\n'1' for Basketball\n'2' for Swim\n'3' for Ping Pong\n'4' for Badminton\n'5' for Yoga");
+					System.out.println(
+							"Pick a class to sign the student up for:\n'1' for Basketball\n'2' for Swim\n'3' for Ping Pong\n'4' for Badminton\n'5' for Yoga");
 					pickClass = sc.nextInt();
 					switch (pickClass) {
 						case 1:
@@ -403,17 +416,11 @@ public class Lab2 {
 						case 5:
 							break;
 					}
-					System.out.println("Do you want to register another student in the system?");
-					System.out.println(
-							"Please enter one of the following options:\n'0' to return to the main menu\n'1' to continue");
-					repeat = sc.nextInt();
-					if (repeat == 0) {
-						studentRegistration();
-					} else if (repeat == 1) {
-						pickOption();
-					}
+					break;
 			}
 		} while (choice != 0);
+		System.out.println("We will now return to the main menu.");
+		pickOption();
 	}
 
 	public static void displayClasses() {
