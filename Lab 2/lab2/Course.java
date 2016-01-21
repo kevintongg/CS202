@@ -1,44 +1,38 @@
 package lab2;
 
+import java.util.ArrayList;
+
 public class Course {
 
-    public String className;
-    public String dayHour;
-    public String description;
-    public String studentsEnrolled;
-    public String maxStudents;
-    public boolean classScheduled;
+	public static ArrayList<Student> students = new ArrayList<Student>();
 
-    public Course() {
+	public Course() {
 
 		/*
-         * default constructor
+		 * default constructor
 		 */
-    }
+	}
 
-    public Course(String className, String dayHour, String description, String studentsEnrolled, String maxStudents, boolean classScheduled) {
+	public Course(ArrayList<Student> students) {
+		this.students = students;
+	}
 
-        this.className = className;
-        this.dayHour = dayHour;
-        this.description = description;
-        this.studentsEnrolled = studentsEnrolled;
-        this.maxStudents = maxStudents;
-        this.classScheduled = classScheduled;
+	public void printArray() {
 
-    }
+		for (Student i : students) {
+			System.out.println(i);
+		}
+	}
 
-    public void print() {
+	public void addStudent(Student studentToAdd) {
 
-        System.out.println(className);
-        System.out.println(dayHour);
-        System.out.println(description);
-        System.out.println(studentsEnrolled);
-        System.out.println(maxStudents);
+	}
 
-        if (classScheduled == true) {
-            System.out.println("This class has been scheduled.\n");
-        } else {
-            System.out.println("This class has not been scheduled yet.\n");
-        }
-    }
+	public ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(ArrayList<Student> students) {
+		this.students = students;
+	}
 }
