@@ -4,8 +4,8 @@ public class Test2 {
 
 		Test3 myTriangle = new Test3();
 
-		myTriangle.sideA = 4;
-
-		System.out.println(myTriangle.sideA);
+//		myTriangle.sideA = 4;
+//
+//		System.out.println(myTriangle.sideA);
 	}
 }
