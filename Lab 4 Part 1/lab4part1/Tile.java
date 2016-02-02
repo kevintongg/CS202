@@ -7,6 +7,6 @@ public class Tile {
 
 	private enum IconType {
 		SUN, LEAVES, CLOUD, FLOWER, TIGER, DRAGON, BIRD, COMPUTER
-	};
+	}
 
 }
