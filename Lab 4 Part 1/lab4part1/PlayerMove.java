@@ -1,8 +1,12 @@
 package lab4part1;
 
+import java.util.Scanner;
+
 public class PlayerMove {
 
     private static Turn player = Turn.BLACK;
+    private static boolean win = false;
+    private Scanner sc = new Scanner(System.in);
 
     public static void whosTurn() {
 
@@ -14,6 +18,14 @@ public class PlayerMove {
             System.out.println("Player 2's turn! (Red)");
         }
 
+    }
+
+    public Scanner getSc() {
+        return sc;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
     }
 
     public void switchTurn() {
