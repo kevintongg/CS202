@@ -1,15 +1,42 @@
 package lab4part1;
 
+import java.util.ArrayList;
+
 public class Tile {
 
-    private IconType iconOne;
-    private IconType iconTwo;
+    private static ArrayList<TileType> tileTypes = new ArrayList<>();
+    private TileType iconOne;
+    private TileType iconTwo;
     private boolean isSpotOccupied;
 
-    public Tile(IconType iconOne, IconType iconTwo, boolean isSpotOccupied) {
+    public Tile(TileType iconOne, TileType iconTwo, boolean isSpotOccupied) {
         this.iconOne = iconOne;
         this.iconTwo = iconTwo;
         this.isSpotOccupied = isSpotOccupied;
+    }
+
+    public static ArrayList<TileType> getTileTypes() {
+        return tileTypes;
+    }
+
+    public static void setTileTypes(ArrayList<TileType> tileTypes) {
+        Tile.tileTypes = tileTypes;
+    }
+
+    public static void addTiles() {
+
+        tileTypes.add(TileType.SUN);
+        tileTypes.add(TileType.LEAVES);
+        tileTypes.add(TileType.CLOUD);
+        tileTypes.add(TileType.FLOWER);
+        tileTypes.add(TileType.TIGER);
+        tileTypes.add(TileType.DRAGON);
+        tileTypes.add(TileType.BIRD);
+        tileTypes.add(TileType.COMPUTER);
+
+        System.out.println(tileTypes.contains(TileType.DRAGON));
+        tileTypes.forEach(System.out::println);
+
     }
 
     @Override
@@ -21,19 +48,19 @@ public class Tile {
                 '}';
     }
 
-    public IconType getIconOne() {
+    public TileType getIconOne() {
         return iconOne;
     }
 
-    public void setIconOne(IconType iconOne) {
+    public void setIconOne(TileType iconOne) {
         this.iconOne = iconOne;
     }
 
-    public IconType getIconTwo() {
+    public TileType getIconTwo() {
         return iconTwo;
     }
 
-    public void setIconTwo(IconType iconTwo) {
+    public void setIconTwo(TileType iconTwo) {
         this.iconTwo = iconTwo;
     }
 
@@ -66,7 +93,7 @@ public class Tile {
         return result;
     }
 
-    public enum IconType {
+    public enum TileType {
         SUN, LEAVES, CLOUD, FLOWER, TIGER, DRAGON, BIRD, COMPUTER
     }
 }

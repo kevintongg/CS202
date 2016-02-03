@@ -2,9 +2,9 @@ package lab4part1;
 
 public class PlayerMove {
 
-    private Turn player = Turn.BLACK;
+    private static Turn player = Turn.BLACK;
 
-    public void whosTurn() {
+    public static void whosTurn() {
 
         if (player == Turn.BLACK) {
             System.out.println();
@@ -26,8 +26,15 @@ public class PlayerMove {
 
     }
 
-    public enum Turn {
-        BLACK, RED
+    public void checkMove() {
+
+        for (int i = 0; i < 16; i++) {
+            String piece = "black";
+            if (player == Turn.BLACK) {
+                piece = "red";
+            }
+        }
+
     }
 
     public Turn getPlayer() {
@@ -36,5 +43,9 @@ public class PlayerMove {
 
     public void setPlayer(Turn player) {
         this.player = player;
+    }
+
+    public enum Turn {
+        BLACK, RED
     }
 }
