@@ -8,29 +8,29 @@ import javax.swing.*;
 
 public class Test extends Application {
 
-	Button button;
+    Button button;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		launch(args);
+        launch(args);
 
-	}
+    }
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
 
-		primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Hello World!");
 
-		button = new Button();
-		button.setText("Click me");
-		button.setOnAction(event -> JOptionPane.showMessageDialog(null, "I am anonymous"));
+        button = new Button();
+        button.setText("Click me");
+        button.setOnAction(event -> JOptionPane.showMessageDialog(null, "Hello World!"));
 
-		StackPane layout = new StackPane();
-		layout.getChildren().add(button);
+        StackPane layout = new StackPane();
+        layout.getChildren().add(button);
 
-		Scene scene = new Scene(layout, 300, 250);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-	}
+    }
 }
