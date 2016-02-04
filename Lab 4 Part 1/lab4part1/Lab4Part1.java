@@ -66,7 +66,6 @@ public class Lab4Part1 {
 			PlayerMove.inputColumn();
 			PlayerMove.insertToken();
 			PlayerMove.switchTurn();
-			GameBoard.makeBoard();
 			GameBoard.printBoard();
 
 			PlayerMove.writeMovesToFile(PlayerMove.getMoves(), "saveFile.txt");
