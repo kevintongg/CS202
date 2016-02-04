@@ -117,7 +117,52 @@ public class PlayerMove {
 		PlayerMove.moves = moves;
 	}
 
-	public void insertToken() {
+	public static boolean checkWin() {
+
+		for (int i = 0; i < 16; i++) {
+			char piece = 'R';
+			if (player == Turn.RED) {
+				piece = 'R';
+			}
+			while (win == false) {
+				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[1][3].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[2][3].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[3][1].equals(piece) && GameBoard.getBoard()[3][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[3][0].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[3][1].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][2].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[0][3].equals(piece) && GameBoard.getBoard()[1][3].equals(piece) && GameBoard.getBoard()[2][3].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+					return win = true;
+				}
+				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
+					return win = true;
+				} else {
+					return win = false;
+				}
+			}
+		}
+		return win = false;
+	}
+
+	public static void insertToken() {
 
 		if (player == Turn.RED) {
 		}
@@ -130,56 +175,12 @@ public class PlayerMove {
 				'}';
 	}
 
-	public void switchTurn() {
+	public static void switchTurn() {
 
 		if (player == Turn.RED) {
 			player = Turn.BLACK;
 		} else {
 			player = Turn.RED;
-		}
-	}
-
-	public void checkWin() {
-
-		for (int i = 0; i < 16; i++) {
-			char piece = 'R';
-			if (player == Turn.RED) {
-				piece = 'R';
-			}
-			while (win == false) {
-				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[1][3].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[2][3].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[3][1].equals(piece) && GameBoard.getBoard()[3][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[3][0].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[3][1].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][2].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[0][3].equals(piece) && GameBoard.getBoard()[1][3].equals(piece) && GameBoard.getBoard()[2][3].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
-					win = true;
-				}
-				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
-					win = true;
-				} else {
-					win = true;
-				}
-			}
 		}
 	}
 
