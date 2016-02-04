@@ -1,12 +1,14 @@
 package lab4part1;
 
+import java.util.Random;
+
 public class GameBoard {
 
     private static int rows = 4;
     private static int columns = 4;
-    private static char[][] board = new char[rows][columns];
+    private static String[][] board = new String[rows][columns];
 
-    public GameBoard(int rows, int columns, char[][] board) {
+    public GameBoard(int rows, int columns, String[][] board) {
         this.rows = rows;
         this.columns = columns;
         this.board = board;
@@ -16,20 +18,26 @@ public class GameBoard {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = ' ';
+                board[i][j] = " ";
             }
         }
     }
 
     public static void printBoard() {
 
-        for (char[] i : board) {
+        for (String[] i : board) {
             System.out.println("\t------------------------");
-            for (char j : i) {
+            for (String j : i) {
                 System.out.print("\t|" + j);
             }
             System.out.println();
         }
+    }
+
+    public static void assignPieces() {
+
+        Random random = new Random();
+
     }
 
     public int getRows() {
@@ -48,11 +56,11 @@ public class GameBoard {
         this.columns = columns;
     }
 
-    public char[][] getBoard() {
+    public String[][] getBoard() {
         return board;
     }
 
-    public void setBoard(char[][] board) {
+    public void setBoard(String[][] board) {
         this.board = board;
     }
 }

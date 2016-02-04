@@ -20,6 +20,7 @@ public class Lab4Part1 {
 
         do {
             System.out.println("Please pick an option from the menu below:");
+            System.out.println("0. Quit game");
             System.out.println("1. Play Niya");
             System.out.println("2. Replay saved game");
             while (!sc.hasNextInt()) {
@@ -38,11 +39,15 @@ public class Lab4Part1 {
                     readSaveFile();
                     break;
             }
-            if (choice < 1 || choice > 2) {
+            if (choice < 0 || choice > 2) {
                 System.out.println("Invalid input!");
                 System.out.println("Please pick an option from the menu below:");
+                System.out.println("0. Quit game");
                 System.out.println("1. Play Niya");
                 System.out.println("2. Replay saved game");
+            }
+            if (choice == 0) {
+                System.out.println("Thank you for playing Niya!");
             }
         } while (choice != 0);
 
