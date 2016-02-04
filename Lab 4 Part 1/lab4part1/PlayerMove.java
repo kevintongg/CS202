@@ -18,12 +18,6 @@ public class PlayerMove {
 	private static Scanner sc = new Scanner(System.in);
 	private static ArrayList<PlayerMove> moves = new ArrayList<>();
 
-	public void insertToken() {
-
-		if (player == Turn.RED) {
-		}
-	}
-
 	public static void inputRow() {
 
 		do {
@@ -91,7 +85,6 @@ public class PlayerMove {
 			System.out.println();
 			System.out.println("Player 2's turn! (Black)");
 		}
-
 	}
 
 	public static void typeValidation() {
@@ -102,26 +95,18 @@ public class PlayerMove {
 		}
 	}
 
-	public static void writeMovesToFile(ArrayList<PlayerMove> tileTypes, String fileName) {
+	public static void writeMovesToFile(ArrayList<PlayerMove> moves, String fileName) {
 
 		Path path = Paths.get(fileName);
 		Charset charset = Charset.forName("UTF-8");
 		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
-			for (PlayerMove moves : tileTypes) {
-				writer.write(moves.toString());
+			for (PlayerMove move : moves) {
+				writer.write(move.toString());
 				writer.newLine();
 			}
 		} catch (IOException e) {
 			System.err.format("IOException %s%n", e);
 		}
-
-	}
-
-	@Override
-	public String toString() {
-		return "PlayerMove{" +
-				"moves=" + moves +
-				'}';
 	}
 
 	public static ArrayList<PlayerMove> getMoves() {
@@ -132,6 +117,19 @@ public class PlayerMove {
 		PlayerMove.moves = moves;
 	}
 
+	public void insertToken() {
+
+		if (player == Turn.RED) {
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerMove{" +
+				"moves=" + moves +
+				'}';
+	}
+
 	public void switchTurn() {
 
 		if (player == Turn.RED) {
@@ -139,15 +137,48 @@ public class PlayerMove {
 		} else {
 			player = Turn.RED;
 		}
-
 	}
 
-	public void checkMove() {
+	public void checkWin() {
 
 		for (int i = 0; i < 16; i++) {
-			String piece = "red";
+			char piece = 'R';
 			if (player == Turn.RED) {
-				piece = "black";
+				piece = 'R';
+			}
+			while (win == false) {
+				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[1][3].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[2][3].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[3][1].equals(piece) && GameBoard.getBoard()[3][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[3][0].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[3][1].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][2].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[0][3].equals(piece) && GameBoard.getBoard()[1][3].equals(piece) && GameBoard.getBoard()[2][3].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+					win = true;
+				}
+				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
+					win = true;
+				} else {
+					win = true;
+				}
 			}
 		}
 	}

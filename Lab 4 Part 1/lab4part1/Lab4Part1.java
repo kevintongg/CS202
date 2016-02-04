@@ -7,7 +7,6 @@ public class Lab4Part1 {
     public static void main(String[] args) {
 
         Tile.addTiles();
-        GameBoard.assignTiles();
 
         System.out.println("Welcome to Niya!");
 
