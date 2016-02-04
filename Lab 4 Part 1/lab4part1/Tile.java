@@ -1,18 +1,19 @@
 package lab4part1;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Tile {
 
 	private static ArrayList<TileType> tileTypes = new ArrayList<>();
-	private TileType iconOne;
-	private TileType iconTwo;
-	private boolean isSpotOccupied;
+	private static Random random = new Random();
+	private static TileType iconOne;
+	private static TileType iconTwo;
+	private static boolean isSpotOccupied;
 
-	public Tile(TileType iconOne, TileType iconTwo, boolean isSpotOccupied) {
-		this.iconOne = iconOne;
-		this.iconTwo = iconTwo;
-		this.isSpotOccupied = isSpotOccupied;
+	public Tile(TileType iconOne, TileType iconTwo) {
+		Tile.iconOne = iconOne;
+		Tile.iconTwo = iconTwo;
 	}
 
 	public static void addTiles() {
@@ -26,9 +27,14 @@ public class Tile {
 		tileTypes.add(TileType.BIRD);
 		tileTypes.add(TileType.COMPUTER);
 
-		System.out.println(tileTypes.contains(TileType.DRAGON));
-		tileTypes.forEach(System.out::println);
+	}
 
+	public static Random getRandom() {
+		return random;
+	}
+
+	public static void setRandom(Random random) {
+		Tile.random = random;
 	}
 
 	public static ArrayList<TileType> getTileTypes() {
@@ -39,29 +45,27 @@ public class Tile {
 		Tile.tileTypes = tileTypes;
 	}
 
-	@Override
-	public String toString() {
-		return "Tile{" +
-				"iconOne=" + iconOne +
-				", iconTwo=" + iconTwo +
-				", isSpotOccupied=" + isSpotOccupied +
-				'}';
-	}
-
-	public TileType getIconOne() {
+	public static TileType getIconOne() {
 		return iconOne;
 	}
 
-	public void setIconOne(TileType iconOne) {
-		this.iconOne = iconOne;
+	public static void setIconOne(TileType iconOne) {
+		Tile.iconOne = iconOne;
+	}
+
+	@Override
+	public String toString() {
+		return "Tile{" +
+				"isSpotOccupied=" + isSpotOccupied +
+				'}';
 	}
 
 	public TileType getIconTwo() {
 		return iconTwo;
 	}
 
-	public void setIconTwo(TileType iconTwo) {
-		this.iconTwo = iconTwo;
+	public static void setIconTwo(TileType iconTwo) {
+		Tile.iconTwo = iconTwo;
 	}
 
 	public boolean isSpotOccupied() {
@@ -80,8 +84,8 @@ public class Tile {
 		Tile tile = (Tile) o;
 
 		if (isSpotOccupied != tile.isSpotOccupied) return false;
-		if (iconOne != tile.iconOne) return false;
-		return iconTwo == tile.iconTwo;
+		if (iconOne != iconOne) return false;
+		return iconTwo == iconTwo;
 
 	}
 

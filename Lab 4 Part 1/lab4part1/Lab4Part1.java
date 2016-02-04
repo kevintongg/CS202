@@ -6,6 +6,9 @@ public class Lab4Part1 {
 
     public static void main(String[] args) {
 
+        Tile.addTiles();
+        GameBoard.assignTiles();
+
         System.out.println("Welcome to Niya!");
 
         menu();
@@ -57,6 +60,8 @@ public class Lab4Part1 {
 
         GameBoard.makeBoard();
         GameBoard.printBoard();
+
+        PlayerMove.writeMovesToFile(PlayerMove.getMoves(), "saveFile.txt");
 
     }
 
