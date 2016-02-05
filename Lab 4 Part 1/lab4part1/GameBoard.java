@@ -2,6 +2,8 @@ package lab4part1;
 
 import java.util.Collections;
 
+import static lab4part1.Tile.getTileTypes;
+
 public class GameBoard {
 
 	private static int rows = 4;
@@ -17,12 +19,13 @@ public class GameBoard {
 
 	public static void makeBoard() {
 
+		System.out.println(board.length + " " + board[0].length);
 
-		for (Tile[] i : board) {
-			for (Tile j : i) {
-				Collections.shuffle(Tile.getTileTypes());
-				Tile.setIconOne(Tile.getTileTypes().get(0));
-				Tile.setIconTwo(Tile.getTileTypes().get(1));
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				Collections.shuffle(getTileTypes());
+				Tile boardTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+				board[i][j] = boardTile;
 			}
 		}
 	}
@@ -30,12 +33,20 @@ public class GameBoard {
 	public static void printBoard() {
 
 		for (Tile[] i : board) {
-			System.out.println("\t------------------------");
+			System.out.println("\t-------------------------------------------------------------");
 			for (Tile j : i) {
-				System.out.print("\t|" + j);
+				System.out.print("\t|\t" + j);
 			}
 			System.out.println();
 		}
+	}
+
+	public static Tile[][] getBoard() {
+		return board;
+	}
+
+	public static void setBoard(Tile[][] board) {
+		GameBoard.board = board;
 	}
 
 	public int getRows() {
@@ -52,13 +63,5 @@ public class GameBoard {
 
 	public void setColumns(int columns) {
 		this.columns = columns;
-	}
-
-	public static Tile[][] getBoard() {
-		return board;
-	}
-
-	public static void setBoard(Tile[][] board) {
-		GameBoard.board = board;
 	}
 }

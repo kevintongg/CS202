@@ -1,5 +1,7 @@
 package lab4part1;
 
+import lab4part1.Tile.CurrentTileToken;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -8,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static lab4part1.GameBoard.getBoard;
 
 public class PlayerMove {
 
@@ -21,33 +25,25 @@ public class PlayerMove {
 	public static void inputRow() {
 
 		do {
-			System.out.print("Enter the row you would like to occupy: ");
-			System.out.println("1. Row 1");
-			System.out.println("2. Row 2");
-			System.out.println("3. Row 3");
-			System.out.println("4. Row 4");
+			System.out.println("Enter the row index you would like to occupy (0 to 3): ");
 			typeValidation();
-			rows = sc.nextInt() - 1;
-			if (rows < 1 || rows > 4) {
-				System.out.println("A value between 1 and 4, please!");
+			rows = sc.nextInt();
+			if (rows < 0 || rows > 3) {
+				System.out.println("A value between 0 and 3, please!");
 			}
-		} while (rows < 1 || rows > 4);
+		} while (rows < 0 || rows > 3);
 	}
 
 	public static void inputColumn() {
 
 		do {
-			System.out.print("Enter the column you would like to occupy: ");
-			System.out.println("1. Column 1");
-			System.out.println("2. Column 2");
-			System.out.println("3. Column 3");
-			System.out.println("4. Column 4");
+			System.out.println("Enter the column index you would like to occupy (0 to 3): ");
 			typeValidation();
-			columns = sc.nextInt() - 1;
-			if (columns < 1 || columns > 4) {
-				System.out.println("A value between 1 and 4, please!");
+			columns = sc.nextInt();
+			if (columns < 0 || columns > 3) {
+				System.out.println("A value between 0 and 3, please!");
 			}
-		} while (columns < 1 || columns > 4);
+		} while (columns < 0 || columns > 3);
 	}
 
 	public static boolean isWin() {
@@ -120,39 +116,49 @@ public class PlayerMove {
 	public static boolean checkWin() {
 
 		for (int i = 0; i < 16; i++) {
-			char piece = 'R';
+			String piece = "Red";
 			if (player == Turn.RED) {
-				piece = 'R';
+				piece = "Black";
 			}
 			while (win == false) {
-				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
+				if (getBoard()[0][0].equals(piece) && getBoard()[0][1].equals(piece)
+						&& getBoard()[0][2].equals(piece) && getBoard()[0][3].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[1][3].equals(piece)) {
+				if (getBoard()[1][0].equals(piece) && getBoard()[1][1].equals(piece)
+						&& getBoard()[1][2].equals(piece) && getBoard()[1][3].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[2][3].equals(piece)) {
+				if (getBoard()[2][0].equals(piece) && getBoard()[2][1].equals(piece)
+						&& getBoard()[2][2].equals(piece) && getBoard()[2][3].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[3][1].equals(piece) && GameBoard.getBoard()[3][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+				if (getBoard()[3][0].equals(piece) && getBoard()[3][1].equals(piece)
+						&& getBoard()[3][2].equals(piece) && getBoard()[3][3].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][0].equals(piece) && GameBoard.getBoard()[2][0].equals(piece) && GameBoard.getBoard()[3][0].equals(piece)) {
+				if (getBoard()[0][0].equals(piece) && getBoard()[1][0].equals(piece)
+						&& getBoard()[2][0].equals(piece) && getBoard()[3][0].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[0][1].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[3][1].equals(piece)) {
+				if (getBoard()[0][1].equals(piece) && getBoard()[1][1].equals(piece)
+						&& getBoard()[2][1].equals(piece) && getBoard()[3][1].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[0][2].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][2].equals(piece)) {
+				if (getBoard()[0][2].equals(piece) && getBoard()[1][2].equals(piece)
+						&& getBoard()[2][2].equals(piece) && getBoard()[3][2].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[0][3].equals(piece) && GameBoard.getBoard()[1][3].equals(piece) && GameBoard.getBoard()[2][3].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+				if (getBoard()[0][3].equals(piece) && getBoard()[1][3].equals(piece)
+						&& getBoard()[2][3].equals(piece) && getBoard()[3][3].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[0][0].equals(piece) && GameBoard.getBoard()[1][1].equals(piece) && GameBoard.getBoard()[2][2].equals(piece) && GameBoard.getBoard()[3][3].equals(piece)) {
+				if (getBoard()[0][0].equals(piece) && getBoard()[1][1].equals(piece)
+						&& getBoard()[2][2].equals(piece) && getBoard()[3][3].equals(piece)) {
 					return win = true;
 				}
-				if (GameBoard.getBoard()[3][0].equals(piece) && GameBoard.getBoard()[2][1].equals(piece) && GameBoard.getBoard()[1][2].equals(piece) && GameBoard.getBoard()[0][3].equals(piece)) {
+				if (getBoard()[3][0].equals(piece) && getBoard()[2][1].equals(piece)
+						&& getBoard()[1][2].equals(piece) && getBoard()[0][3].equals(piece)) {
 					return win = true;
 				} else {
 					return win = false;
@@ -165,14 +171,10 @@ public class PlayerMove {
 	public static void insertToken() {
 
 		if (player == Turn.RED) {
+			getBoard()[rows][columns].setTokenOnTile(CurrentTileToken.RED);
+		} else {
+			getBoard()[rows][columns].setTokenOnTile(CurrentTileToken.BLACK);
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "PlayerMove{" +
-				"moves=" + moves +
-				'}';
 	}
 
 	public static void switchTurn() {
@@ -182,6 +184,11 @@ public class PlayerMove {
 		} else {
 			player = Turn.RED;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerMove{" + "moves=" + moves + '}';
 	}
 
 	public Scanner getSc() {

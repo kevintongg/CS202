@@ -7,13 +7,14 @@ public class Tile {
 
 	private static ArrayList<TileType> tileTypes = new ArrayList<>();
 	private static Random random = new Random();
-	private static TileType iconOne;
-	private static TileType iconTwo;
 	private static boolean isSpotOccupied;
+	private TileType iconOne;
+	private TileType iconTwo;
+	private CurrentTileToken tokenOnTile = CurrentTileToken.NONE;
 
 	public Tile(TileType iconOne, TileType iconTwo) {
-		Tile.iconOne = iconOne;
-		Tile.iconTwo = iconTwo;
+		this.iconOne = iconOne;
+		this.iconTwo = iconTwo;
 	}
 
 	public static void addTiles() {
@@ -45,27 +46,34 @@ public class Tile {
 		Tile.tileTypes = tileTypes;
 	}
 
-	public static TileType getIconOne() {
-		return iconOne;
+
+	public CurrentTileToken getTokenOnTile() {
+		return tokenOnTile;
 	}
 
-	public static void setIconOne(TileType iconOne) {
-		Tile.iconOne = iconOne;
+	public void setTokenOnTile(CurrentTileToken tokenOnTile) {
+		this.tokenOnTile = tokenOnTile;
 	}
 
 	@Override
 	public String toString() {
-		return "Tile{" +
-				"isSpotOccupied=" + isSpotOccupied +
-				'}';
+		return iconOne + "/" + iconTwo + "/" + tokenOnTile;
 	}
 
 	public TileType getIconTwo() {
 		return iconTwo;
 	}
 
-	public static void setIconTwo(TileType iconTwo) {
-		Tile.iconTwo = iconTwo;
+	public void setIconTwo(TileType iconTwo) {
+		this.iconTwo = iconTwo;
+	}
+
+	public TileType getIconOne() {
+		return iconOne;
+	}
+
+	public void setIconOne(TileType iconOne) {
+		this.iconOne = iconOne;
 	}
 
 	public boolean isSpotOccupied() {
@@ -99,5 +107,9 @@ public class Tile {
 
 	public enum TileType {
 		SUN, LEAVES, CLOUD, FLOWER, TIGER, DRAGON, BIRD, COMPUTER
+	}
+
+	public enum CurrentTileToken {
+		RED, BLACK, NONE
 	}
 }

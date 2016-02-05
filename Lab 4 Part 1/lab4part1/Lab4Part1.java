@@ -6,15 +6,14 @@ public class Lab4Part1 {
 
 	public static void main(String[] args) {
 
-		Tile.addTiles();
-
 		System.out.println("Welcome to Niya!");
 
+		Tile.addTiles();
+		GameBoard.makeBoard();
 		menu();
-
 	}
 
-	public static void menu() {
+	private static void menu() {
 
 		Scanner sc = new Scanner(System.in);
 
@@ -55,7 +54,7 @@ public class Lab4Part1 {
 
 	}
 
-	public static void game() {
+	private static void game() {
 
 		GameBoard.printBoard();
 
@@ -75,7 +74,7 @@ public class Lab4Part1 {
 		}
 	}
 
-	public static void readSaveFile() {
+	private static void readSaveFile() {
 
 	}
 }
