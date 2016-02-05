@@ -39,6 +39,7 @@ public class GameBoard {
 			}
 			System.out.println();
 		}
+		System.out.println("\n----------\n");
 	}
 
 	public static Tile[][] getBoard() {

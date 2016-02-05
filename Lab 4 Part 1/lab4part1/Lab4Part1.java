@@ -56,16 +56,14 @@ public class Lab4Part1 {
 
 	private static void game() {
 
-		GameBoard.printBoard();
-
 		while (!PlayerMove.checkWin()) {
 
+			GameBoard.printBoard();
 			PlayerMove.whosTurn();
 			PlayerMove.inputRow();
 			PlayerMove.inputColumn();
 			PlayerMove.insertToken();
 			PlayerMove.switchTurn();
-			GameBoard.printBoard();
 
 			PlayerMove.writeMovesToFile(PlayerMove.getMoves(), "saveFile.txt");
 
