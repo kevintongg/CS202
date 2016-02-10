@@ -42,6 +42,10 @@ public class GameBoard {
 		System.out.println("\n----------\n");
 	}
 
+	public void checkForDuplicates() {
+
+	}
+
 	public static Tile[][] getBoard() {
 		return board;
 	}

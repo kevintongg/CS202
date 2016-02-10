@@ -16,7 +16,7 @@ import static lab4part1.GameBoard.getBoard;
 public class PlayerMove {
 
     private static Turn player = Turn.RED;
-    private static boolean win = false;
+    private static boolean win;
     private static int rows;
     private static int columns;
     private static Scanner sc = new Scanner(System.in);
@@ -47,7 +47,6 @@ public class PlayerMove {
     }
 
     public static boolean isWin() {
-
         return win;
     }
 
@@ -113,7 +112,7 @@ public class PlayerMove {
         PlayerMove.moves = moves;
     }
 
-    public static boolean checkWin() {
+    public static boolean checkWin(boolean win) {
 
         for (int i = 0; i < GameBoard.getBoard().length; i++) {
             if (GameBoard.getBoard()[i].equals(CurrentTileToken.BLACK)) {
