@@ -1,0 +1,245 @@
+1.  What is the difference between  a static method and an instance method? Give examples for each (1pts)
+
+    A static method is something like: staticMethod();
+    An instance method is something you have to instantiate like a Scanner: Scanner sc = new Scanner(System.in);
+
+2.1 Is Java pass by reference or pass by value?  (1pts)
+
+    Value
+
+2.2 How does it work differently for primitive types and reference types? Use examples to prove your point. (1pts)
+
+    Primitive types can change whereas reference types cannot.
+
+    int x = 10; is able to changed by setting x = n (where n = any number);
+
+    Reference types can only be changed if you pass in a value.
+
+    Game game = new Game();
+    newGame(game);
+
+    public static void newGame(Game game) {
+
+        game.setName("World of Warcraft");
+
+        game = new Game();
+    }
+
+3. What are the naming conventions for Java variables, constants, methods, and classes? Give examples for each one. (4pts)
+
+    Variables: The first "word" is lowercase then every word after that is capitalized in the first character
+        double thisIsAnExample;
+    Constants: Constant names are always capitalized, like π
+        double PI = Math.PI;
+    Methods: The same concept as a variable.
+        thisIsAnExampleMethod()
+    Classes: Classes are capitalized in the first character of each word only
+        ThisIsYourExampleClass
+
+4. What is the difference between  a static method and an instance method? Use examples to explain (1pts).
+
+    Looks like the same question from #1
+
+5.1 Give an example of a no-arg constructor and a constructor for the same class (make up the class) (2pts)
+
+    public class Example {
+
+        double base;
+        double height;
+
+            public void Example() {
+
+                // No argument constructor
+
+            }
+
+            public void Example(double base, double height) {
+
+                this.base = base;
+                this.height = height;
+
+            }
+
+    }
+
+5.2 Use both the two constructors you made up and create two instances of that class (2pts)
+
+        Example exampleOne = new Example();
+        Example exampleTwo = new Example(20, 20);
+
+6. What is the advantage of default methods in interfaces? ( 2pts)
+
+    Interfaces let you to set methods that can be implemented and other people's work does not interfere with your work and default methods let you add new features without breaking the code.
+
+7. Does java support multiple inheritance? What is the closest thing to it? (2pts)
+
+    No, but you can make multiple interfaces.
+
+8. Do subclasses inherit constructors from parent classes? Use an example to explain. (2pts)
+
+    No, they do not. You have to call super to get the constructors.
+
+    public class Earth {
+
+        double circumference;
+
+        public void Earth(double circumference) {
+
+            this.circumference = circumference;
+
+        }
+    }
+
+    public class HelloWorld extends Earth {
+
+        public void HelloWorld(double circumference) {
+
+            super(circumference);
+
+        }
+
+    }
+
+
+9. Create an abstract class called "GeometricShape" with two String data fields: name and color. It should contain an abstract method called "calculateArea" which calculates the area of the GeometricShape. Create two concrete subclasses of GeometricShape called "rectangle" and "triangle". Rectangle should contain the width and height, and triangle should contain the base and height. Create a runner class with a main method. Within the main method, create a GeometricShape ArrayList and add a triangle and rectangle object to it. Then, do a loop over the ArrayList and print out the result of calculateArea for each object in the ArrayList. (27pts)
+
+    public class Hello {
+
+        public static void main(String[] args) {
+
+            ArrayList<GeometricShape> shapes = new ArrayList<>();
+
+            Rectangle rectangle = new Rectangle("Rectangle", "red", 20, 20);
+            Triangle triangle = new Triangle("Triangle", "yellow", 20, 20);
+
+            shapes.add(rectangle);
+            shapes.add(triangle);
+
+            for (GeometricShape i : shapes) {
+                System.out.println(i);
+            }
+        }
+    }
+
+
+    public abstract class GeometricShape {
+
+        String name;
+        String color;
+
+        public void GeometricShape(String name, String color) {
+
+            this.name = name;
+            this.color = color;
+
+        }
+
+        abstract public double checkRectangleArea();
+        abstract public double checkTriangleArea();
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public getName(String name) {
+            return name;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
+        public getColor(String color) {
+            return color;
+        }
+
+        @Override
+        public String toString() {
+            return /* some toString body here */;
+        }
+
+    }
+
+
+    public class Rectangle extends GeometricShape {
+
+        double width;
+        double height;
+
+        public void Rectangle(String name, String color, double width, double height) {
+
+            super(name, color);
+            this.width = width;
+            this.height = height;
+
+        }
+
+        public void setWidth(double width) {
+            this.width = width;
+        }
+
+        public getWidth(double width) {
+            return width;
+        }
+
+        public void setHeight(double height) {
+            this.height = height;
+        }
+
+        public getHeight(double height) {
+            return height;
+        }
+
+
+        @Override
+        public double checkRectangleArea {
+            return width * height;
+        }
+
+        @Override
+        public double checkTriangleArea() {
+
+        }
+    }
+
+
+    public class Triangle extends GeometricShape {
+
+        double base;
+        double height;
+
+        public void Rectangle(String name, String color, double base, double height) {
+
+            super(name, color);
+            this.base = base;
+            this.height = height;
+
+        }
+
+        public void setBase(double base) {
+            this.base = base;
+        }
+
+        public getBase(double base) {
+            return base;
+        }
+
+        public void setHeight(double height) {
+            this.height = height;
+        }
+
+        public getHeight(double height) {
+            return height;
+        }
+
+
+        @Override
+        public double checkTriangleArea {
+            return (base * height) / 2;
+        }
+
+        @Override
+        public double checkRectangleArea() {
+
+        }
+    }
