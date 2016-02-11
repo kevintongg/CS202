@@ -19,8 +19,6 @@ public class GameBoard {
 
 	public static void makeBoard() {
 
-		System.out.println(board.length + " " + board[0].length);
-
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
 				Collections.shuffle(getTileTypes());
@@ -33,7 +31,7 @@ public class GameBoard {
 	public static void printBoard() {
 
 		for (Tile[] i : board) {
-			System.out.println("\t-------------------------------------------------------------");
+			System.out.println("\t---------------------------------------------------------------------");
 			for (Tile j : i) {
 				System.out.print("\t|\t" + j);
 			}

@@ -112,6 +112,11 @@ public class PlayerMove {
         PlayerMove.moves = moves;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
     public static boolean checkWin(boolean win) {
 
         for (int i = 0; i < GameBoard.getBoard().length; i++) {
@@ -127,6 +132,16 @@ public class PlayerMove {
                     return win = true;
                 }
             }
+        }
+        if (GameBoard.getBoard()[0][0].equals(CurrentTileToken.BLACK) && GameBoard.getBoard()[1][1].equals(CurrentTileToken.BLACK) && GameBoard.getBoard()[2][2].equals(CurrentTileToken.BLACK) && GameBoard.getBoard()[3][3].equals(CurrentTileToken.BLACK)) {
+            return win = true;
+        } else if (GameBoard.getBoard()[0][0].equals(CurrentTileToken.RED) && GameBoard.getBoard()[1][1].equals(CurrentTileToken.RED) && GameBoard.getBoard()[2][2].equals(CurrentTileToken.RED) && GameBoard.getBoard()[3][3].equals(CurrentTileToken.RED)) {
+            return win = true;
+        }
+        if (GameBoard.getBoard()[0][3].equals(CurrentTileToken.BLACK) && GameBoard.getBoard()[1][2].equals(CurrentTileToken.BLACK) && GameBoard.getBoard()[2][1].equals(CurrentTileToken.BLACK) && GameBoard.getBoard()[3][0].equals(CurrentTileToken.BLACK)) {
+            return win = true;
+        } else if (GameBoard.getBoard()[0][3].equals(CurrentTileToken.RED) && GameBoard.getBoard()[1][2].equals(CurrentTileToken.RED) && GameBoard.getBoard()[2][1].equals(CurrentTileToken.RED) && GameBoard.getBoard()[3][0].equals(CurrentTileToken.RED)) {
+            return win = true;
         }
         return win = false;
     }
