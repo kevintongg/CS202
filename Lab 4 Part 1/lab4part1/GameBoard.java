@@ -1,6 +1,8 @@
 package lab4part1;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static lab4part1.Tile.getTileTypes;
 
@@ -9,6 +11,7 @@ public class GameBoard {
 	private static int rows = 4;
 	private static int columns = 4;
 	private static Tile[][] board = new Tile[rows][columns];
+	private static List<PlayerMove> moves = new ArrayList<>();
 
 	public GameBoard(int rows, int columns, Tile[][] board) {
 		this.rows = rows;
@@ -31,7 +34,7 @@ public class GameBoard {
 	public static void printBoard() {
 
 		for (Tile[] i : board) {
-			System.out.println("\t---------------------------------------------------------------------");
+			System.out.println("\t---------------------------------------------------------------------------------");
 			for (Tile j : i) {
 				System.out.print("\t|\t" + j);
 			}
@@ -40,16 +43,24 @@ public class GameBoard {
 		System.out.println("\n----------\n");
 	}
 
-	public void checkForDuplicates() {
-
-	}
-
 	public static Tile[][] getBoard() {
 		return board;
 	}
 
 	public static void setBoard(Tile[][] board) {
 		GameBoard.board = board;
+	}
+
+	public static List<PlayerMove> getMoves() {
+		return moves;
+	}
+
+	public static void setMoves(List<PlayerMove> moves) {
+		GameBoard.moves = moves;
+	}
+
+	public void checkForDuplicates() {
+
 	}
 
 	public int getRows() {

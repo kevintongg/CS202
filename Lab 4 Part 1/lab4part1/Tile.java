@@ -1,11 +1,12 @@
 package lab4part1;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Tile {
 
-	private static ArrayList<TileType> tileTypes = new ArrayList<>();
+	private static List<TileType> tileTypes = new ArrayList<>();
 	private static Random random = new Random();
 	private static boolean isSpotOccupied;
 	private TileType iconOne;
@@ -38,14 +39,17 @@ public class Tile {
 		Tile.random = random;
 	}
 
-	public static ArrayList<TileType> getTileTypes() {
+	public static List<TileType> getTileTypes() {
 		return tileTypes;
 	}
 
-	public static void setTileTypes(ArrayList<TileType> tileTypes) {
+	public static void setTileTypes(List<TileType> tileTypes) {
 		Tile.tileTypes = tileTypes;
 	}
 
+	public static void setIsSpotOccupied(boolean isSpotOccupied) {
+		Tile.isSpotOccupied = isSpotOccupied;
+	}
 
 	public CurrentTileToken getTokenOnTile() {
 		return tokenOnTile;
