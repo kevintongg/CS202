@@ -22,11 +22,12 @@ public class GameBoard {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 Collections.shuffle(getTileTypes());
-                Tile boardTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+                Tile boardTile = new Tile(getTileTypes().get(1), getTileTypes().get(0));
+                board[i][j] = boardTile;
                 if (checkForDuplicates(boardTile)) {
-                    board[i][j] = boardTile;
-                } else {
-                    board[i][j] = boardTile;
+                    Collections.shuffle(getTileTypes());
+                    Tile newBoardTile = new Tile(getTileTypes().get(4), getTileTypes().get(7));
+                    board[i][j] = newBoardTile;
                 }
             }
         }
@@ -58,13 +59,16 @@ public class GameBoard {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                if (tile.equals(board[i][j])) {
-                    duplicate = false;
+                while (!duplicate) {
+                    if (tile.equals(board[i][j])) {
+                        duplicate = true;
+                    }
                 }
             }
         }
         return duplicate;
     }
+
 
     public int getRows() {
         return rows;

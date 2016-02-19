@@ -2,6 +2,9 @@ package lab4part1;
 
 import java.util.Scanner;
 
+import static lab4part1.PlayerMove.getRows;
+import static lab4part1.PlayerMove.getColumns;
+
 public class Lab4Part1 {
 
     public static void main(String[] args) {
@@ -62,12 +65,12 @@ public class Lab4Part1 {
             PlayerMove.whosTurn();
             PlayerMove.inputRow();
             PlayerMove.inputColumn();
-            PlayerMove.setMoves(new PlayerMove(PlayerMove.getRows()));
+//            PlayerMove.setMoves(new PlayerMove(getRows(), getColumns()));
             PlayerMove.insertToken();
             PlayerMove.checkWin();
             PlayerMove.switchTurn();
 
-            PlayerMove.writeMovesToFile(PlayerMove.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 1\\NiyaGame" + System.currentTimeMillis() + ".txt");
+            PlayerMove.writeMovesToFile(GameBoard.getBoard(), PlayerMove.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 1\\NiyaGame" + System.currentTimeMillis() + ".txt");
 
             game();
 

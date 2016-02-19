@@ -96,7 +96,7 @@ public class PlayerMove {
         }
     }
 
-    public static void writeMovesToFile(GameBoard board, List<PlayerMove> moves, String fileName) {
+    public static void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
 
         Path path = Paths.get(fileName);
         Charset charset = Charset.forName("UTF-8");
