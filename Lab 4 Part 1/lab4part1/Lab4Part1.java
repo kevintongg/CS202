@@ -12,6 +12,7 @@ public class Lab4Part1 {
         System.out.println("Welcome to Niya!");
 
         Tile.addTiles();
+        GameBoard.createTilesForBoard();
         GameBoard.makeBoard();
         menu();
     }

@@ -30,7 +30,9 @@ public class Test extends Application {
         // Sets button text
         button.setText("Click me");
         // Sets button action on click
-        button.setOnAction(event -> button.setText("You have clicked me!"));
+        button.setOnAction(event -> {
+            button.setText("You have clicked me!");
+        });
 
         Pane pane = new Pane();
         Circle circle = new Circle();
@@ -41,7 +43,6 @@ public class Test extends Application {
         circle.setFill(Color.WHITE);
         pane.getStylesheets().add("main.css");
         pane.getChildren().add(circle);
-
 
 
         // Creates the layout

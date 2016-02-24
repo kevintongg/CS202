@@ -1,6 +1,8 @@
 package lab4part1;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import static lab4part1.Tile.getTileTypes;
 
@@ -9,6 +11,7 @@ public class GameBoard {
     private static int rows = 4;
     private static int columns = 4;
     private static Tile[][] board = new Tile[rows][columns];
+    private static List<Tile> gameTiles = new ArrayList<>();
 
     public GameBoard(int rows, int columns, Tile[][] board) {
         this.rows = rows;
@@ -17,20 +20,55 @@ public class GameBoard {
 
     }
 
-    public static void makeBoard() {
+    public static void createTilesForBoard() {
+
+        do {
+            System.out.println(getTileTypes().size());
+            Collections.shuffle(getTileTypes());
+            Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+            boolean duplicate = false;
+            for (Tile existingTile : gameTiles) {
+                if (existingTile.equals(gameTile)) {
+                    duplicate = true;
+                    break;
+                }
+            }
+            if (duplicate) {
+                continue;
+            } else {
+                gameTiles.add(gameTile);
+            }
+
+
+//            for (int i = 0; i < gameTiles.size(); i++) {
+//                if (!(getIconOne().toString().equals(gameTiles.get(i).getIconOne()) || getIconOne().toString().equals(gameTiles.get(i).getIconTwo()))) {
+//                    if (!(getIconTwo().toString().equals(gameTiles.get(i).getIconOne()) || getIconTwo().toString().equals(gameTiles.get(i).getIconTwo()))) {
+//                        Collections.shuffle(getTileTypes());
+//                        gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+//                    }
+//                }
+//            }
+
+        } while (gameTiles.size() < 16);
+
+        int counter = 0;
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                Collections.shuffle(getTileTypes());
-                Tile boardTile = new Tile(getTileTypes().get(1), getTileTypes().get(0));
-                board[i][j] = boardTile;
-                if (checkForDuplicates(boardTile)) {
-                    Collections.shuffle(getTileTypes());
-                    Tile newBoardTile = new Tile(getTileTypes().get(4), getTileTypes().get(7));
-                    board[i][j] = newBoardTile;
-                }
+                board[i][j] = gameTiles.get(counter);
+                counter++;
             }
         }
+//        for (int i = 0; i < board.length; i++) {
+//            for (int j = 0; j < board[i].length; j++) {
+//                Collections.shuffle(getTileTypes());
+//                Tile boardTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+//                do {
+//
+//                } while (Tile.getIconOne().toString().equals(Tile.getIconTwo().toString()));
+//                board[i][j] = boardTile;
+//            }
+//        }
     }
 
     public static void printBoard() {
@@ -53,22 +91,34 @@ public class GameBoard {
         GameBoard.board = board;
     }
 
-    public static boolean checkForDuplicates(Tile tile) {
-
-        boolean duplicate = true;
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                while (!duplicate) {
-                    if (tile.equals(board[i][j])) {
-                        duplicate = true;
-                    }
-                }
-            }
-        }
-        return duplicate;
+    public static List<Tile> getGameTiles() {
+        return gameTiles;
     }
 
+//    public static boolean checkForDuplicates(Tile tile) {
+//
+//        boolean duplicate = false;
+//
+//        for (int i = 0; i < board.length; i++) {
+//            for (int j = 0; j < board[i].length; j++) {
+//                while (!duplicate) {
+//                    if (tile.equals(board[i][j])) {
+//                        duplicate = true;
+//                    }
+//                }
+//            }
+//        }
+//        return duplicate;
+//    }
+
+    public static void setGameTiles(List<Tile> gameTiles) {
+        GameBoard.gameTiles = gameTiles;
+    }
+
+    public static void makeBoard() {
+
+
+    }
 
     public int getRows() {
         return rows;
