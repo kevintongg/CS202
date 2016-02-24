@@ -2,9 +2,6 @@ package lab4part1;
 
 import java.util.Scanner;
 
-import static lab4part1.PlayerMove.getRows;
-import static lab4part1.PlayerMove.getColumns;
-
 public class Lab4Part1 {
 
     public static void main(String[] args) {
@@ -12,7 +9,7 @@ public class Lab4Part1 {
         System.out.println("Welcome to Niya!");
 
         Tile.addTiles();
-        GameBoard.createTilesForBoard();
+        GameBoard.createTilesAndMakeBoard();
         GameBoard.makeBoard();
         menu();
     }

@@ -20,7 +20,7 @@ public class GameBoard {
 
     }
 
-    public static void createTilesForBoard() {
+    public static void createTilesAndMakeBoard() {
 
         do {
             System.out.println(getTileTypes().size());
@@ -40,15 +40,6 @@ public class GameBoard {
             }
 
 
-//            for (int i = 0; i < gameTiles.size(); i++) {
-//                if (!(getIconOne().toString().equals(gameTiles.get(i).getIconOne()) || getIconOne().toString().equals(gameTiles.get(i).getIconTwo()))) {
-//                    if (!(getIconTwo().toString().equals(gameTiles.get(i).getIconOne()) || getIconTwo().toString().equals(gameTiles.get(i).getIconTwo()))) {
-//                        Collections.shuffle(getTileTypes());
-//                        gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
-//                    }
-//                }
-//            }
-
         } while (gameTiles.size() < 16);
 
         int counter = 0;
@@ -59,16 +50,6 @@ public class GameBoard {
                 counter++;
             }
         }
-//        for (int i = 0; i < board.length; i++) {
-//            for (int j = 0; j < board[i].length; j++) {
-//                Collections.shuffle(getTileTypes());
-//                Tile boardTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
-//                do {
-//
-//                } while (Tile.getIconOne().toString().equals(Tile.getIconTwo().toString()));
-//                board[i][j] = boardTile;
-//            }
-//        }
     }
 
     public static void printBoard() {
@@ -94,22 +75,6 @@ public class GameBoard {
     public static List<Tile> getGameTiles() {
         return gameTiles;
     }
-
-//    public static boolean checkForDuplicates(Tile tile) {
-//
-//        boolean duplicate = false;
-//
-//        for (int i = 0; i < board.length; i++) {
-//            for (int j = 0; j < board[i].length; j++) {
-//                while (!duplicate) {
-//                    if (tile.equals(board[i][j])) {
-//                        duplicate = true;
-//                    }
-//                }
-//            }
-//        }
-//        return duplicate;
-//    }
 
     public static void setGameTiles(List<Tile> gameTiles) {
         GameBoard.gameTiles = gameTiles;
