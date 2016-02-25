@@ -2,41 +2,43 @@ package samplemidterm;
 
 public class Triangle extends GeometricShape {
 
-    double base;
-    double height;
+	double base;
+	double height;
 
-    public void Rectangle(String name, String color, double base, double height) {
+	public void Rectangle(String name, String color, double base, double height) {
 
-        super(name, color);
-        this.base = base;
-        this.height = height;
+		super(name, color);
+		this.base = base;
+		this.height = height;
 
-    }
+	}
 
-    public void setBase(double base) {
-        this.base = base;
-    }
+	@Override
+	public String toString() {
+		return "Triangle{" +
+				"base=" + base +
+				", height=" + height +
+				'}';
+	}
 
-    public getBase(double base) {
-        return base;
-    }
+	public double getBase() {
+		return base;
+	}
 
-    public void setHeight(double height) {
-        this.height = height;
-    }
+	public void setBase(double base) {
+		this.base = base;
+	}
 
-    public getHeight(double height) {
-        return height;
-    }
+	public double getHeight() {
+		return height;
+	}
 
+	public void setHeight(double height) {
+		this.height = height;
+	}
 
-    @Override
-    public double checkTriangleArea {
-        return (base * height) / 2;
-    }
-
-    @Override
-    public double checkRectangleArea() {
-
-    }
+	@Override
+	public double checkRectangleArea() {
+		return base * height;
+	}
 }

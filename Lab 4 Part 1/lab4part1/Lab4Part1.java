@@ -10,7 +10,6 @@ public class Lab4Part1 {
 
         Tile.addTiles();
         GameBoard.createTilesAndMakeBoard();
-        GameBoard.makeBoard();
         menu();
     }
 
@@ -63,7 +62,6 @@ public class Lab4Part1 {
             PlayerMove.whosTurn();
             PlayerMove.inputRow();
             PlayerMove.inputColumn();
-//            PlayerMove.setMoves(new PlayerMove(getRows(), getColumns()));
             PlayerMove.insertToken();
             PlayerMove.checkWin();
             PlayerMove.switchTurn();

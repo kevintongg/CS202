@@ -8,96 +8,85 @@ import static lab4part1.Tile.getTileTypes;
 
 public class GameBoard {
 
-    private static int rows = 4;
-    private static int columns = 4;
-    private static Tile[][] board = new Tile[rows][columns];
-    private static List<Tile> gameTiles = new ArrayList<>();
+	private static int rows = 4;
+	private static int columns = 4;
+	private static Tile[][] board = new Tile[rows][columns];
 
-    public GameBoard(int rows, int columns, Tile[][] board) {
-        this.rows = rows;
-        this.columns = columns;
-        this.board = board;
+	public GameBoard(int rows, int columns, Tile[][] board) {
+		this.rows = rows;
+		this.columns = columns;
+		this.board = board;
 
-    }
+	}
 
-    public static void createTilesAndMakeBoard() {
+	public static void createTilesAndMakeBoard() {
 
-        do {
-            System.out.println(getTileTypes().size());
-            Collections.shuffle(getTileTypes());
-            Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
-            boolean duplicate = false;
-            for (Tile existingTile : gameTiles) {
-                if (existingTile.equals(gameTile)) {
-                    duplicate = true;
-                    break;
-                }
-            }
-            if (duplicate) {
-                continue;
-            } else {
-                gameTiles.add(gameTile);
-            }
+		List<Tile> gameTiles = new ArrayList<>();
+		boolean duplicateTiles = false;
 
+		do {
+			System.out.println(getTileTypes().size());
+			Collections.shuffle(getTileTypes());
+			Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
 
-        } while (gameTiles.size() < 16);
-
-        int counter = 0;
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = gameTiles.get(counter);
-                counter++;
-            }
-        }
-    }
-
-    public static void printBoard() {
-
-        for (Tile[] i : board) {
-            System.out.println("\t---------------------------------------------------------------------------------");
-            for (Tile j : i) {
-                System.out.print("\t|\t" + j);
-            }
-            System.out.println();
-        }
-        System.out.println("\n----------\n");
-    }
-
-    public static Tile[][] getBoard() {
-        return board;
-    }
-
-    public static void setBoard(Tile[][] board) {
-        GameBoard.board = board;
-    }
-
-    public static List<Tile> getGameTiles() {
-        return gameTiles;
-    }
-
-    public static void setGameTiles(List<Tile> gameTiles) {
-        GameBoard.gameTiles = gameTiles;
-    }
-
-    public static void makeBoard() {
+			for (Tile existingTile : gameTiles) {
+				if (existingTile.equals(gameTile)) {
+					duplicateTiles = true;
+					break;
+				}
+			}
+			if (duplicateTiles) {
+				continue;
+			} else {
+				gameTiles.add(gameTile);
+			}
 
 
-    }
+		} while (gameTiles.size() < 16);
 
-    public int getRows() {
-        return rows;
-    }
+		int counter = 0;
 
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				board[i][j] = gameTiles.get(counter);
+				counter++;
+			}
+		}
+	}
 
-    public int getColumns() {
-        return columns;
-    }
+	public static void printBoard() {
 
-    public void setColumns(int columns) {
-        this.columns = columns;
-    }
+		for (Tile[] i : board) {
+			System.out.println("\t---------------------------------------------------------------------------------");
+			for (Tile j : i) {
+				System.out.print("\t|\t" + j);
+			}
+			System.out.println();
+		}
+		System.out.println("\n----------\n");
+	}
+
+	public static Tile[][] getBoard() {
+		return board;
+	}
+
+	public static void setBoard(Tile[][] board) {
+		GameBoard.board = board;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public void setColumns(int columns) {
+		this.columns = columns;
+	}
 }

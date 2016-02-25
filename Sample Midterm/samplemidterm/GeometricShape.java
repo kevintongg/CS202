@@ -19,7 +19,7 @@ public abstract class GeometricShape {
         this.name = name;
     }
 
-    public getName(String name) {
+    public String getName(String name) {
         return name;
     }
 
@@ -27,13 +27,15 @@ public abstract class GeometricShape {
         this.color = color;
     }
 
-    public getColor(String color) {
+    public String getColor(String color) {
         return color;
     }
 
     @Override
     public String toString() {
-        return /* some toString body here */;
+        return "GeometricShape{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                '}';
     }
-
 }

@@ -1,14 +1,17 @@
+import java.util.List;
+import java.util.Vector;
 
-public class Test3 implements  Test4, Comparable<Test4> {
+public class Test3 {
 
 	public static void main(String[] args) {
 
 
+		List<Integer> numbers = new Vector<>();
 
-	}
+		numbers.add(123);
+		numbers.add(456);
+		numbers.add(789);
 
-	@Override
-	public int compareTo(Test4 o) {
-		return 0;
+		numbers.forEach(System.out::println);
 	}
 }
