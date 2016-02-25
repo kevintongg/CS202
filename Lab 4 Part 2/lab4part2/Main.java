@@ -118,7 +118,7 @@ public class Main extends Application {
 
 		grid.add(birdIcon, 0, 0);
 		grid.add(cloudIcon, 1,0);
-		grid.add(blackPiece, 4,1);
+		grid.add(blackPiece, 0,2);
 
 
 		bottom.getChildren().addAll(currentPlayer, blackPiece, getBottomInsideText("Player Moves", getMoves().getMoves()));
