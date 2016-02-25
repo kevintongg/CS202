@@ -24,18 +24,18 @@ public class GameBoard {
 		List<Tile> gameTiles = new ArrayList<>();
 		boolean duplicateTiles = false;
 
+
 		do {
-			System.out.println(getTileTypes().size());
 			Collections.shuffle(getTileTypes());
 			Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
-
+			boolean duplicate = false;
 			for (Tile existingTile : gameTiles) {
 				if (existingTile.equals(gameTile)) {
-					duplicateTiles = true;
+					duplicate = true;
 					break;
 				}
 			}
-			if (duplicateTiles) {
+			if (duplicate) {
 				continue;
 			} else {
 				gameTiles.add(gameTile);
@@ -57,7 +57,7 @@ public class GameBoard {
 	public static void printBoard() {
 
 		for (Tile[] i : board) {
-			System.out.println("\t---------------------------------------------------------------------------------");
+			System.out.println("\t-------------------------------------------------------------------------------------------");
 			for (Tile j : i) {
 				System.out.print("\t|\t" + j);
 			}
