@@ -1,6 +1,6 @@
-package lab4part1;
+package lab4part2;
 
-import lab4part1.Tile.CurrentTileToken;
+import lab4part2.Tile.CurrentTileToken;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static lab4part1.GameBoard.getBoard;
+import static lab4part2.GameBoard.getBoard;
 
 public class PlayerMove {
 

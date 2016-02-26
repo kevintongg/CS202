@@ -129,7 +129,7 @@ public class Main extends Application {
 
 		Moves moves = getMoves();
 
-		Scene scene = new Scene(window, 1366, 768);
+		Scene scene = new Scene(window, 1280, 720);
 		scene.getStylesheets().addAll("css/main.css", "https://fonts.googleapis.com/css?family=Open+Sans");
 		primaryStage.setTitle("Niya");
 		primaryStage.setScene(scene);
