@@ -48,7 +48,7 @@ public class Main extends Application {
 
         bottomText.forEach(event -> {
             Text textToDisplay = new Text(event);
-            insideBottom.setMargin(textToDisplay, new Insets(10));
+            VBox.setMargin(textToDisplay, new Insets(10));
             insideBottom.getChildren().addAll(textToDisplay);
         });
 

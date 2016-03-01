@@ -13,9 +13,9 @@ public class GameBoard {
     private static Tile[][] board = new Tile[rows][columns];
 
     public GameBoard(int rows, int columns, Tile[][] board) {
-        this.rows = rows;
-        this.columns = columns;
-        this.board = board;
+        GameBoard.rows = rows;
+        GameBoard.columns = columns;
+        GameBoard.board = board;
 
     }
 
@@ -77,7 +77,7 @@ public class GameBoard {
     }
 
     public void setRows(int rows) {
-        this.rows = rows;
+        GameBoard.rows = rows;
     }
 
     public int getColumns() {
@@ -85,6 +85,6 @@ public class GameBoard {
     }
 
     public void setColumns(int columns) {
-        this.columns = columns;
+        GameBoard.columns = columns;
     }
 }

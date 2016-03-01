@@ -60,8 +60,7 @@ public class Lab4Part1 {
         do {
             GameBoard.printBoard();
             PlayerMove.whosTurn();
-            PlayerMove.inputRow();
-            PlayerMove.inputColumn();
+            PlayerMove.userInput();
             PlayerMove.insertToken();
             PlayerMove.checkWin();
             PlayerMove.switchTurn();
