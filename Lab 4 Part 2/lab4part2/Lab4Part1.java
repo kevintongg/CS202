@@ -56,8 +56,8 @@ public class Lab4Part1 {
 
     private static void game() {
 
-        while (!PlayerMove.checkWin()) {
-
+//        while (PlayerMove.checkWin()) {
+        do {
             GameBoard.printBoard();
             PlayerMove.whosTurn();
             PlayerMove.inputRow();
@@ -70,7 +70,7 @@ public class Lab4Part1 {
 
             game();
 
-        }
+        } while (PlayerMove.checkWin());
     }
 
     private static void readSaveFile() {

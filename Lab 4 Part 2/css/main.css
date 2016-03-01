@@ -1,25 +1,25 @@
 .root {
-	-fx-font-family: "Open Sans";
-	-fx-font-size: 20px;
+    -fx-font-family: "Open Sans";
+    -fx-font-size: 16px
 }
 
 #main {
-	-fx-background-color: #848482;
+    -fx-background-color: #848482;
 }
 
 #bottom-bar {
-	-fx-background-color: #D3D3D3;
+    -fx-background-color: #D3D3D3;
 }
 
 #inside-bottom {
-	-fx-background-color: #BCC6CC;
+    -fx-background-color: #BCC6CC;
 }
 
 #black-piece {
-	-fx-min-width: 1440px;
+    -fx-min-width: 1440px;
 }
 
 #icon {
-	-fx-min-width: 50px;
-	-fx-min-height: 50px;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
 }

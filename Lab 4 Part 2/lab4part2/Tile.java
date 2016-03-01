@@ -13,6 +13,8 @@ public class Tile {
     private TileType iconTwo;
     private CurrentTileToken tokenOnTile = CurrentTileToken.NONE;
 
+//        return tokenOnTile == tile.tokenOnTile;
+
     public Tile(TileType iconOne, TileType iconTwo) {
         this.iconOne = iconOne;
         this.iconTwo = iconTwo;
@@ -61,15 +63,16 @@ public class Tile {
 
     @Override
     public boolean equals(Object o) {
-
-        PlayerMove playerMove = new PlayerMove(PlayerMove.getRows(), PlayerMove.getColumns());
-
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Tile tile = (Tile) o;
 
         if (iconOne == tile.iconOne && iconTwo == tile.iconTwo || iconOne == tile.iconTwo && iconTwo == tile.iconOne) {
+            return true;
+        } else if (tokenOnTile == CurrentTileToken.RED) {
+            return true;
+        } else if (tokenOnTile == CurrentTileToken.BLACK) {
             return true;
         } else {
             return false;
@@ -80,6 +83,7 @@ public class Tile {
     public int hashCode() {
         int result = iconOne != null ? iconOne.hashCode() : 0;
         result = 31 * result + (iconTwo != null ? iconTwo.hashCode() : 0);
+        result = 31 * result + (tokenOnTile != null ? tokenOnTile.hashCode() : 0);
         return result;
     }
 

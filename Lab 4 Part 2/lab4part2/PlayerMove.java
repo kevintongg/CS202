@@ -17,7 +17,6 @@ import static lab4part2.GameBoard.getBoard;
 public class PlayerMove {
 
     private static Turn player = Turn.RED;
-    private static boolean win;
     private static int rows;
     private static int columns;
     private static Scanner sc = new Scanner(System.in);
@@ -52,15 +51,6 @@ public class PlayerMove {
             }
         } while (columns < 0 || columns > 3);
         moves.add(columns);
-    }
-
-    public static boolean isWin() {
-        return win;
-    }
-
-    public static void setWin(boolean win) {
-        PlayerMove.win = win;
-
     }
 
     public static int getRows() {
@@ -104,7 +94,14 @@ public class PlayerMove {
         Charset charset = Charset.forName("UTF-8");
         try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
             for (int i = 0; i < moves.size(); i++) {
-                writer.write(i);
+                writer.write(board.toString());
+                writer.write(moves.get(i).toString());
+                writer.newLine();
+            }
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    writer.write(board[i][j].toString()+ "\t");
+                }
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -114,22 +111,26 @@ public class PlayerMove {
 
     public static boolean checkWin() {
 
-        boolean win = false;
-
         for (int i = 0; i < getBoard().length; i++) {
-            if (getBoard()[i].equals(CurrentTileToken.RED) || getBoard()[i].equals(CurrentTileToken.BLACK)) {
+            if (getBoard()[i].equals(CurrentTileToken.RED)) {
                 System.out.println("Congratulations! You have won!");
-                return win = true;
+                return true;
+            } else if (getBoard()[i].equals(CurrentTileToken.BLACK)) {
+                System.out.println("Congratulations! You have won!");
+                return true;
             }
             for (int j = 0; j < getBoard().length; j++) {
-                if (getBoard()[j].equals(CurrentTileToken.RED) || getBoard()[j].equals(CurrentTileToken.BLACK)) {
+                if (getBoard()[j].equals(CurrentTileToken.RED)) {
                     System.out.println("Congratulations! You have won!");
-                    return win = true;
+                    return true;
+                } else if (getBoard()[j].equals(CurrentTileToken.BLACK)) {
+                    System.out.println("Congratulations! You have won!");
+                    return true;
                 }
             }
         }
 
-        return win;
+        return false;
     }
 
     public static void insertToken() {
