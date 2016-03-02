@@ -16,179 +16,198 @@ import static lab4part2.GameBoard.getBoard;
 
 public class PlayerMove {
 
-	private static Turn player = Turn.RED;
-	private static int rows;
-	private static int columns;
-	private static Scanner sc = new Scanner(System.in);
-	private static List<PlayerMove> moves = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
+    private static List<PlayerMove> moves = new ArrayList<>();
+    private Turn player;
+    private int rows;
+    private int columns;
 
-	public PlayerMove(Turn player, int rows, int columns) {
-		PlayerMove.player = player;
-		PlayerMove.rows = rows;
-		PlayerMove.columns = columns;
-	}
+    public PlayerMove() {
 
-	public static void userInput() {
+    }
 
-		do {
-			System.out.println("Enter the row index you would like to occupy (0 to 3): ");
-			typeValidation();
-			rows = sc.nextInt();
-			if (rows < 0 || rows > 3) {
-				System.out.println("A value between 0 and 3, please!");
-			}
-		} while (rows < 0 || rows > 3);
+    public PlayerMove(Turn player, int rows, int columns) {
+        this.player = player;
+        this.rows = rows;
+        this.columns = columns;
 
-		do {
-			System.out.println("Enter the column index you would like to occupy (0 to 3): ");
-			typeValidation();
-			columns = sc.nextInt();
-			if (columns < 0 || columns > 3) {
-				System.out.println("A value between 0 and 3, please!");
-			}
-		} while (columns < 0 || columns > 3);
+        System.out.println(player + " " + rows + " " + columns);
+    }
 
-		if (player == Turn.RED) {
-			moves.add(new PlayerMove(Turn.RED, rows, columns));
-		} else if (player == Turn.BLACK) {
-			moves.add(new PlayerMove(Turn.BLACK, rows, columns));
-		}
-	}
+    public static void userInputAndTurn() {
 
-	public static int getRows() {
-		return rows;
-	}
+        PlayerMove playerMove = new PlayerMove();
+        Turn currentPlayer = Turn.RED;
+        int userRow;
+        int userColumn;
+        int maxMovesCounter = 0;
 
-	public static void setRows(int rows) {
-		PlayerMove.rows = rows;
-	}
+        if (currentPlayer == Turn.RED) {
+            System.out.println();
+            System.out.println("Player 1's turn! (Red)");
+        } else if ( currentPlayer == Turn.BLACK) {
+            System.out.println();
+            System.out.println("Player 2's turn! (Black)");
+        }
+        do {
+            System.out.println("Enter the row index you would like to occupy (0 to 3): ");
+            typeValidation();
+            userRow = sc.nextInt();
+            playerMove.setRows(userRow);
+            if (userRow < 0 || userRow > 3) {
+                System.out.println("A value between 0 and 3, please!");
+            }
+        } while (userRow < 0 || userRow > 3);
 
-	public static int getColumns() {
-		return columns;
-	}
+        do {
+            System.out.println("Enter the column index you would like to occupy (0 to 3): ");
+            typeValidation();
+            userColumn = sc.nextInt();
+            playerMove.setColumns(userColumn);
+            if (userColumn < 0 || userColumn > 3) {
+                System.out.println("A value between 0 and 3, please!");
+            }
+        } while (userColumn < 0 || userColumn > 3);
 
-	public static void setColumns(int columns) {
-		PlayerMove.columns = columns;
-	}
+        if (currentPlayer == Turn.RED) {
+            getBoard()[userRow][userColumn].setTokenOnTile(CurrentTileToken.RED);
+        } else {
+            getBoard()[userRow][userColumn].setTokenOnTile(CurrentTileToken.BLACK);
+        }
 
-	public static void whosTurn() {
 
-		if (player == Turn.RED) {
-			System.out.println();
-			System.out.println("Player 1's turn! (Red)");
-		} else if (player == Turn.BLACK) {
-			System.out.println();
-			System.out.println("Player 2's turn! (Black)");
-		}
-	}
 
-	public static void typeValidation() {
+        if (currentPlayer == Turn.RED) {
+            playerMove.setPlayer(Turn.RED);
+            moves.add(new PlayerMove(currentPlayer, userRow, userColumn));
+        }
+        else {
+            currentPlayer = Turn.BLACK;
+            moves.add(new PlayerMove(currentPlayer, userRow, userColumn));
+            currentPlayer = Turn.RED;
+        }
 
-		while (!sc.hasNextInt()) {
-			sc.nextLine();
-			System.out.println("Invalid input! Please enter an integer value!");
-		}
-	}
+        maxMovesCounter++;
 
-	public static List<PlayerMove> getMoves() {
-		return moves;
-	}
+        if (maxMovesCounter == 15) {
+            System.out.println("Tie game.");
+        }
+    }
 
-	public static void setMoves(List<PlayerMove> moves) {
-		PlayerMove.moves = moves;
-	}
+    public static void whosTurn() {
 
-	public static void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
 
-		Path path = Paths.get(fileName);
-		Charset charset = Charset.forName("UTF-8");
-		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
-			for (PlayerMove move : moves) {
-				writer.write(board.toString());
-				writer.write(move.toString());
-				writer.newLine();
-			}
+    }
 
-			for (Tile[] i : board) {
-				for (Tile j : i) {
-					writer.write(j.toString() + "\t");
-				}
-				writer.newLine();
-			}
-		} catch (IOException e) {
-			System.err.format("IOException %s%n", e);
-		}
-	}
+    public static void typeValidation() {
 
-	public static boolean checkWin() {
+        while (!sc.hasNextInt()) {
+            sc.nextLine();
+            System.out.println("Invalid input! Please enter an integer value!");
+        }
+    }
 
-		for (int i = 0; i < getBoard().length; i++) {
-			if (getBoard()[i].equals(CurrentTileToken.RED)) {
-				System.out.println("Congratulations! You have won!");
-				return true;
-			} else if (getBoard()[i].equals(CurrentTileToken.BLACK)) {
-				System.out.println("Congratulations! You have won!");
-				return true;
-			}
-			for (int j = 0; j < getBoard().length; j++) {
-				if (getBoard()[j].equals(CurrentTileToken.RED)) {
-					System.out.println("Congratulations! You have won!");
-					return true;
-				} else if (getBoard()[j].equals(CurrentTileToken.BLACK)) {
-					System.out.println("Congratulations! You have won!");
-					return true;
-				}
-			}
-		}
+    public static void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
 
-		return false;
-	}
+        Path path = Paths.get(fileName);
+        Charset charset = Charset.forName("UTF-8");
+        try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
+            for (int i = 0; i < moves.size(); i++) {
+                writer.write(moves.get(i).toString());
+                writer.newLine();
+            }
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    writer.write(board[i][j].toString() + "\t");
+                }
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.format("IOException %s%n", e);
+        }
+    }
 
-	public static void insertToken() {
+    public static boolean checkWin() {
 
-		if (player == Turn.RED) {
-			getBoard()[rows][columns].setTokenOnTile(CurrentTileToken.RED);
-		} else {
-			getBoard()[rows][columns].setTokenOnTile(CurrentTileToken.BLACK);
-		}
-	}
+        for (int i = 0; i < getBoard().length; i++) {
+            if (getBoard()[i].equals(CurrentTileToken.RED)) {
+                System.out.println("Congratulations! You have won!");
+                return true;
+            } else if (getBoard()[i].equals(CurrentTileToken.BLACK)) {
+                System.out.println("Congratulations! You have won!");
+                return true;
+            }
+            for (int j = 0; j < getBoard().length; j++) {
+                if (getBoard()[j].equals(CurrentTileToken.RED)) {
+                    System.out.println("Congratulations! You have won!");
+                    return true;
+                } else if (getBoard()[j].equals(CurrentTileToken.BLACK)) {
+                    System.out.println("Congratulations! You have won!");
+                    return true;
+                }
+            }
+        }
 
-	public static void switchTurn() {
+        return false;
+    }
 
-		if (player == Turn.RED) {
-			player = Turn.BLACK;
-		} else {
-			player = Turn.RED;
-		}
-	}
+    public static void insertToken() {
 
-	@Override
-	public boolean equals(Object obj) {
-		return super.equals(obj);
-	}
 
-	@Override
-	public String toString() {
-		return "PlayerMove{" + "moves=" + moves + '}';
-	}
+    }
 
-	public Scanner getSc() {
-		return sc;
-	}
+    public static void switchTurn() {
 
-	public void setSc(Scanner sc) {
-		PlayerMove.sc = sc;
-	}
 
-	public Turn getPlayer() {
-		return player;
-	}
+    }
 
-	public void setPlayer(Turn player) {
-		PlayerMove.player = player;
-	}
+    public static List<PlayerMove> getMoves() {
+        return moves;
+    }
 
-	public enum Turn {
-		RED, BLACK
-	}
+    public static void setMoves(List<PlayerMove> moves) {
+        PlayerMove.moves = moves;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
+    }
+
+    @Override
+    public String toString() {
+        return "Current move (Player/Index of Row and Column): " + player + ": " + rows + "/" + columns;
+    }
+
+    public Scanner getSc() {
+        return sc;
+    }
+
+    public void setSc(Scanner sc) {
+        this.sc = sc;
+    }
+
+    public Turn getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Turn player) {
+        this.player = player;
+    }
+
+    public enum Turn {
+        RED, BLACK
+    }
+
 }

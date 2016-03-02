@@ -64,6 +64,11 @@ public class GameBoard {
         System.out.println("\n----------\n");
     }
 
+    @Override
+    public String toString() {
+        return " "  + board;
+    }
+
     public static Tile[][] getBoard() {
         return board;
     }
