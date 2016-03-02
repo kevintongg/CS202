@@ -34,7 +34,7 @@ public class PlayerMove {
 		System.out.println(player + " " + rows + " " + columns);
 	}
 
-	public static void rowInput() {
+	public static void rowColInput() {
 
 		PlayerMove playerMove = new PlayerMove();
 
@@ -49,11 +49,7 @@ public class PlayerMove {
 				System.out.println("A value between 0 and 3, please!");
 			}
 		} while (userRow < 0 || userRow > 3);
-	}
 
-	public static void columnInput() {
-
-		PlayerMove playerMove = new PlayerMove();
 
 		int userColumn;
 
@@ -68,18 +64,16 @@ public class PlayerMove {
 		} while (userColumn < 0 || userColumn > 3);
 	}
 
-	public static void userInputAndTurn() {
+	public static void userInput() {
 
-		int maxMovesCounter = 0;
+        int maxMovesCounter = 0;
 
-		whosTurn();
-		rowInput();
-		columnInput();
+		rowColInput();
 
 		maxMovesCounter++;
 
-		addMoves();
-		switchTurn();
+        addMoves();
+
 
 		if (maxMovesCounter == 16) {
 			System.out.println("Tie game.");
@@ -189,11 +183,11 @@ public class PlayerMove {
 
 	}
 
-	public static List<PlayerMove> getMoves() {
+	public List<PlayerMove> getMoves() {
 		return moves;
 	}
 
-	public static void setMoves(List<PlayerMove> moves) {
+	public void setMoves(List<PlayerMove> moves) {
 		PlayerMove.moves = moves;
 	}
 
@@ -216,10 +210,6 @@ public class PlayerMove {
 	@Override
 	public String toString() {
 		return "Current move (Player/Index of Row and Column): " + player + ": " + rows + "/" + columns;
-	}
-
-	public Scanner getSc() {
-		return sc;
 	}
 
 	public Turn getPlayer() {
