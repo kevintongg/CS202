@@ -13,6 +13,10 @@ public class Tile {
     private TileType iconTwo;
     private CurrentTileToken tokenOnTile = CurrentTileToken.NONE;
 
+    public Tile() {
+
+    }
+
     public Tile(TileType iconOne, TileType iconTwo) {
         this.iconOne = iconOne;
         this.iconTwo = iconTwo;

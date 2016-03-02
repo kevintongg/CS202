@@ -2,8 +2,8 @@ package samplemidterm;
 
 public abstract class GeometricShape {
 
-    String name;
-    String color;
+    private String name;
+    private String color;
 
     public void GeometricShape(String name, String color) {
 

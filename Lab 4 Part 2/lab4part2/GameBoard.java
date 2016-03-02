@@ -12,6 +12,11 @@ public class GameBoard {
     private static int columns = 4;
     private static Tile[][] board = new Tile[rows][columns];
 
+
+    public GameBoard() {
+
+    }
+
     public GameBoard(int rows, int columns, Tile[][] board) {
         GameBoard.rows = rows;
         GameBoard.columns = columns;
