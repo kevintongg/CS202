@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -48,6 +47,12 @@ public class Main extends Application {
 		ImageView mainMenuImage = new ImageView("../Lab 4 Part 3/images/niya.jpg");
 		ImageView rainbow = new ImageView("images/rainbow.png");
 		Text mainMenuText = new Text("Welcome to Niya!");
+		MenuBar menuBar = new MenuBar();
+		Menu menu = new Menu("File");
+		MenuItem exitMenu = new MenuItem("Exit");
+
+		menu.getItems().addAll(exitMenu);
+		menuBar.getMenus().add(menu);
 
 		mainMenu.setId("main-menu");
 		mainMenuText.setId("welcome");
@@ -62,7 +67,9 @@ public class Main extends Application {
 		mainMenu.setBottom(mainMenuOptions);
 		mainMenu.getStylesheets().add("css/menu.css");
 
-		mainMenuStackPane.getChildren().addAll(rainbow, mainMenu);
+		StackPane.setAlignment(menuBar, Pos.TOP_CENTER);
+
+		mainMenuStackPane.getChildren().addAll(rainbow, mainMenu, menuBar);
 
 		Scene mainMenuScene = new Scene(mainMenuStackPane, 400, 480);
 		mainMenuScene.getStylesheets().addAll("http://fonts.googleapis.com/css?family=Droid+Sans", "css/buttons.css", "css/menu.css", "css/main.css");
@@ -70,7 +77,11 @@ public class Main extends Application {
 		primaryStage.setScene(mainMenuScene);
 		primaryStage.show();
 
+		exitMenu.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
+
 		exit.setOnAction(e -> Platform.exit());
+
+		exitMenu.setOnAction(e -> Platform.exit());
 
 		playGame.setOnAction(e -> {
 
@@ -112,14 +123,12 @@ public class Main extends Application {
 		Menu menu = new Menu("File");
 		MenuItem mainMenu = new MenuItem("Main Menu");
 		MenuItem exit = new MenuItem("Exit");
-		Group group = new Group();
 
 		final int rows = 4;
 		final int columns = 4;
 
 		menu.getItems().addAll(mainMenu, exit);
 		menuBar.getMenus().add(menu);
-		group.getChildren().add(menuBar);
 
 		moveText.setId("left-pane");
 		current.setId("current-top-pane");
@@ -129,7 +138,6 @@ public class Main extends Application {
 		// Googled some, not sure if you can resize ImageViews but this works
 		blackPiece.setFitWidth(50);
 		blackPiece.setFitHeight(50);
-
 
 		moveText.setAlignment(Pos.CENTER);
 
