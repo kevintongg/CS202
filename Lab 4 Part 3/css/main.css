@@ -1,0 +1,18 @@
+.root {
+	-fx-font-family: "Droid Sans";
+	-fx-font-size: 16px;
+}
+
+#left-pane {
+	-fx-background-color: lavender;
+	-fx-padding: 4em;
+	-fx-max-width: 300px;
+}
+
+#current-top-pane {
+	-fx-background-color: #FF794D;
+}
+
+#current-player-text {
+	-fx-text-fill: 0,0,255;
+}

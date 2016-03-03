@@ -1,0 +1,8 @@
+bird.jpg
+cloud.jpg
+computer.jpg
+dragon.jpg
+flower.jpg
+leaves.jpg
+sun.jpg
+tiger.jpg

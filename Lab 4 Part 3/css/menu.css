@@ -1,0 +1,12 @@
+.root {
+	-fx-font-family: "Open Sans";
+	-fx-background-color: #BDBDBD;
+}
+
+#welcome {
+	-fx-font-size: 36px;
+}
+
+#main-menu {
+	-fx-padding: 3em;
+}
