@@ -57,7 +57,7 @@ public class GameBoard {
         }
     }
 
-    public static void printBoard() {
+    public void printBoard() {
 
         for (Tile[] i : board) {
             System.out.println("\t-------------------------------------------------------------------------------------------");

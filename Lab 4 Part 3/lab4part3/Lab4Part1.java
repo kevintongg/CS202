@@ -56,25 +56,21 @@ public class Lab4Part1 {
 
     private static void game() {
 
+        GameBoard gameBoard = new GameBoard();
         PlayerMove playerMove = new PlayerMove();
-        playerMove.setPlayer(PlayerMove.Turn.RED);
+        GameUtils gameUtils = new GameUtils();
 
 //        while (PlayerMove.checkWin()) {
         do {
-            GameBoard.printBoard();
-            PlayerMove.whosTurn();
-            PlayerMove.switchTurn();
-            PlayerMove.rowColInput();
-            PlayerMove.insertToken();
-            PlayerMove.checkWin();
-            PlayerMove.addMoves();
-            PlayerMove.switchTurn();
+            gameBoard.printBoard();
+            GameUtils.gameUtils();
+            playerMove.checkWin();
 
-            PlayerMove.writeMovesToFile(GameBoard.getBoard(), playerMove.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 2\\NiyaGame" + System.currentTimeMillis() + ".txt");
+            playerMove.writeMovesToFile(GameBoard.getBoard(), gameUtils.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 3\\NiyaGame" + System.currentTimeMillis() + ".txt");
 
             game();
 
-        } while (PlayerMove.checkWin());
+        } while (playerMove.checkWin());
     }
 
     private static void readSaveFile() {

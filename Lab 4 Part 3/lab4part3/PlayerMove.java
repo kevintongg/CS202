@@ -17,8 +17,7 @@ import static lab4part3.GameBoard.getBoard;
 public class PlayerMove {
 
 	private static Scanner sc = new Scanner(System.in);
-	private static List<PlayerMove> moves = new ArrayList<>();
-	private Turn player = Turn.RED;
+	private Turn player;
 	private int rows;
 	private int columns;
 
@@ -34,103 +33,27 @@ public class PlayerMove {
 		System.out.println(player + " " + rows + " " + columns);
 	}
 
-	public static void rowColInput() {
-
-		PlayerMove playerMove = new PlayerMove();
-
-		int userRow;
-
-		do {
-			System.out.println("Enter the row index you would like to occupy (0 to 3): ");
-			typeValidation();
-			userRow = sc.nextInt();
-			playerMove.setRows(userRow);
-			if (userRow < 0 || userRow > 3) {
-				System.out.println("A value between 0 and 3, please!");
-			}
-		} while (userRow < 0 || userRow > 3);
-
-
-		int userColumn;
-
-		do {
-			System.out.println("Enter the column index you would like to occupy (0 to 3): ");
-			typeValidation();
-			userColumn = sc.nextInt();
-			playerMove.setColumns(userColumn);
-			if (userColumn < 0 || userColumn > 3) {
-				System.out.println("A value between 0 and 3, please!");
-			}
-		} while (userColumn < 0 || userColumn > 3);
-	}
-
-	public static void whosTurn() {
-
-		PlayerMove playerMove = new PlayerMove();
-
-		if (playerMove.getPlayer() == Turn.RED) {
-			System.out.println();
-			System.out.println("Player 1's turn! (Red)");
-		} else if (playerMove.getPlayer() == Turn.BLACK) {
-			System.out.println();
-			System.out.println("Player 2's turn! (Black)");
-		}
-	}
-
-	public static void switchTurn() {
-
-		PlayerMove playerMove = new PlayerMove();
-
-		if (playerMove.getPlayer() == Turn.RED) {
-			playerMove.setPlayer(Turn.BLACK);
-		} else {
-			playerMove.setPlayer(Turn.RED);
-		}
-	}
-
-	public static void addMoves() {
-
-		PlayerMove playerMove = new PlayerMove();
-
-		if (playerMove.getPlayer() == Turn.RED) {
-			moves.add(new PlayerMove(Turn.RED, playerMove.getRows(), playerMove.getColumns()));
-		}
-
-		if (playerMove.getPlayer() == Turn.BLACK) {
-			moves.add(new PlayerMove(Turn.BLACK, playerMove.getRows(), playerMove.getColumns()));
-		}
-
-	}
-
-	public static void typeValidation() {
-
-		while (!sc.hasNextInt()) {
-			sc.nextLine();
-			System.out.println("Invalid input! Please enter an integer value!");
-		}
-	}
-
-	public static void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
+	public void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
 
 		Path path = Paths.get(fileName);
 		Charset charset = Charset.forName("UTF-8");
 		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
-			for (int i = 0; i < moves.size(); i++) {
-				writer.write(moves.get(i).toString());
-				writer.newLine();
-			}
-			for (int i = 0; i < board.length; i++) {
-				for (int j = 0; j < board[i].length; j++) {
-					writer.write(board[i][j].toString() + "\t");
-				}
-				writer.newLine();
-			}
+            for (PlayerMove move : moves) {
+                writer.write(move.toString());
+                writer.newLine();
+            }
+            for (Tile[] writeBoard : board) {
+                for (int j = 0; j < writeBoard.length; j++) {
+                    writer.write(writeBoard[j].toString() + "\t");
+                }
+                writer.newLine();
+            }
 		} catch (IOException e) {
 			System.err.format("IOException %s%n", e);
 		}
 	}
 
-	public static boolean checkWin() {
+	public boolean checkWin() {
 
 		for (int i = 0; i < getBoard().length; i++) {
 			if (getBoard()[i].equals(CurrentTileToken.RED)) {
@@ -152,26 +75,6 @@ public class PlayerMove {
 		}
 
 		return false;
-	}
-
-	public static void insertToken() {
-
-		PlayerMove playerMove = new PlayerMove();
-
-		if (playerMove.getPlayer() == Turn.RED) {
-			getBoard()[playerMove.getRows()][playerMove.getColumns()].setTokenOnTile(CurrentTileToken.RED);
-		} else {
-			getBoard()[playerMove.getRows()][playerMove.getColumns()].setTokenOnTile(CurrentTileToken.BLACK);
-		}
-
-	}
-
-	public List<PlayerMove> getMoves() {
-		return moves;
-	}
-
-	public void setMoves(List<PlayerMove> moves) {
-		PlayerMove.moves = moves;
 	}
 
 	public int getRows() {
