@@ -3,6 +3,10 @@
 	-fx-font-size: 16px;
 }
 
+.menu-bar {
+	-fx-background-color: #FA3D1B;
+}
+
 #left-pane {
 	-fx-background-color: lavender;
 	-fx-padding: 4em;
@@ -15,4 +19,8 @@
 
 #current-player-text {
 	-fx-text-fill: 0,0,255;
+}
+
+#game-window {
+	-fx-background-color: #7B8A84;
 }
