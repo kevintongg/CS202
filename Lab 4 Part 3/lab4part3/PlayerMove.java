@@ -64,23 +64,6 @@ public class PlayerMove {
 		} while (userColumn < 0 || userColumn > 3);
 	}
 
-	public static void userInput() {
-
-        int maxMovesCounter = 0;
-
-		rowColInput();
-
-		maxMovesCounter++;
-
-        addMoves();
-
-
-		if (maxMovesCounter == 16) {
-			System.out.println("Tie game.");
-		}
-	}
-
-
 	public static void whosTurn() {
 
 		PlayerMove playerMove = new PlayerMove();

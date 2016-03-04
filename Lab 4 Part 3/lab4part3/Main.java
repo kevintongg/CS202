@@ -9,13 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
@@ -28,6 +27,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
@@ -125,7 +125,7 @@ public class Main extends Application {
         BorderPane mainGame = new BorderPane();
         VBox moveText = new VBox(20);
         HBox current = new HBox(10);
-        GridPane boardGrid = new GridPane();
+        TilePane boardTiles = new TilePane();
         ImageView blackPiece = new ImageView("images/black.gif");
         Text currentPlayer = new Text("Current Player: BLACK");
         MenuBar menuBar = new MenuBar();
@@ -133,11 +133,10 @@ public class Main extends Application {
         Menu menu = new Menu("_File");
         MenuItem exit = new MenuItem("_Exit");
 
-        final int rows = 4;
-        final int columns = 4;
-
-        boardGrid.setPadding(new Insets(15));
-        boardGrid.setAlignment(Pos.CENTER);
+        boardTiles.setPadding(new Insets(15));
+        boardTiles.setVgap(3);
+        boardTiles.setHgap(3);
+        boardTiles.setPrefRows(4);
 
         menu.getItems().addAll(mainMenu, exit);
         menuBar.getMenus().add(menu);
@@ -154,15 +153,18 @@ public class Main extends Application {
 
         moveText.setAlignment(Pos.CENTER);
 
-        boardGrid.setGridLinesVisible(true);
-
         current.setAlignment(Pos.CENTER);
         current.getChildren().add(currentPlayer);
 
         mainGame.setTop(menuBar);
-        mainGame.setCenter(boardGrid);
+        mainGame.setCenter(boardTiles);
         moveText.getChildren().addAll(current, blackPiece, printMoves(getMoves().getMoves()));
         mainGame.setLeft(moveText);
+
+
+        for (int i = 0; i < 16; i++) {
+
+        }
 
         mainMenu.setOnAction(e -> {
 

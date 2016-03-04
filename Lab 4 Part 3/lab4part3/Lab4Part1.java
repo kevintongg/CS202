@@ -64,9 +64,10 @@ public class Lab4Part1 {
             GameBoard.printBoard();
             PlayerMove.whosTurn();
             PlayerMove.switchTurn();
-            PlayerMove.userInput();
+            PlayerMove.rowColInput();
             PlayerMove.insertToken();
             PlayerMove.checkWin();
+            PlayerMove.addMoves();
             PlayerMove.switchTurn();
 
             PlayerMove.writeMovesToFile(GameBoard.getBoard(), playerMove.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 2\\NiyaGame" + System.currentTimeMillis() + ".txt");
