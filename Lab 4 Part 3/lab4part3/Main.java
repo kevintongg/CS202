@@ -93,9 +93,24 @@ public class Main extends Application {
 		playGame.setOnAction(e -> {
 
 			Stage secondaryStage = new Stage();
+			Stage tertiaryStage = new Stage();
+//
+//			Button human = new Button("Play versus Human");
+//			Button AI = new Button("Play against AI");
 
 			primaryStage.hide();
-			mainGame(secondaryStage);
+
+//			BorderPane.setAlignment(mainMenuText, Pos.CENTER);
+//			mainMenuText.setTextAlignment(TextAlignment.CENTER);
+//			mainMenuOptions.setAlignment(Pos.CENTER);
+//			mainMenuOptions.getChildren().addAll(playGame, viewSave, exit);
+//			mainMenuImage.minHeight(450);
+//			mainMenu.setTop(mainMenuText);
+//			mainMenu.setCenter(mainMenuImage);
+//			mainMenu.setBottom(mainMenuOptions);
+//			mainMenu.getStylesheets().add("css/menu.css");
+
+			mainGame(tertiaryStage);
 		});
 
 		viewSave.setOnAction(e -> {
@@ -168,7 +183,7 @@ public class Main extends Application {
 		}
 
 
-		Scene scene = new Scene(mainGame, 960, 540);
+		Scene scene = new Scene(mainGame, 800, 800);
 		scene.getStylesheets().addAll("css/icons.css", "css/main.css");
 		primaryStage.setTitle("Game of Niya");
 		primaryStage.setScene(scene);

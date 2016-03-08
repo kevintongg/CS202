@@ -7,13 +7,40 @@ import java.util.List;
 
 public class Images {
 
-	private List<Image> images = new ArrayList<>();
+	private static List<Image> images = new ArrayList<>();
+	private Image imageOne;
+	private Image imageTwo;
 
-	public List<Image> getImages() {
+	public Images() {
+
+	}
+
+	public  Images(Image imageOne, Image imageTwo) {
+		this.imageOne = imageOne;
+		this.imageTwo = imageTwo;
+	}
+
+	public Image getImageOne() {
+		return imageOne;
+	}
+
+	public void setImageOne(Image imageOne) {
+		this.imageOne = imageOne;
+	}
+
+	public Image getImageTwo() {
+		return imageTwo;
+	}
+
+	public void setImageTwo(Image imageTwo) {
+		this.imageTwo = imageTwo;
+	}
+
+	public static List<Image> getImages() {
 		return images;
 	}
 
-	public void setImages(List<Image> images) {
-		this.images = images;
+	public static void setImages(List<Image> images) {
+		Images.images = images;
 	}
 }

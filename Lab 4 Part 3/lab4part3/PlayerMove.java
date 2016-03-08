@@ -1,7 +1,6 @@
 package lab4part3;
 
-import lab4part3.Tile.CurrentTileToken;
-
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -10,13 +9,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static lab4part3.GameBoard.getBoard;
 
 public class PlayerMove {
 
-	private static Scanner sc = new Scanner(System.in);
 	private Turn player;
 	private int rows;
 	private int columns;
@@ -29,8 +26,6 @@ public class PlayerMove {
 		this.player = player;
 		this.rows = rows;
 		this.columns = columns;
-
-		System.out.println(player + " " + rows + " " + columns);
 	}
 
 	public void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
@@ -38,36 +33,57 @@ public class PlayerMove {
 		Path path = Paths.get(fileName);
 		Charset charset = Charset.forName("UTF-8");
 		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
-            for (PlayerMove move : moves) {
-                writer.write(move.toString());
-                writer.newLine();
-            }
-            for (Tile[] writeBoard : board) {
-                for (int j = 0; j < writeBoard.length; j++) {
-                    writer.write(writeBoard[j].toString() + "\t");
-                }
-                writer.newLine();
-            }
+			for (PlayerMove move : moves) {
+				writer.write(move.toString());
+				writer.newLine();
+			}
+			for (Tile[] writeBoard : board) {
+				for (int j = 0; j < writeBoard.length; j++) {
+					writer.write(writeBoard[j].toString() + "\t");
+				}
+				writer.newLine();
+			}
 		} catch (IOException e) {
 			System.err.format("IOException %s%n", e);
 		}
 	}
 
+	public static String[][] readMovesFromFile(String fileName) {
+
+		Path path = Paths.get(fileName);
+		Charset charset = Charset.forName("UTF-8");
+		List<String> allMoves = new ArrayList<>();
+
+		try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+			allMoves = Files.readAllLines(path, charset);
+		} catch (Exception e) {
+			System.err.format("IOException: %s%n", e);
+		}
+
+		String[][] moves = new String[100][100];
+		for (int i = 0; i < allMoves.size(); i++) {
+			moves[i] = allMoves.get(i).split(",");
+		}
+
+		return moves;
+
+	}
+
 	public boolean checkWin() {
 
 		for (int i = 0; i < getBoard().length; i++) {
-			if (getBoard()[i].equals(CurrentTileToken.RED)) {
+			if (getBoard()[i].equals(Turn.RED)) {
 				System.out.println("Congratulations! You have won!");
 				return true;
-			} else if (getBoard()[i].equals(CurrentTileToken.BLACK)) {
+			} else if (getBoard()[i].equals(Turn.BLACK)) {
 				System.out.println("Congratulations! You have won!");
 				return true;
 			}
 			for (int j = 0; j < getBoard().length; j++) {
-				if (getBoard()[j].equals(CurrentTileToken.RED)) {
+				if (getBoard()[j].equals(Turn.RED)) {
 					System.out.println("Congratulations! You have won!");
 					return true;
-				} else if (getBoard()[j].equals(CurrentTileToken.BLACK)) {
+				} else if (getBoard()[j].equals(Turn.BLACK)) {
 					System.out.println("Congratulations! You have won!");
 					return true;
 				}
@@ -95,7 +111,7 @@ public class PlayerMove {
 
 	@Override
 	public String toString() {
-		return "Current move (Player/Index of Row and Column): " + player + ": " + rows + "/" + columns;
+		return "Current move (Player/Index of Row and Column): " + player + ", " + rows + "," + columns;
 	}
 
 	public Turn getPlayer() {

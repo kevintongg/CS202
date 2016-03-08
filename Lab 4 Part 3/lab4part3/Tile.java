@@ -65,6 +65,9 @@ public class Tile {
 
     @Override
     public boolean equals(Object o) {
+
+        PlayerMove playerMove = new PlayerMove();
+
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -72,7 +75,7 @@ public class Tile {
 
         if (iconOne == tile.iconOne && iconTwo == tile.iconTwo || iconOne == tile.iconTwo && iconTwo == tile.iconOne) {
             return true;
-        } else if (tokenOnTile == CurrentTileToken.RED || tokenOnTile == CurrentTileToken.BLACK) {
+        } else if (playerMove.getPlayer() == PlayerMove.Turn.RED || playerMove.getPlayer() == PlayerMove.Turn.BLACK) {
             return true;
         } else {
             return false;
