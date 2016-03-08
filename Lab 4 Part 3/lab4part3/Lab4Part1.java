@@ -44,8 +44,6 @@ public class Lab4Part1 {
 							System.out.println(savedMoves[i][j]);
 						}
 					}
-//					PlayerMove.readMovesFromFile("D:\\System\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 3\\NiyaGame.txt");
-
 					break;
 			}
 

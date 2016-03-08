@@ -15,9 +15,17 @@ public class Images {
 
 	}
 
-	public  Images(Image imageOne, Image imageTwo) {
+	public Images(Image imageOne, Image imageTwo) {
 		this.imageOne = imageOne;
 		this.imageTwo = imageTwo;
+	}
+
+	public static List<Image> getImages() {
+		return images;
+	}
+
+	public static void setImages(List<Image> images) {
+		Images.images = images;
 	}
 
 	public Image getImageOne() {
@@ -34,13 +42,5 @@ public class Images {
 
 	public void setImageTwo(Image imageTwo) {
 		this.imageTwo = imageTwo;
-	}
-
-	public static List<Image> getImages() {
-		return images;
-	}
-
-	public static void setImages(List<Image> images) {
-		Images.images = images;
 	}
 }

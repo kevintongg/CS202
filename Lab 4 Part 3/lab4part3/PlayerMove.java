@@ -28,26 +28,6 @@ public class PlayerMove {
 		this.columns = columns;
 	}
 
-	public void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
-
-		Path path = Paths.get(fileName);
-		Charset charset = Charset.forName("UTF-8");
-		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
-			for (PlayerMove move : moves) {
-				writer.write(move.toString());
-				writer.newLine();
-			}
-			for (Tile[] writeBoard : board) {
-				for (int j = 0; j < writeBoard.length; j++) {
-					writer.write(writeBoard[j].toString() + "\t");
-				}
-				writer.newLine();
-			}
-		} catch (IOException e) {
-			System.err.format("IOException %s%n", e);
-		}
-	}
-
 	public static String[][] readMovesFromFile(String fileName) {
 
 		Path path = Paths.get(fileName);
@@ -67,6 +47,26 @@ public class PlayerMove {
 
 		return moves;
 
+	}
+
+	public void writeMovesToFile(Tile[][] board, List<PlayerMove> moves, String fileName) {
+
+		Path path = Paths.get(fileName);
+		Charset charset = Charset.forName("UTF-8");
+		try (BufferedWriter writer = Files.newBufferedWriter(path, charset)) {
+			for (PlayerMove move : moves) {
+				writer.write(move.toString());
+				writer.newLine();
+			}
+			for (Tile[] writeBoard : board) {
+				for (int j = 0; j < writeBoard.length; j++) {
+					writer.write(writeBoard[j].toString() + "\t");
+				}
+				writer.newLine();
+			}
+		} catch (IOException e) {
+			System.err.format("IOException %s%n", e);
+		}
 	}
 
 	public boolean checkWin() {

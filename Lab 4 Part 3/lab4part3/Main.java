@@ -28,8 +28,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static lab4part3.Images.getImages;
 
 public class Main extends Application {
 
@@ -93,24 +96,10 @@ public class Main extends Application {
 		playGame.setOnAction(e -> {
 
 			Stage secondaryStage = new Stage();
-			Stage tertiaryStage = new Stage();
-//
-//			Button human = new Button("Play versus Human");
-//			Button AI = new Button("Play against AI");
 
 			primaryStage.hide();
+			mainGame(secondaryStage);
 
-//			BorderPane.setAlignment(mainMenuText, Pos.CENTER);
-//			mainMenuText.setTextAlignment(TextAlignment.CENTER);
-//			mainMenuOptions.setAlignment(Pos.CENTER);
-//			mainMenuOptions.getChildren().addAll(playGame, viewSave, exit);
-//			mainMenuImage.minHeight(450);
-//			mainMenu.setTop(mainMenuText);
-//			mainMenu.setCenter(mainMenuImage);
-//			mainMenu.setBottom(mainMenuOptions);
-//			mainMenu.getStylesheets().add("css/menu.css");
-
-			mainGame(tertiaryStage);
 		});
 
 		viewSave.setOnAction(e -> {
@@ -178,12 +167,19 @@ public class Main extends Application {
 		mainGame.setLeft(moveText);
 
 
-		for (ImageView imageView : imageViews) {
-			boardTiles.getChildren().add(imageView);
-		}
+		List<HBox> hBoxes = new ArrayList<>();
 
+		do {
+			Collections.shuffle(getImages());
+			ImageView imageViewOne = new ImageView(getImages().get(0));
+			ImageView imageViewTwo = new ImageView(getImages().get(1));
+			HBox tiles = new HBox(imageViewOne, imageViewTwo);
+			hBoxes.add(tiles);
+			boardTiles.getChildren().add(tiles);
+		} while (hBoxes.size() < 16);
 
-		Scene scene = new Scene(mainGame, 800, 800);
+		// 1180x470 magic resolution for perfect fit in window
+		Scene scene = new Scene(mainGame, 1180, 470);
 		scene.getStylesheets().addAll("css/icons.css", "css/main.css");
 		primaryStage.setTitle("Game of Niya");
 		primaryStage.setScene(scene);
