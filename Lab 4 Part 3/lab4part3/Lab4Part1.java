@@ -73,7 +73,7 @@ public class Lab4Part1 {
 			GameUtils.gameUtils();
 			playerMove.checkWin();
 
-			playerMove.writeMovesToFile(GameBoard.getBoard(), gameUtils.getMoves(), "D:\\System\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 3\\NiyaGame.txt");
+			playerMove.writeMovesToFile(GameBoard.getBoard(), gameUtils.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 3\\NiyaGame.txt");
 
 			game();
 

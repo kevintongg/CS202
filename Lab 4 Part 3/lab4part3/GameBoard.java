@@ -42,8 +42,6 @@ public class GameBoard {
 			} else {
 				gameTiles.add(gameTile);
 			}
-
-
 		} while (gameTiles.size() < 16);
 
 		int counter = 0;
