@@ -1,3 +1,5 @@
+package asdf;
+
 import javax.swing.*;
 
 public abstract class Test2 {

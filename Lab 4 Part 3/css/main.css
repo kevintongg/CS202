@@ -8,13 +8,13 @@
 }
 
 #left-pane {
-	-fx-background-color: lavender;
+	-fx-background-color: #fdaca8;
 	-fx-padding: 4em;
 	-fx-max-width: 300px;
 }
 
 #current-top-pane {
-	-fx-background-color: #FF794D;
+	-fx-background-color: #fedcda;
 }
 
 #current-player-text {
@@ -22,5 +22,5 @@
 }
 
 #game-window {
-	-fx-background-color: #7B8A84;
+	-fx-background-color: #6699ff;
 }

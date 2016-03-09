@@ -11,10 +11,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -32,290 +31,317 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lab4part3.Images.getImages;
 import static lab4part3.Tile.getTileTypes;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        launch(args);
+		launch(args);
 
-    }
+	}
 
-    private static void mainMenu(Stage primaryStage) {
+	private static void mainMenu(Stage primaryStage) {
 
-        StackPane mainMenuStackPane = new StackPane();
-        Button playGame = new Button("_Play Game");
-        Button viewSave = new Button("_View Saved Game");
-        Button exit = new Button("_Exit");
-        BorderPane mainMenu = new BorderPane();
-        VBox mainMenuOptions = new VBox(15);
-        ImageView mainMenuImage = new ImageView("../Lab 4 Part 3/images/niya.jpg");
-        ImageView rainbow = new ImageView("images/rainbow.png");
-        Text mainMenuText = new Text("Welcome to Niya!");
-        MenuBar menuBar = new MenuBar();
-        Menu menu = new Menu("_File");
-        MenuItem exitMenu = new MenuItem("_Exit");
+		StackPane mainMenuStackPane = new StackPane();
+		Button playGame = new Button("_Play Game");
+		Button viewSave = new Button("_View Saved Game");
+		Button exit = new Button("_Exit");
+		BorderPane mainMenu = new BorderPane();
+		VBox mainMenuOptions = new VBox(15);
+		ImageView mainMenuImage = new ImageView("../Lab 4 Part 3/images/niya.jpg");
+		ImageView rainbow = new ImageView("images/rainbow.png");
+		Text mainMenuText = new Text("Welcome to Niya!");
+		MenuBar menuBar = new MenuBar();
+		Menu menu = new Menu("_File");
+		MenuItem exitMenu = new MenuItem("_Exit");
 
-        addImages();
+		addImages();
 
-        menu.getItems().addAll(exitMenu);
-        menuBar.getMenus().add(menu);
+		menu.getItems().addAll(exitMenu);
+		menuBar.getMenus().add(menu);
 
-        mainMenu.setId("main-menu");
-        mainMenuText.setId("welcome");
+		mainMenu.setId("main-menu");
+		mainMenuText.setId("welcome");
 
-        BorderPane.setAlignment(mainMenuText, Pos.CENTER);
-        mainMenuText.setTextAlignment(TextAlignment.CENTER);
-        mainMenuOptions.setAlignment(Pos.CENTER);
-        mainMenuOptions.getChildren().addAll(playGame, viewSave, exit);
-        mainMenuImage.minHeight(450);
-        mainMenu.setTop(mainMenuText);
-        mainMenu.setCenter(mainMenuImage);
-        mainMenu.setBottom(mainMenuOptions);
-        mainMenu.getStylesheets().add("css/menu.css");
+		BorderPane.setAlignment(mainMenuText, Pos.CENTER);
+		mainMenuText.setTextAlignment(TextAlignment.CENTER);
+		mainMenuOptions.setAlignment(Pos.CENTER);
+		mainMenuOptions.getChildren().addAll(playGame, viewSave, exit);
+		mainMenuImage.minHeight(450);
+		mainMenu.setTop(mainMenuText);
+		mainMenu.setCenter(mainMenuImage);
+		mainMenu.setBottom(mainMenuOptions);
+		mainMenu.getStylesheets().add("css/menu.css");
 
-        StackPane.setAlignment(menuBar, Pos.TOP_CENTER);
+		StackPane.setAlignment(menuBar, Pos.TOP_CENTER);
 
-        mainMenuStackPane.getChildren().addAll(rainbow, mainMenu, menuBar);
+		mainMenuStackPane.getChildren().addAll(rainbow, mainMenu, menuBar);
 
-        Scene mainMenuScene = new Scene(mainMenuStackPane, 400, 480);
-        mainMenuScene.getStylesheets().addAll("http://fonts.googleapis.com/css?family=Droid+Sans", "css/buttons.css", "css/menu.css", "css/main.css");
-        primaryStage.setTitle("Niya");
-        primaryStage.setScene(mainMenuScene);
-        primaryStage.show();
+		Scene mainMenuScene = new Scene(mainMenuStackPane, 400, 480);
+		mainMenuScene.getStylesheets().addAll("http://fonts.googleapis.com/css?family=Droid+Sans", "css/buttons.css", "css/menu.css", "css/main.css");
+		primaryStage.setTitle("Niya");
+		primaryStage.setScene(mainMenuScene);
+		primaryStage.show();
 
-        exitMenu.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
+		exitMenu.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
 
-        exit.setOnAction(e -> Platform.exit());
+		exit.setOnAction(e -> Platform.exit());
 
-        exitMenu.setOnAction(e -> Platform.exit());
+		exitMenu.setOnAction(e -> Platform.exit());
 
-        playGame.setOnAction(e -> {
+		playGame.setOnAction(e -> {
 
-            Stage secondaryStage = new Stage();
+			Stage secondaryStage = new Stage();
 
-            primaryStage.hide();
-            mainGame(secondaryStage);
+			primaryStage.hide();
+			mainGame(secondaryStage);
 
-        });
+		});
 
-        viewSave.setOnAction(e -> {
+		viewSave.setOnAction(e -> {
 
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open Resource File");
-            File file = fileChooser.showOpenDialog(primaryStage);
-            if (file != null) {
-                Path path = Paths.get(file.toURI());
-                Charset charset = Charset.forName("US-ASCII");
-                List<String> lines;
-                try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
-                    lines = Files.readAllLines(path, charset);
-                } catch (IOException x) {
-                    System.err.format("IOException: %s%n", x);
-                    return;
-                }
-                lines.forEach(System.out::println);
-            }
-        });
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Open Resource File");
+			File file = fileChooser.showOpenDialog(primaryStage);
+			if (file != null) {
+				Path path = Paths.get(file.toURI());
+				Charset charset = Charset.forName("US-ASCII");
+				List<String> lines;
+				try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+					lines = Files.readAllLines(path, charset);
+				} catch (IOException x) {
+					System.err.format("IOException: %s%n", x);
+					return;
+				}
+				lines.forEach(System.out::println);
+			}
+		});
 
-        playGame.setMnemonicParsing(true);
-        viewSave.setMnemonicParsing(true);
-        exit.setMnemonicParsing(true);
-        menu.setMnemonicParsing(true);
-        exitMenu.setMnemonicParsing(true);
+		playGame.setMnemonicParsing(true);
+		viewSave.setMnemonicParsing(true);
+		exit.setMnemonicParsing(true);
+		menu.setMnemonicParsing(true);
+		exitMenu.setMnemonicParsing(true);
 
-    }
+	}
 
-    private static void mainGame(Stage primaryStage) {
+	private static void mainGame(Stage primaryStage) {
 
-        BorderPane mainGame = new BorderPane();
-        VBox moveText = new VBox(20);
-        HBox current = new HBox(10);
-        TilePane boardTiles = new TilePane();
-        ImageView blackPiece = new ImageView("images/black.gif");
-        Text currentPlayer = new Text("Current Player: BLACK");
-        Turn player = Turn.RED;
-        MenuBar menuBar = new MenuBar();
-        MenuItem mainMenu = new MenuItem("_Main Menu");
-        Menu menu = new Menu("_File");
-        MenuItem exit = new MenuItem("_Exit");
+		PlayerTurn playerTurn = new PlayerTurn();
 
-        boardTiles.setPadding(new Insets(15));
-        boardTiles.setVgap(3);
-        boardTiles.setHgap(3);
-        boardTiles.setPrefColumns(4);
+		BorderPane mainGame = new BorderPane();
+		TilePane boardTiles = new TilePane();
+		StackPane gameStackPane = new StackPane();
+		VBox moveText = new VBox(20);
+		HBox current = new HBox(10);
+		Text currentPlayer = new Text("Current Player: BLACK");
+		ImageView blackPiece = new ImageView("images/black.gif");
 
-        menu.getItems().addAll(mainMenu, exit);
-        menuBar.getMenus().add(menu);
+		final Circle redCircle = new Circle(30);
+		final Circle blackCircle = new Circle(30);
+		redCircle.setFill(Color.RED);
+		blackCircle.setFill(Color.BLACK);
 
-        moveText.setId("left-pane");
-        current.setId("current-top-pane");
-        blackPiece.setId("piece");
-        currentPlayer.setId("current-player-text");
-        mainGame.setId("game-window");
+		MenuBar menuBar = new MenuBar();
+		MenuItem mainMenu = new MenuItem("_Main Menu");
+		Menu menu = new Menu("_File");
+		MenuItem exit = new MenuItem("_Exit");
 
-        moveText.setAlignment(Pos.CENTER);
+		boardTiles.setPadding(new Insets(15));
+		boardTiles.setVgap(3);
+		boardTiles.setHgap(3);
+		boardTiles.setPrefColumns(4);
 
-        current.setAlignment(Pos.CENTER);
-        current.getChildren().add(currentPlayer);
+		menu.getItems().addAll(mainMenu, exit);
+		menuBar.getMenus().add(menu);
 
-        mainGame.setTop(menuBar);
-        mainGame.setCenter(boardTiles);
-        moveText.getChildren().addAll(current, blackPiece, printMoves(getMoves().getMoves()));
-        mainGame.setLeft(moveText);
+		moveText.setId("left-pane");
+		current.setId("current-top-pane");
+		blackPiece.setId("piece");
+		currentPlayer.setId("current-player-text");
+		mainGame.setId("game-window");
+
+		moveText.setAlignment(Pos.CENTER);
+
+		current.setAlignment(Pos.CENTER);
+		current.setMinSize(25, 25);
+		current.getChildren().add(currentPlayer);
+
+		mainGame.setTop(menuBar);
+		mainGame.setCenter(gameStackPane);
+		mainGame.setLeft(moveText);
 
 
-        List<Tile> gameTiles = new ArrayList<>();
-        List<HBox> hBoxes = new ArrayList<>();
-        HBox tiles;
+		List<Tile> gameTiles = new ArrayList<>();
+		List<HBox> hBoxes = new ArrayList<>();
+		HBox tiles;
 
-        Tile.addTiles();
+		Tile.addTiles();
 
-        do {
-            Collections.shuffle(getTileTypes());
-            Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
-            boolean duplicate = false;
-            for (Tile existingTile : gameTiles) {
-                if (existingTile.equals(gameTile)) {
-                    duplicate = true;
-                    break;
-                }
-            }
-            if (duplicate) {
-                continue;
-            } else {
-                gameTiles.add(gameTile);
-            }
-        } while (gameTiles.size() < 16);
-
-        for(Tile tile: gameTiles) {
-            Image imageOne = new Image("images/" + tile.getIconOne().toString().toLowerCase() + ".jpg");
-            Image imageTwo = new Image("images/" + tile.getIconTwo().toString().toLowerCase() + ".jpg");
-            ImageView imageViewOne = new ImageView(imageOne);
-            ImageView imageViewTwo = new ImageView(imageTwo);
-            tiles = new HBox(imageViewOne, imageViewTwo);
-            hBoxes.add(tiles);
-            boardTiles.getChildren().add(tiles);
-        }
-
-//        do {
-//            Collections.shuffle(getImages());
-//            ImageView imageViewOne = new ImageView(getImages().get(0));
-//            ImageView imageViewTwo = new ImageView(getImages().get(1));
-//            tiles = new HBox(imageViewOne, imageViewTwo);
-//            hBoxes.add(tiles);
-//            boardTiles.getChildren().add(tiles);
-//        } while (hBoxes.size() < 16);
-
-//        tiles.setOnMouseClicked(e -> {
-//            final Circle red = new Circle(30);
-//            tiles.getChildren().add(red);
-//        });
-
-		if (player == Turn.RED) {
-
-			player = Turn.BLACK;
+		if (playerTurn.getPlayer() == PlayerTurn.Turn.RED) {
+			currentPlayer.setText("Current Player: RED");
+			moveText.getChildren().addAll(current, redCircle);
 		} else {
-			player = Turn.RED;
+			currentPlayer.setText("Current Player: BLACK");
 		}
 
+		do {
+			Collections.shuffle(getTileTypes());
+			Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+			boolean duplicate = false;
+			for (Tile existingTile : gameTiles) {
+				if (existingTile.equals(gameTile)) {
+					duplicate = true;
+					break;
+				}
+			}
+			if (duplicate) {
+				continue;
+			} else {
+				gameTiles.add(gameTile);
+			}
+		} while (gameTiles.size() < 16);
 
-        // 1180x470 magic resolution for perfect fit in window
-        Scene scene = new Scene(mainGame, 1180, 470);
-        scene.getStylesheets().addAll("css/icons.css", "css/main.css");
-        primaryStage.setTitle("Game of Niya");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+		gameStackPane.getChildren().add(boardTiles);
 
-        mainMenu.setOnAction(e -> {
+		for (Tile tile : gameTiles) {
+			Image imageOne = new Image("images/" + tile.getIconOne().toString().toLowerCase() + ".jpg");
+			Image imageTwo = new Image("images/" + tile.getIconTwo().toString().toLowerCase() + ".jpg");
+			ImageView imageViewOne = new ImageView(imageOne);
+			ImageView imageViewTwo = new ImageView(imageTwo);
+			tiles = new HBox(imageViewOne, imageViewTwo);
+			hBoxes.add(tiles);
+			boardTiles.getChildren().add(tiles);
+		}
 
-            Stage main = new Stage();
+		redCircle.setOnDragDetected(event -> {
+			System.out.println("onDragDetected");
 
-            primaryStage.close();
-            mainMenu(main);
+			Dragboard dragboard = redCircle.startDragAndDrop(TransferMode.ANY);
 
-        });
+			ClipboardContent content = new ClipboardContent();
+//			content.putAll(redCircle.ge);
+			dragboard.setContent(content);
+		});
 
-        exit.setOnAction(e -> Platform.exit());
+			if (playerTurn.getPlayer() == PlayerTurn.Turn.RED) {
+				playerTurn.setPlayer(PlayerTurn.Turn.BLACK);
+			} else {
+				playerTurn.setPlayer(PlayerTurn.Turn.RED);
+			}
 
-        mainMenu.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
-        exit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
+		// 1180x470 magic resolution for perfect fit in window
+		Scene scene = new Scene(mainGame, 1180, 470);
+		scene.getStylesheets().addAll("css/icons.css", "css/main.css");
+		primaryStage.setTitle("Game of Niya");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 
-        menu.setMnemonicParsing(true);
-        mainMenu.setMnemonicParsing(true);
-        exit.setMnemonicParsing(true);
+		mainMenu.setOnAction(e -> {
 
-    }
+			Stage main = new Stage();
 
-    private static VBox printMoves(List<String> movesText) {
+			primaryStage.close();
+			mainMenu(main);
 
-        VBox movesPane = new VBox(15);
-        Text playerText = new Text("Player Moves");
+		});
 
-        movesPane.setAlignment(Pos.CENTER);
-        movesPane.setSpacing(10);
-        movesPane.setId("moves-pane");
+		exit.setOnAction(e -> Platform.exit());
 
-        movesPane.getChildren().add(playerText);
+		mainMenu.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
+		exit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
 
-        movesText.forEach(e -> {
+		menu.setMnemonicParsing(true);
+		mainMenu.setMnemonicParsing(true);
+		exit.setMnemonicParsing(true);
 
-            Text textToDisplay = new Text(e);
-            VBox.setMargin(textToDisplay, new Insets(10));
-            movesPane.getChildren().add(textToDisplay);
+	}
 
-        });
+	private static VBox printMoves(List<String> movesText) {
 
-        return movesPane;
+		VBox movesPane = new VBox(15);
+		Text playerText = new Text("Player Moves");
 
-    }
+		movesPane.setAlignment(Pos.CENTER);
+		movesPane.setSpacing(10);
+		movesPane.setId("moves-pane");
 
-    private static Moves getMoves() {
+		movesPane.getChildren().add(playerText);
 
-        Moves moves = new Moves("Player Moves");
+		movesText.forEach(e -> {
 
-        moves.getMoves().add("Red: 0,2 — Computer/Leaf");
-        moves.getMoves().add("Black: 0,2 — Computer/Leaf");
-        moves.getMoves().add("Black: 0,2 — Computer/Leaf");
-        moves.getMoves().add("Black: 0,2 — Computer/Leaf");
+			Text textToDisplay = new Text(e);
+			VBox.setMargin(textToDisplay, new Insets(10));
+			movesPane.getChildren().add(textToDisplay);
 
-        return moves;
-    }
+		});
 
-    private static void addImages() {
+		return movesPane;
+
+	}
+
+	private static Moves getMoves() {
+
+		Moves moves = new Moves("Player Moves");
+
+		moves.getMoves().add("Red: 0,2 — Computer/Leaf");
+		moves.getMoves().add("Black: 0,2 — Computer/Leaf");
+		moves.getMoves().add("Black: 0,2 — Computer/Leaf");
+		moves.getMoves().add("Black: 0,2 — Computer/Leaf");
+
+		return moves;
+	}
+
+	private static void addImages() {
 
 
-        Images images = new Images();
+		Image bird = new Image("images/bird.jpg");
+		Image cloud = new Image("images/cloud.jpg");
+		Image computer = new Image("images/computer.jpg");
+		Image dragon = new Image("images/dragon.jpg");
+		Image flower = new Image("images/flower.jpg");
+		Image leaves = new Image("images/leaves.jpg");
+		Image sun = new Image("images/sun.jpg");
+		Image tiger = new Image("images/tiger.jpg");
 
-        Image bird = new Image("images/bird.jpg");
-        Image cloud = new Image("images/cloud.jpg");
-        Image computer = new Image("images/computer.jpg");
-        Image dragon = new Image("images/dragon.jpg");
-        Image flower = new Image("images/flower.jpg");
-        Image leaves = new Image("images/leaves.jpg");
-        Image sun = new Image("images/sun.jpg");
-        Image tiger = new Image("images/tiger.jpg");
+		Images.getImages().add(bird);
+		Images.getImages().add(cloud);
+		Images.getImages().add(computer);
+		Images.getImages().add(dragon);
+		Images.getImages().add(flower);
+		Images.getImages().add(leaves);
+		Images.getImages().add(sun);
+		Images.getImages().add(tiger);
 
-        images.getImages().add(bird);
-        images.getImages().add(cloud);
-        images.getImages().add(computer);
-        images.getImages().add(dragon);
-        images.getImages().add(flower);
-        images.getImages().add(leaves);
-        images.getImages().add(sun);
-        images.getImages().add(tiger);
+	}
 
-    }
+	public void start(Stage primaryStage) {
 
-    public void start(Stage primaryStage) {
+		mainMenu(primaryStage);
 
-        mainMenu(primaryStage);
+	}
 
-    }
+	static class PlayerTurn {
 
-    public enum Turn {
-        BLACK, RED
-    }
+		private Turn player = Turn.RED;
+
+		public PlayerTurn() {
+
+		}
+
+		public Turn getPlayer() {
+			return player;
+		}
+
+		public void setPlayer(Turn player) {
+			this.player = player;
+		}
+
+		public enum Turn {
+			BLACK, RED
+		}
+
+	}
+
 }
