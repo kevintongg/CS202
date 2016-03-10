@@ -11,7 +11,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -35,6 +37,19 @@ import static lab4part3.Tile.getTileTypes;
 
 public class Main extends Application {
 
+	static Circle redCircle = new Circle();
+	static Circle blackCircle = new Circle();
+	//	final URL resource = getClass().getResource("sounds/01_Cloud.ogg");
+	// AudioClip isn't working for me, throws a NullPointerException
+//	final AudioClip clip = new AudioClip(resource.toString());
+	PlayerTurn playerTurn = new PlayerTurn();
+	StackPane tileStackPane;
+	HBox uniqueTiles;
+	VBox moveText;
+	Button gameButton = new Button();
+	Text currentPlayer;
+	HBox current;
+
 	public static void main(String[] args) {
 
 		launch(args);
@@ -42,6 +57,8 @@ public class Main extends Application {
 	}
 
 	private static void mainMenu(Stage primaryStage) {
+
+		Main main = new Main();
 
 		StackPane mainMenuStackPane = new StackPane();
 		Button playGame = new Button("_Play Game");
@@ -95,7 +112,7 @@ public class Main extends Application {
 			Stage secondaryStage = new Stage();
 
 			primaryStage.hide();
-			mainGame(secondaryStage);
+			main.mainGame(secondaryStage);
 
 		});
 
@@ -123,138 +140,6 @@ public class Main extends Application {
 		exit.setMnemonicParsing(true);
 		menu.setMnemonicParsing(true);
 		exitMenu.setMnemonicParsing(true);
-
-	}
-
-	private static void mainGame(Stage primaryStage) {
-
-		PlayerTurn playerTurn = new PlayerTurn();
-
-		BorderPane mainGame = new BorderPane();
-		TilePane boardTiles = new TilePane();
-		StackPane gameStackPane = new StackPane();
-		VBox moveText = new VBox(20);
-		HBox current = new HBox(10);
-		Text currentPlayer = new Text("Current Player: BLACK");
-		ImageView blackPiece = new ImageView("images/black.gif");
-
-		final Circle redCircle = new Circle(30);
-		final Circle blackCircle = new Circle(30);
-		redCircle.setFill(Color.RED);
-		blackCircle.setFill(Color.BLACK);
-
-		MenuBar menuBar = new MenuBar();
-		MenuItem mainMenu = new MenuItem("_Main Menu");
-		Menu menu = new Menu("_File");
-		MenuItem exit = new MenuItem("_Exit");
-
-		boardTiles.setPadding(new Insets(15));
-		boardTiles.setVgap(3);
-		boardTiles.setHgap(3);
-		boardTiles.setPrefColumns(4);
-
-		menu.getItems().addAll(mainMenu, exit);
-		menuBar.getMenus().add(menu);
-
-		moveText.setId("left-pane");
-		current.setId("current-top-pane");
-		blackPiece.setId("piece");
-		currentPlayer.setId("current-player-text");
-		mainGame.setId("game-window");
-
-		moveText.setAlignment(Pos.CENTER);
-
-		current.setAlignment(Pos.CENTER);
-		current.setMinSize(25, 25);
-		current.getChildren().add(currentPlayer);
-
-		mainGame.setTop(menuBar);
-		mainGame.setCenter(gameStackPane);
-		mainGame.setLeft(moveText);
-
-
-		List<Tile> gameTiles = new ArrayList<>();
-		List<HBox> hBoxes = new ArrayList<>();
-		HBox tiles;
-
-		Tile.addTiles();
-
-		if (playerTurn.getPlayer() == PlayerTurn.Turn.RED) {
-			currentPlayer.setText("Current Player: RED");
-			moveText.getChildren().addAll(current, redCircle);
-		} else {
-			currentPlayer.setText("Current Player: BLACK");
-		}
-
-		do {
-			Collections.shuffle(getTileTypes());
-			Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
-			boolean duplicate = false;
-			for (Tile existingTile : gameTiles) {
-				if (existingTile.equals(gameTile)) {
-					duplicate = true;
-					break;
-				}
-			}
-			if (duplicate) {
-				continue;
-			} else {
-				gameTiles.add(gameTile);
-			}
-		} while (gameTiles.size() < 16);
-
-		gameStackPane.getChildren().add(boardTiles);
-
-		for (Tile tile : gameTiles) {
-			Image imageOne = new Image("images/" + tile.getIconOne().toString().toLowerCase() + ".jpg");
-			Image imageTwo = new Image("images/" + tile.getIconTwo().toString().toLowerCase() + ".jpg");
-			ImageView imageViewOne = new ImageView(imageOne);
-			ImageView imageViewTwo = new ImageView(imageTwo);
-			tiles = new HBox(imageViewOne, imageViewTwo);
-			hBoxes.add(tiles);
-			boardTiles.getChildren().add(tiles);
-		}
-
-		redCircle.setOnDragDetected(event -> {
-			System.out.println("onDragDetected");
-
-			Dragboard dragboard = redCircle.startDragAndDrop(TransferMode.ANY);
-
-			ClipboardContent content = new ClipboardContent();
-//			content.putAll(redCircle.ge);
-			dragboard.setContent(content);
-		});
-
-			if (playerTurn.getPlayer() == PlayerTurn.Turn.RED) {
-				playerTurn.setPlayer(PlayerTurn.Turn.BLACK);
-			} else {
-				playerTurn.setPlayer(PlayerTurn.Turn.RED);
-			}
-
-		// 1180x470 magic resolution for perfect fit in window
-		Scene scene = new Scene(mainGame, 1180, 470);
-		scene.getStylesheets().addAll("css/icons.css", "css/main.css");
-		primaryStage.setTitle("Game of Niya");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-		mainMenu.setOnAction(e -> {
-
-			Stage main = new Stage();
-
-			primaryStage.close();
-			mainMenu(main);
-
-		});
-
-		exit.setOnAction(e -> Platform.exit());
-
-		mainMenu.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
-		exit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
-
-		menu.setMnemonicParsing(true);
-		mainMenu.setMnemonicParsing(true);
-		exit.setMnemonicParsing(true);
 
 	}
 
@@ -316,6 +201,184 @@ public class Main extends Application {
 
 	}
 
+	public Text getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(Text currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
+	public Button getGameButton() {
+		return gameButton;
+	}
+
+	public void setGameButton(Button gameButton) {
+		this.gameButton = gameButton;
+	}
+
+	public StackPane getTileStackPane() {
+		return tileStackPane;
+	}
+
+	public void setTileStackPane(StackPane tileStackPane) {
+		this.tileStackPane = tileStackPane;
+	}
+
+	public VBox getMoveText() {
+		return moveText;
+	}
+
+	public void setMoveText(VBox moveText) {
+		this.moveText = moveText;
+	}
+
+	private void mainGame(Stage primaryStage) {
+
+		GUIUtils guiUtils = new GUIUtils();
+
+		BorderPane mainGame = new BorderPane();
+		TilePane tilePane = new TilePane();
+		StackPane gameStackPane = new StackPane();
+		VBox moveText = new VBox(20);
+		HBox current = new HBox(10);
+		Text currentPlayer = new Text("Current Player: BLACK");
+		Image black = new Image("images/black.gif");
+		Image red = new Image("images/red.png");
+		ImageView blackPiece = new ImageView("images/black.gif");
+		ImageView redPiece = new ImageView("images/red.png");
+
+
+		redCircle.setFill(Color.RED);
+		blackCircle.setFill(Color.BLACK);
+
+		MenuBar menuBar = new MenuBar();
+		MenuItem mainMenu = new MenuItem("_Main Menu");
+		Menu menu = new Menu("_File");
+		MenuItem exit = new MenuItem("_Exit");
+
+		tilePane.setPadding(new Insets(15));
+		tilePane.setVgap(3);
+		tilePane.setHgap(3);
+		tilePane.setPrefColumns(4);
+
+		menu.getItems().addAll(mainMenu, exit);
+		menuBar.getMenus().add(menu);
+
+		moveText.setId("left-pane");
+		current.setId("current-top-pane");
+		blackPiece.setId("piece");
+		currentPlayer.setId("current-player-text");
+		mainGame.setId("game-window");
+
+		moveText.setAlignment(Pos.CENTER);
+
+		current.setAlignment(Pos.CENTER);
+		current.setMinSize(25, 25);
+		current.getChildren().add(currentPlayer);
+
+		mainGame.setTop(menuBar);
+		mainGame.setCenter(gameStackPane);
+		mainGame.setLeft(moveText);
+
+
+		List<Tile> gameTiles = new ArrayList<>();
+
+
+		Tile.addTiles();
+
+
+		// Ensuring unique tiles
+		do {
+			Collections.shuffle(getTileTypes());
+			Tile gameTile = new Tile(getTileTypes().get(0), getTileTypes().get(1));
+			boolean duplicate = false;
+			for (Tile existingTile : gameTiles) {
+				if (existingTile.equals(gameTile)) {
+					duplicate = true;
+					break;
+				}
+			}
+			if (duplicate) {
+				continue;
+			} else {
+				gameTiles.add(gameTile);
+			}
+		} while (gameTiles.size() < 16);
+
+		gameStackPane.getChildren().add(tilePane);
+
+		// Creating images based on the unique tiles
+		for (Tile tile : gameTiles) {
+			tileStackPane = new StackPane();
+			Image imageOne = new Image("images/" + tile.getIconOne().toString().toLowerCase() + ".jpg");
+			Image imageTwo = new Image("images/" + tile.getIconTwo().toString().toLowerCase() + ".jpg");
+			ImageView imageViewOne = new ImageView(imageOne);
+			ImageView imageViewTwo = new ImageView(imageTwo);
+			uniqueTiles = new HBox(imageViewOne, imageViewTwo);
+			gameButton = new Button("Play Piece");
+			tileStackPane.getChildren().addAll(uniqueTiles, gameButton);
+			tilePane.getChildren().add(tileStackPane);
+		}
+
+
+//		gameButton.setOnAction(event -> {
+//			if (!blackPlayer) {
+//				System.out.println("Piece added");
+//				tileStackPane.getChildren().add(redCircle);
+//				blackPlayer = true;
+//			} else {
+//				tileStackPane.getChildren().add(blackCircle);
+//				blackPlayer = false;
+//			}
+//		});
+
+
+		// 1180x470 magic resolution for perfect fit in window
+		Scene scene = new Scene(mainGame, 1180, 470);
+		scene.getStylesheets().addAll("css/icons.css", "css/main.css");
+		primaryStage.setTitle("Game of Niya");
+		primaryStage.setScene(scene);
+		primaryStage.show();
+
+		do {
+			if (GUIUtils.getPlayer() == PlayerMove.Turn.RED) {
+				currentPlayer.setText("Current Player: RED");
+				moveText.getChildren().addAll(current, redPiece);
+			} else {
+				currentPlayer.setText("Current Player: BLACK");
+				moveText.getChildren().addAll(current, blackPiece);
+			}
+
+			guiUtils.utils();
+		} while (guiUtils.isWin());
+
+		mainMenu.setOnAction(e -> {
+
+			Stage main = new Stage();
+
+			primaryStage.close();
+			mainMenu(main);
+
+		});
+
+		// AudioClip not working
+//		gameButton.setOnAction(event -> {
+//			clip.play(1.0);
+//		});
+
+		exit.setOnAction(e -> Platform.exit());
+
+		mainMenu.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
+		exit.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_DOWN));
+
+		menu.setMnemonicParsing(true);
+		mainMenu.setMnemonicParsing(true);
+
+		exit.setMnemonicParsing(true);
+
+	}
+
 	public void start(Stage primaryStage) {
 
 		mainMenu(primaryStage);
@@ -344,4 +407,58 @@ public class Main extends Application {
 
 	}
 
+	static class GUIUtils {
+
+		private static PlayerMove playerMove = new PlayerMove();
+		private static PlayerMove.Turn player = PlayerMove.Turn.RED;
+		Main main = new Main();
+		boolean win;
+
+		public static PlayerMove getPlayerMove() {
+			return playerMove;
+		}
+
+		public static void setPlayerMove(PlayerMove playerMove) {
+			GUIUtils.playerMove = playerMove;
+		}
+
+		public static PlayerMove.Turn getPlayer() {
+			return player;
+		}
+
+		public static void setPlayer(PlayerMove.Turn player) {
+			GUIUtils.player = player;
+		}
+
+		public void whosTurn() {
+
+		}
+
+		public void utils() {
+
+			// This does not seem to be working
+			main.getGameButton().setOnAction(event -> {
+				if (player == PlayerMove.Turn.RED) {
+					System.out.println("Piece added");
+					main.getTileStackPane().getChildren().add(redCircle);
+					player = PlayerMove.Turn.BLACK;
+				} else {
+					main.getTileStackPane().getChildren().add(blackCircle);
+					player = PlayerMove.Turn.RED;
+				}
+			});
+
+			System.out.println(player);
+		}
+
+		public boolean isWin() {
+			return win;
+		}
+
+		public void setWin(boolean win) {
+			this.win = win;
+		}
+	}
+
 }
+
