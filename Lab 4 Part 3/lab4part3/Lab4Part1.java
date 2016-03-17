@@ -67,17 +67,19 @@ public class Lab4Part1 {
 		PlayerMove playerMove = new PlayerMove();
 		GameUtils gameUtils = new GameUtils();
 
-//        while (PlayerMove.checkWin()) {
+		// Everything for console works except reading to save file and end conditions
+
 		do {
 			gameBoard.printBoard();
 			GameUtils.gameUtils();
 			playerMove.checkWin();
-
-			playerMove.writeMovesToFile(GameBoard.getBoard(), gameUtils.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 3\\NiyaGame.txt");
-
 			game();
 
 		} while (!playerMove.checkWin());
+
+		playerMove.writeMovesToFile(GameBoard.getBoard(), gameUtils.getMoves(), "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS202\\Lab 4 Part 3\\NiyaGame.txt");
+
+
 	}
 
 	private static void readSaveFile() {
