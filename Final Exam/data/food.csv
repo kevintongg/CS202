@@ -1,0 +1,16 @@
+recipeName,ingredientName,isPurchased,quantity
+cake,water,yes,1
+cake,flour,no,2
+cake,sugar,no,2
+cake,vanilla extract,no,2
+cake,egg,no,3
+cake,milk,no,4
+cake,strawberry,no,4
+cake,salt,yes,2
+hamburger,ground beef,no,1
+hamburger,salt,no,4
+hamburger,pepper,yes,2
+hamburger,cheese,no,2
+hamburger,lettuce,no,2
+hamburger,buns,yes,1
+hamburger,secret sauce,no,2
