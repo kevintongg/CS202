@@ -4,12 +4,14 @@ public class Test3 {
 
     public static void main(String[] args) {
 
-		int counter = 100;
-
-        for (int i = 0; i < counter; i++) {
-            System.out.println(i);
+        for (int i = 1; i <= 100; i++) {
+            if ((i % 3) == 0) {
+                System.out.println("Bizz");
+            } else if ((i % 5) == 0) {
+                System.out.println("Buzz");
+            } else {
+                System.out.println(i);
+            }
         }
-
-
     }
 }

@@ -84,12 +84,14 @@ public class Main extends Application {
     public void courseChooser(Stage courseStage) {
 
 
-        StackPane coursePane = new StackPane();
+        GridPane coursePane = new GridPane();
         VBox courses = new VBox(5);
         Button mathButton = new Button("Calculus");
 
+        mathButton.setAlignment(Pos.CENTER);
         courses.getChildren().add(mathButton);
         coursePane.getChildren().add(courses);
+        coursePane.setAlignment(Pos.CENTER);
 
         courseStage.setTitle("Course");
         courseStage.setScene(new Scene(coursePane));
@@ -100,12 +102,13 @@ public class Main extends Application {
             Stage attendance = new Stage();
 
             courseStage.close();
-            attendanceWindow(attendance);
+            calculusAttendance(attendance);
+
 
         });
     }
 
-    public void attendanceWindow(Stage attendanceStage) {
+    public void calculusAttendance(Stage calculusStage) {
 
         Course calculus = new Course("Calculus");
 
@@ -123,18 +126,18 @@ public class Main extends Application {
             }
         }
 
-        attendanceStage.setTitle(calculus.toString());
-        attendanceStage.setScene(new Scene(attendanceGrid));
-        attendanceStage.show();
+        calculusStage.setTitle(calculus.toString());
+        calculusStage.setScene(new Scene(attendanceGrid));
+        calculusStage.show();
     }
 
 //
 //    public void mainWindow(Stage attendanceStage) {
 //
 //        try {
-//            Parent attendanceWindow = FXMLLoader.load(getClass().getResource("attendance.fxml"));
+//            Parent calculusAttendance = FXMLLoader.load(getClass().getResource("attendance.fxml"));
 //            attendanceStage.setTitle("Attendance");
-//            attendanceStage.setScene(new Scene(attendanceWindow));
+//            attendanceStage.setScene(new Scene(calculusAttendance));
 //            attendanceStage.show();
 //        } catch (IOException e) {
 //            System.err.format("IOException: %s%n", e);

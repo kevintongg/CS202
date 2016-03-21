@@ -2,6 +2,17 @@ package q1p3;
 
 public class Q1P3 {
 
+
+	/*
+	*
+	* Implement the following body of the method
+	*
+	* public static void checkNumsPretty(int max)
+	*
+	* which performs the following operations:
+	*
+	* */
+
 	public static void main(String[] args) {
 
 		System.out.println("First iteration:");
