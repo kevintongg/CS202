@@ -2,5 +2,5 @@ package midterm;
 
 public abstract class TestSolver {
 
-    abstract public void finishUnfinishedQuestion(Question question);
+  abstract public void finishUnfinishedQuestion(Question question);
 }

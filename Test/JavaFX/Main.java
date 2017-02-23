@@ -10,28 +10,28 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+  public static void main(String[] args) {
+    launch(args);
+  }
 
-    @Override
-    public void start(Stage primaryStage) {
+  @Override
+  public void start(Stage primaryStage) {
 
-        StackPane pane = new StackPane();
-        VBox vBox = new VBox(5);
+    StackPane pane = new StackPane();
+    VBox vBox = new VBox(5);
 
-        Button button1 = new Button("Button");
-        Button button2 = new Button("Button");
+    Button button1 = new Button("Button");
+    Button button2 = new Button("Button");
 
-        vBox.getChildren().addAll(button1, button2);
-        vBox.setAlignment(Pos.CENTER);
-        pane.getChildren().add(vBox);
+    vBox.getChildren().addAll(button1, button2);
+    vBox.setAlignment(Pos.CENTER);
+    pane.getChildren().add(vBox);
 
-        Scene scene = new Scene(pane);
-        primaryStage.setTitle("Window");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    Scene scene = new Scene(pane);
+    primaryStage.setTitle("Window");
+    primaryStage.setScene(scene);
+    primaryStage.show();
 
 
-    }
+  }
 }

@@ -2,22 +2,22 @@ package midterm;
 
 public class Question {
 
-    private String question;
+  private String question;
 
-    public Question(String question) {
-        this.question = question;
-    }
+  public Question(String question) {
+    this.question = question;
+  }
 
-    public String getQuestion() {
-        return question;
-    }
+  public String getQuestion() {
+    return question;
+  }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
+  public void setQuestion(String question) {
+    this.question = question;
+  }
 
-    @Override
-    public String toString() {
-        return question;
-    }
+  @Override
+  public String toString() {
+    return question;
+  }
 }

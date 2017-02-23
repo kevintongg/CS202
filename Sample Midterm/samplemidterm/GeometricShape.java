@@ -2,40 +2,41 @@ package samplemidterm;
 
 public abstract class GeometricShape {
 
-    private String name;
-    private String color;
+  private String name;
+  private String color;
 
-    public void GeometricShape(String name, String color) {
+  public void GeometricShape(String name, String color) {
 
-        this.name = name;
-        this.color = color;
+    this.name = name;
+    this.color = color;
 
-    }
+  }
 
-    abstract public double checkRectangleArea();
-    abstract public double checkTriangleArea();
+  abstract public double checkRectangleArea();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  abstract public double checkTriangleArea();
 
-    public String getName(String name) {
-        return name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+  public String getName(String name) {
+    return name;
+  }
 
-    public String getColor(String color) {
-        return color;
-    }
+  public void setColor(String color) {
+    this.color = color;
+  }
 
-    @Override
-    public String toString() {
-        return "GeometricShape{" +
-                "name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                '}';
-    }
+  public String getColor(String color) {
+    return color;
+  }
+
+  @Override
+  public String toString() {
+    return "GeometricShape{" +
+        "name='" + name + '\'' +
+        ", color='" + color + '\'' +
+        '}';
+  }
 }

@@ -12,22 +12,22 @@ import java.io.IOException;
 
 public class MainTest extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
+  public static void main(String[] args) {
+    launch(args);
+  }
+
+  @Override
+  public void start(Stage primaryStage) {
+
+    try {
+      Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
+
+      primaryStage.setTitle("testing");
+      primaryStage.setScene(new Scene(root, 200, 200));
+      primaryStage.show();
+    } catch (IOException e) {
+      System.err.format("IOException: %s%n", e);
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("test.fxml"));
-
-            primaryStage.setTitle("testing");
-            primaryStage.setScene(new Scene(root, 200, 200));
-            primaryStage.show();
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
-
-    }
+  }
 }

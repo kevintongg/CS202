@@ -1,17 +1,17 @@
 package asdf;
 
+import java.lang.reflect.Field;
+
 public class Test3 {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
 
-        for (int i = 1; i <= 100; i++) {
-            if ((i % 3) == 0) {
-                System.out.println("Bizz");
-            } else if ((i % 5) == 0) {
-                System.out.println("Buzz");
-            } else {
-                System.out.println(i);
-            }
-        }
-    }
+    Class cache = Integer.class.getDeclaredClasses()[0];
+    Field c = cache.getDeclaredField("cache");
+    c.setAccessible(true);
+    Integer[] array = (Integer[]) c.get(cache);
+    array[132] = array[133];
+
+    System.out.printf("%d", 2 + 2);
+  }
 }

@@ -1,0 +1,18 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/.name
+.idea/codeStyleSettings.xml
+.idea/cssdialects.xml
+.idea/inspectionProfiles/
+.idea/workspace.xml
+Lab 4 Part 2/Lab 4 Part 2.iml
+Lab 4 Part 3/NiyaGame.txt
+Lab 4 Part 3/images/UxsFiYF.png
+Lab 4 Part 3/images/asdf/
+Lab 4 Part 3/images/eyJ1cmwiOiJodHRwOi8vaS5pbWd1ci5jb20vNnIxbHFLRS5wbmcifQ.d2cRd04kMUseJyCc3DTG65HDQaU.png
+Lab 4 Part 3/images/niyaImages.zip
+Lab 4 Part 3/images/niyaImages/
+Lab 4 Part 3/sounds/01_Cloud.ogg
+jcalc.jar
+out/
+saveFile.txt

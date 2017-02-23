@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Moves {
 
-    private List<String> moves = new ArrayList<>();
+  private List<String> moves = new ArrayList<>();
 
-    public Moves(String move) {
-        this.moves = moves;
-    }
+  public Moves(String move) {
+    this.moves = moves;
+  }
 
-    public List<String> getMoves() {
-        return moves;
-    }
+  public List<String> getMoves() {
+    return moves;
+  }
 
-    public void setMoves(List<String> moves) {
-        this.moves = moves;
-    }
+  public void setMoves(List<String> moves) {
+    this.moves = moves;
+  }
 }

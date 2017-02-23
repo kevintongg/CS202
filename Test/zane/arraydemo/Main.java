@@ -10,12 +10,12 @@ package zane.arraydemo;
  */
 public class Main {
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args) {
-		arrayDemoForm arrayDemo = new arrayDemoForm();
-		arrayDemo.setVisible(true);
-	}
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String[] args) {
+    arrayDemoForm arrayDemo = new arrayDemoForm();
+    arrayDemo.setVisible(true);
+  }
 
 }

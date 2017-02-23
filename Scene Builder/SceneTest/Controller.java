@@ -8,16 +8,16 @@ import javafx.scene.control.Button;
  */
 public class Controller {
 
-    @FXML
-    private Button testButton;
+  @FXML
+  private Button testButton;
 
-    public Controller() {
+  public Controller() {
 
-    }
+  }
 
-    @FXML
-    public void initialize() {
+  @FXML
+  public void initialize() {
 
-    }
+  }
 
 }

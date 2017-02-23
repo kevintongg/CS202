@@ -5,9 +5,10 @@ import java.util.List;
 
 public interface PlayTTT {
 
-    String[][] getTurn(String[][] board, String piece);
-    boolean checkWin(String[][] board, String piece);
+  List<SetMoves> moves = new ArrayList<>();
 
-    List<SetMoves> moves = new ArrayList<>();
+  String[][] getTurn(String[][] board, String piece);
+
+  boolean checkWin(String[][] board, String piece);
 
 }

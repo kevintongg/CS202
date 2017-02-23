@@ -18,7 +18,7 @@
 }
 
 #current-player-text {
-	-fx-text-fill: 0,0,255;
+	-fx-text-fill: 0, 0, 255;
 }
 
 #game-window {
